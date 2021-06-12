@@ -5,8 +5,32 @@ const { GAMES_URL, GENRE_URL } = require("../utils/urls");
 const { v4: UUIDV4 } = require("uuid");
 
 const getGames = async (req, res, next) => {
-  const { name, page } = req.query;
-  if (!name) {
+  const { name } = req.query;
+  if (name) {
+    try {
+      const searchDB = await Videogame.findAll({
+        where: { name: name },
+        include: [{ model: Genre, attributes: ["name"] }],
+      });
+      const searchAPI = await axios.get(
+        `${GAMES_URL}?key=${API_KEY}&search=${name}`
+      );
+      const newSearch = [];
+      searchAPI.data.results.forEach((obj) => {
+        newSearch.push({
+          name: obj.name,
+          genre: obj.genres,
+          image: obj.background_image,
+        });
+      });
+      const resulstByName = [...searchDB, ...newSearch];
+      return res.json(resulstByName);
+    } catch (error) {
+      next(error);
+      // if (error.gamesAPI?.status === 404 || error.gamesDB?.status === 404)
+      //   return res.json({ status: "404", message: "Game not found" });
+    }
+  } else {
     try {
       const api100Games = [];
       let url = `${GAMES_URL}?key=${API_KEY}`;
@@ -31,22 +55,6 @@ const getGames = async (req, res, next) => {
       // .status(500)
       // .json({ message: "Something went wrong", data: {} });
     }
-  } else {
-    try {
-      const searchDB = await Videogame.findAll({
-        where: { name: name },
-        include: [Genre],
-      });
-      const searchAPI = await axios.get(
-        `${GAMES_URL}?key=${API_KEY}&search=${name}`
-      );
-      const resulstByName = [...searchDB, ...searchAPI.data.results];
-      return res.json(resulstByName);
-    } catch (error) {
-      next(error);
-      // if (error.gamesAPI?.status === 404 || error.gamesDB?.status === 404)
-      //   return res.json({ status: "404", message: "Game not found" });
-    }
   }
 };
 const getOneGame = async (req, res) => {
@@ -55,7 +63,9 @@ const getOneGame = async (req, res) => {
     if (id.includes("-")) {
       const gameDB = await Videogame.findOne({
         where: { id: id },
-        include: { Genre },
+        include: [
+          { model: Genre, attributes: ["name"], through: { attributes: [] } },
+        ],
       });
       res.json(gameDB);
     } else {
@@ -101,15 +111,18 @@ const PostGame = async (req, res) => {
       released: released,
       rating: rating,
       platforms: platforms,
-      genre: genres,
       image: image_url,
     });
     // if (genre.length < 1)
     //   return res.render("error", {
     //     message: "You must select at least one genre for this game",
     //   });
-    await newGame.setGenre(genres);
-    return res.json({ message: "New game added to the list", data: newGame });
+    await newGame.addGenre(genres);
+    res.send({
+      newGame,
+      // message: "New game added to the list",
+      // data: newGame,
+    });
   } catch (error) {
     return res.send(error);
   }
