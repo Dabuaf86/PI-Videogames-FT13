@@ -6,7 +6,7 @@ const { v4: UUIDV4 } = require("uuid");
 
 const getGames = async (req, res, next) => {
   const { name, page } = req.query;
-  if (!name && !page) {
+  if (!name) {
     try {
       const api100Games = [];
       let url = `${GAMES_URL}?key=${API_KEY}`;
@@ -22,27 +22,10 @@ const getGames = async (req, res, next) => {
           });
         });
       }
-      const gamesDB = await Videogame.findAll();
+      const gamesDB = await Videogame.findAll({ include: [Genre] });
       const allGames = [...gamesDB, ...api100Games];
-      // let min = 0;
-      // let max = 15;
-      // if (page) {
-      //   min = (min + 1) * (page - 1);
-      //   max *= 2;
-      // }
-      const gameList = allGames.slice(0, 15); // name/page/limit slice(15 * (pagina - 1) , (pagina - 1) * 15 + 15)
-
+      const gameList = allGames.slice(0, 15);
       return res.json(gameList);
-
-      //   let gamesAPI = await axios.get(
-      //     `${GAMES_URL}?key=${API_KEY}&page${page}`
-      //   );
-      //   gamesAPI = gamesAPI.data.results;
-      //   const gamesDB = await Videogame.findAll();
-      //   const allGames = [...gamesDB, ...gamesAPI];
-      //   const gameList = allGames.slice(0, 15);
-      //   return res.json(gameList);
-      // }
     } catch (error) {
       next(error);
       // .status(500)
@@ -50,7 +33,10 @@ const getGames = async (req, res, next) => {
     }
   } else {
     try {
-      const searchDB = await Videogame.findAll({ where: { name: name } });
+      const searchDB = await Videogame.findAll({
+        where: { name: name },
+        include: [Genre],
+      });
       const searchAPI = await axios.get(
         `${GAMES_URL}?key=${API_KEY}&search=${name}`
       );
@@ -65,23 +51,29 @@ const getGames = async (req, res, next) => {
 };
 const getOneGame = async (req, res) => {
   const { id } = req.params;
-  // const gamesAPI = gamesAPI.map((game) => ({
-  //   id: game.id,
-  //   name: game.name,
-  //   description: game.description,
-  //   released: game.released,
-  //   rating: game.rating,
-  //   platforms: game.platforms,
-  //   image: game.background_image, // short_screenshots
-  // }));
   try {
-    // const ocote = await
-    // const gameDB = await Videogame.findOne({where: {}});
-    const gameAPI = await axios.get(`${GAMES_URL}/${id}?key=${API_KEY}`);
-    const result = gameAPI.data.results;
-    return res.json(result);
+    if (id.includes("-")) {
+      const gameDB = await Videogame.findOne({
+        where: { id: id },
+        include: { Genre },
+      });
+      res.json(gameDB);
+    } else {
+      const gameAPI = await axios.get(`${GAMES_URL}/${id}?key=${API_KEY}`);
+      const data = gameAPI.data;
+      const toRenderData = {
+        name: data.name,
+        description: data.description_raw,
+        released: data.released,
+        rating: data.rating,
+        genres: data.genres,
+        platforms: data.platforms.name,
+        image: data.background_image, // short_screenshots
+      };
+      return res.json(toRenderData);
+    }
   } catch (error) {
-    return res.sendStatus(404);
+    return res.sendStatus(404).send({ message: "Game not found." });
   }
 };
 const getGenres = async (req, res) => {
@@ -98,7 +90,7 @@ const getGenres = async (req, res) => {
   }
 };
 const PostGame = async (req, res) => {
-  const { name, description, released, rating, platforms, genres, image } =
+  const { name, description, released, rating, platforms, genres, image_url } =
     req.body;
   try {
     // FALTA AGREGAR MANEJO DE COLISIONES PARA JUEGOS YA EXISTENTES
@@ -110,7 +102,7 @@ const PostGame = async (req, res) => {
       rating: rating,
       platforms: platforms,
       genre: genres,
-      // image: image,
+      image: image_url,
     });
     // if (genre.length < 1)
     //   return res.render("error", {
