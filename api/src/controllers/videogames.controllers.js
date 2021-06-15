@@ -18,6 +18,7 @@ const getGames = async (req, res, next) => {
       const newSearch = [];
       searchAPI.data.results.forEach((obj) => {
         newSearch.push({
+          id: obj.id,
           name: obj.name,
           genre: obj.genres,
           image: obj.background_image,
@@ -40,6 +41,7 @@ const getGames = async (req, res, next) => {
         url = reqData.data.next;
         data.forEach(async (obj) => {
           await api100Games.push({
+            id: obj.id,
             name: obj.name,
             genre: obj.genres,
             image: obj.background_image,
@@ -48,8 +50,8 @@ const getGames = async (req, res, next) => {
       }
       const gamesDB = await Videogame.findAll({ include: [Genre] });
       const allGames = [...gamesDB, ...api100Games];
-      const gameList = allGames.slice(0, 15);
-      return res.json(gameList);
+      // const gameList = allGames.slice(0, 15);
+      return res.json(allGames);
     } catch (error) {
       next(error);
       // .status(500)
@@ -72,13 +74,13 @@ const getOneGame = async (req, res) => {
       const gameAPI = await axios.get(`${GAMES_URL}/${id}?key=${API_KEY}`);
       const data = gameAPI.data;
       const toRenderData = {
+        image: data.background_image, // short_screenshots
         name: data.name,
         description: data.description_raw,
         released: data.released,
         rating: data.rating,
+        platforms: data.platforms,
         genres: data.genres,
-        platforms: data.platforms.name,
-        image: data.background_image, // short_screenshots
       };
       return res.json(toRenderData);
     }

@@ -1,83 +1,98 @@
 const axios = require("axios");
 
-export const GET_VIDEOGAMES = "GET_VIDEOGAMES";
+export const GET_ALLVIDEOGAMES = "GET_ALLVIDEOGAMES";
+export const GET_GAMESBYNAME = "GET_GAMESBYNAME";
 export const GET_VIDEOGAMEDETAILS = "GET_VIDEOGAMEDETAILS";
 export const POST_VIDEOGAME = "POST_VIDEOGAME";
 export const FILTER_VIDEOGAMES = "FILTER_VIDEOGAMES";
 export const FILTER_GENRES = "FILTER_GENRES";
 export const ORDER_VIDEOGAMES = "ORDER_VIDEOGAMES";
 
-const url = "http://localhost:3001";
+const URL = "http://localhost:3001";
 
-export const getVideogames = (name) => async (dispatch) => {
+export const getAllVideogames = () => async (dispatch) => {
   try {
-    const req = await axios.get(`${url}videogames?name=${name}`);
-    const data = await req.json();
+    const req = await axios.get(`${URL}/videogames`);
+    // const data = await req.data;
+    // console.log("QUE TRAIGO DEL BACK", data)
     dispatch({
-      type: GET_VIDEOGAMES,
-      payload: data,
+      type: GET_ALLVIDEOGAMES,
+      payload: req.data,
     });
   } catch (error) {
-    alert("Game not found");
+    console.error(error);
   }
 };
+// export const getGamesByName = (name) => async (dispatch) => {
+//   try {
+//     const req = await axios.get(`${URL}/videogames?name=${name}`);
+//     // const data = await req.data;
+//     dispatch({
+//       type: GET_GAMESBYNAME,
+//       payload: req.data,
+//     });
+//   } catch (error) {
+//     alert("No games with that word in them were found in our database");
+//   }
+// };
 export const getVideogameDetails = (id) => async (dispatch) => {
   try {
-    const req = await axios.get(`${url}videogame/${id}`);
-    const data = await req.json();
+    const req = await axios.get(`${URL}/videogame/${id}`);
     dispatch({
-      type: GET_VIDEOGAMES,
-      payload: data,
+      type: GET_VIDEOGAMEDETAILS,
+      payload: req.data,
     });
   } catch (error) {
-    alert("Game not found");
+    alert("Ups! something went wrong");
   }
 };
-export const postVideogame = (name) => async (dispatch) => {
+/*
+export const postVideogame = () => async (dispatch) => {
   try {
-    const req = await axios.get(`${url}videogames?name=${name}`);
-    const data = await req.json();
+    const req = await axios.get(`${URL}/videogame`);
+    const data = await req.data;
     dispatch({
-      type: GET_VIDEOGAMES,
+      type: POST_VIDEOGAME,
       payload: data,
     });
   } catch (error) {
-    alert("Game not found");
+    console.error(error);
   }
 };
-export const filterVideogames = (name) => async (dispatch) => {
+export const filterVideogames = (payload) => async (dispatch) => {
   try {
-    const req = await axios.get(`${url}videogames?name=${name}`);
-    const data = await req.json();
+    const req = await axios.get(`${URL}/videogames`);
+    const data = await req.data.payload;
     dispatch({
-      type: GET_VIDEOGAMES,
+      type: FILTER_VIDEOGAMES,
       payload: data,
     });
   } catch (error) {
-    alert("Game not found");
+    console.error(error);
   }
 };
-export const filterGenres = (name) => async (dispatch) => {
+export const filterGenres = (payload) => async (dispatch) => {
   try {
-    const req = await axios.get(`${url}videogames?name=${name}`);
-    const data = await req.json();
+    const req = await axios.get(`${URL}/genres`);
+    const data = await req.data.payload;
     dispatch({
-      type: GET_VIDEOGAMES,
+      type: FILTER_GENRES,
       payload: data,
     });
   } catch (error) {
-    alert("Game not found");
+    console.error(error);
   }
 };
-export const orderVideogames = (name) => async (dispatch) => {
+export const orderVideogames = (payload) => async (dispatch) => {
   try {
-    const req = await axios.get(`${url}videogames?name=${name}`);
-    const data = await req.json();
+    const req = await axios.get(`${URL}videogames`);
+    const data = await req.data.payload;
     dispatch({
-      type: GET_VIDEOGAMES,
+      type: ORDER_VIDEOGAMES,
       payload: data,
     });
   } catch (error) {
-    alert("Game not found");
+    console.error(error);
   }
 };
+*/

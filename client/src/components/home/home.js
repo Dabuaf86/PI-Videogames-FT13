@@ -1,40 +1,44 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllVideogames } from "../../Actions/Actions";
 import { Link } from "react-router-dom";
-import { getVideogames } from "../../actions/actions";
 
-const home = ({ retrievedGames }) => {
-  const [input, setInput] = useState("");
-  const handleChange = (event) => {
-    setInput(event.target.value);
-  };
-  const handleClick = () => {
-    getVideogames(input);
-  };
+const Home = () => {
+  const dispatch = useDispatch();
+  const loadedVideogames = useSelector((state) => state.loadedVideogames);
+
+  useEffect(() => {
+    dispatch(getAllVideogames());
+  }, [dispatch]);
+
+  // const handleClickPrev = (event) => {};
+  // const handleClickNext = (event) => {};
   return (
-    <div className="home">
-      <div>
-        <h2>Videogames</h2>
-        <input onChange={handleChange} type="text" placeholder="search" />
-        <button onClick={handleClick}>🔍</button>
-      </div>
-      <div>
-        {retrievedGames.map((game) => (
-          <div key={game.id}>
-            <Link to={`videogames/${game.id}`}>
-              {game.name}
-              <img src={game.image} alt="game poster" width="200px" />
-            </Link>
-            {game.genre}
-          </div>
-        ))}
-      </div>
+    <div>
+      {loadedVideogames.length === 0 ? (
+        <h2>Loading...Please wait</h2>
+      ) : (
+        loadedVideogames
+          .map((game) => (
+            <div key={game.id}>
+              <Link to={`/videogame/${game.id}`}>
+                <h2>{game.name}</h2>
+                <img src={game.image} alt="game poster" width="300px" />
+              </Link>
+              <span>
+                {game.genre.map((el) => {
+                  return <li>{el.name}</li>;
+                })}
+              </span>
+            </div>
+          ))
+          .slice(0, 15)
+      )}
+      {/* <div>
+        <button onClick={handleClickPrev}>previous</button>
+        <button onClick={handleClickNext}>next</button>
+      </div> */}
     </div>
   );
 };
-
-const mapStateToProps = (state) => ({
-  retrievedGames: state.loadedVideogames,
-});
-
-export default connect(mapStateToProps, {})(home);
+export default Home;
