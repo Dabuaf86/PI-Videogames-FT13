@@ -3,10 +3,12 @@ import "./LandingPage.css";
 
 const LandingPage = () => {
   return (
-    <div>
-      <Link to="/videogames">
-        <button>Press start to play</button>
-      </Link>
+    <div id="landBody">
+      <header>
+        <Link to="/videogames">
+          <button id="startbtn">Press start to play</button>
+        </Link>
+      </header>
     </div>
   );
 };

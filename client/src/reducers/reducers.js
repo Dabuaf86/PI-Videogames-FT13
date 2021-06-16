@@ -1,6 +1,6 @@
 import {
   GET_ALLVIDEOGAMES,
-  // GET_GAMESBYNAME,
+  GET_GAMESBYNAME,
   GET_VIDEOGAMEDETAILS,
   // POST_VIDEOGAME,
   // FILTER_VIDEOGAMES,
@@ -25,12 +25,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         loadedVideogames: [...action.payload],
       };
-    // case GET_GAMESBYNAME:
-    //   return {
-    //     ...state,
-    //     loadedVideogames: action.payload,
-    //     gamesByName: action.payload,
-    //   };
+    case GET_GAMESBYNAME:
+      return {
+        ...state,
+        loadedVideogames: action.payload,
+        gamesByName: action.payload,
+      };
     case GET_VIDEOGAMEDETAILS:
       return {
         ...state,

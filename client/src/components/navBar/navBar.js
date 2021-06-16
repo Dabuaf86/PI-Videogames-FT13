@@ -1,15 +1,23 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "./NavBar.css";
 
 const Navbar = () => {
   return (
-    <div className="navbar">
-      {/* <img src="" alt="" /> */}
-      <h1>Welcome to 1APP🍄</h1>
-      <NavLink to="/videogames">Videogames</NavLink>
-      <NavLink to="/genres">Genres</NavLink>
-      <NavLink to="/videogame">Post a new game</NavLink>
-    </div>
+    <header className="navbar">
+      <span>
+        <h1>Get 1APP🍄</h1>
+      </span>
+      <nav>
+        <ul>
+          <li className="navlinks">
+            <NavLink to="/videogames">Arcade Place</NavLink>
+            <NavLink to="/genres">Genres</NavLink>
+            <NavLink to="/videogame">Post a new game</NavLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 };
 

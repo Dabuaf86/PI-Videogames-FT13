@@ -1,3 +1,25 @@
-landingpage {
+#landBody {
   background-image: url("./texto-estilo-letreros-neon-arcade-night_118419-1578.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: centercenter;
+}
+
+#startbtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#startbtn:hover {
+  border: 0.2rem solid #fff;
+  border-radius: 0.5rem;
+  padding: 0.4em;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+    0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
+  cursor: pointer;
+  padding: 10px;
 }

@@ -23,18 +23,17 @@ export const getAllVideogames = () => async (dispatch) => {
     console.error(error);
   }
 };
-// export const getGamesByName = (name) => async (dispatch) => {
-//   try {
-//     const req = await axios.get(`${URL}/videogames?name=${name}`);
-//     // const data = await req.data;
-//     dispatch({
-//       type: GET_GAMESBYNAME,
-//       payload: req.data,
-//     });
-//   } catch (error) {
-//     alert("No games with that word in them were found in our database");
-//   }
-// };
+export const getGamesByName = (name) => async (dispatch) => {
+  try {
+    const req = await axios.get(`${URL}/videogames?name=${name}`);
+    dispatch({
+      type: GET_GAMESBYNAME,
+      payload: req.data,
+    });
+  } catch (error) {
+    alert("No games with that word in them were found in our database");
+  }
+};
 export const getVideogameDetails = (id) => async (dispatch) => {
   try {
     const req = await axios.get(`${URL}/videogame/${id}`);
