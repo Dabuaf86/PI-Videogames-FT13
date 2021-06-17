@@ -1,5 +1,6 @@
 import {
   GET_ALLVIDEOGAMES,
+  TOTAL,
   GET_GAMESBYNAME,
   GET_VIDEOGAMEDETAILS,
   POST_VIDEOGAME,
@@ -9,6 +10,7 @@ import {
 } from "../Actions/Actions";
 
 const initialState = {
+  total: [],
   loadedVideogames: [],
   gamesByName: [],
   videgameDetails: {},
@@ -23,13 +25,18 @@ export default function rootReducer(state = initialState, action) {
     case GET_ALLVIDEOGAMES:
       return {
         ...state,
-        loadedVideogames: [...action.payload],
+        loadedVideogames: action.payload,
+      };
+    case TOTAL:
+      return {
+        ...state,
+        total: action.payload,
       };
     case GET_GAMESBYNAME:
       return {
         ...state,
-        // loadedVideogames: action.payload,
-        gamesByName: action.payload,
+        loadedVideogames: action.payload,
+        // gamesByName: action.payload,
       };
     case GET_VIDEOGAMEDETAILS:
       return {

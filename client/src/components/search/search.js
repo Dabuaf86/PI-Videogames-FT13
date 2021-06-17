@@ -3,23 +3,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { getGamesByName } from "../../Actions/Actions";
 import "./Search.css";
 
-const Search = () => {
+const Search = ({ limit }) => {
   const [gameInput, setGameInput] = useState("");
   //   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const gamesByName = useSelector((state) => state.gamesByName);
-  useEffect(() => {
-    dispatch(getGamesByName(gameInput));
-  }, [dispatch]);
+  // const gamesByName = useSelector((state) => state.gamesByName);
+  // useEffect(() => {
+  //   dispatch(getGamesByName(gameInput, limit));
+  // }, [dispatch, gameInput]);
 
   const handleChange = (event) => setGameInput(event.target.value);
   const handleClick = (event) => {
     event.preventDefault();
-    if (!gameInput) return alert("please type a game's name");
-    else {
-      getGamesByName(gameInput);
-      setGameInput("");
-    }
+    // if (!gameInput) return alert("please type a game's name");
+    // else {
+    dispatch(getGamesByName(gameInput, limit));
+    // }
   };
 
   return (

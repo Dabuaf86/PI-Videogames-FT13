@@ -33,15 +33,17 @@ const GameDetails = () => {
       </p>
       <p>
         <b>Available for:</b>
-        {game.platforms.map((plat) => {
-          return <li className="liPlat">{plat.platform.name}</li>;
-        })}
+        {game.platforms &&
+          game.platforms.map((plat) => {
+            return <li className="liPlat">{plat.platform.name}</li>;
+          })}
       </p>
       <p>
         <b>Genres: </b>
-        {game.genres.map((gen) => {
-          return <li className="liGen">{gen.name}</li>;
-        })}
+        {game.genres &&
+          game.genres.map((gen) => {
+            return <li className="liGen">{gen.name}</li>;
+          })}
       </p>
     </div>
   );

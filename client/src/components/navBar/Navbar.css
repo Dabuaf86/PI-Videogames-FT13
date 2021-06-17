@@ -2,16 +2,23 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* background-image: url("./maquina-juego-arcade-letrero-neon_73458-438.jpg");
+  background-image: url("./maquina-juego-arcade-letrero-neon_73458-438.jpg");
+  background-color: black;
   background-repeat: no-repeat;
   background-size: auto;
-  background-position: left center; */
+  background-position: left center;
+  padding-bottom: 1em;
 }
 
 #navH1 {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  color: #fff;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #f09,
+    0 0 82px #f09, 0 0 92px #f09, 0 0 102px #f09, 0 0 151px #f09;
+  /* animation: flicker 1.5s infinite alternate; */
+  animation: pulsate 0.11s ease-in-out infinite alternate;
 }
 
 #navlinks {
@@ -20,4 +27,51 @@
   justify-content: space-evenly;
   font-weight: bold;
   font-size: 15px;
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 0.5rem;
+  color: #fff;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #bc13fe,
+    0 0 82px #bc13fe, 0 0 92px #bc13fe, 0 0 102px #bc13fe, 0 0 151px #bc13fe;
 }
+
+/* #navlinks:hover {
+  border: 0.2rem solid #fff;
+  border-radius: 0.5rem;
+  padding: 0.4em;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+    0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
+  padding: 10px;
+  cursor: pointer;
+} */
+
+@keyframes pulsate {
+  100% {
+    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #f09,
+      0 0 80px #f09, 0 0 90px #f09, 0 0 100px #f09, 0 0 150px #f09;
+  }
+
+  0% {
+    text-shadow: 0 0 4px #fff, 0 0 10px #fff, 0 0 18px #fff, 0 0 38px #f09,
+      0 0 73px #f09, 0 0 80px #f09, 0 0 94px #f09, 0 0 140px #f09;
+  }
+}
+
+/* @keyframes flicker {
+  0%,
+  18%,
+  22%,
+  25%,
+  53%,
+  57%,
+  100% {
+    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #f09,
+      0 0 80px #f09, 0 0 90px #f09, 0 0 100px #f09, 0 0 150px #f09;
+  }
+
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+  }
+} */

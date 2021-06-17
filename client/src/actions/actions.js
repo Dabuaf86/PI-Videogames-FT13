@@ -1,6 +1,7 @@
 const axios = require("axios");
 
 export const GET_ALLVIDEOGAMES = "GET_ALLVIDEOGAMES";
+export const TOTAL = "TOTAL";
 export const GET_GAMESBYNAME = "GET_GAMESBYNAME";
 export const GET_VIDEOGAMEDETAILS = "GET_VIDEOGAMEDETAILS";
 export const POST_VIDEOGAME = "POST_VIDEOGAME";
@@ -10,25 +11,39 @@ export const ORDER_VIDEOGAMES = "ORDER_VIDEOGAMES";
 
 const URL = "http://localhost:3001";
 
-export const getAllVideogames = () => async (dispatch) => {
+export const getTotal = () => async (dispatch) => {
   try {
     const req = await axios.get(`${URL}/videogames`);
-    // const data = await req.data;
-    // console.log("QUE TRAIGO DEL BACK", data)
     dispatch({
-      type: GET_ALLVIDEOGAMES,
-      payload: req.data,
+      type: TOTAL,
+      payload: req.data.length,
     });
   } catch (error) {
     console.error(error);
   }
 };
-export const getGamesByName = (name) => async (dispatch) => {
+
+export const getAllVideogames = (limit) => async (dispatch) => {
+  try {
+    const req = await axios.get(`${URL}/videogames`);
+    // const data = await req.data;
+    // console.log("QUE TRAIGO DEL BACK", data)
+    let paginado = req.data.slice(limit, limit + 15);
+    dispatch({
+      type: GET_ALLVIDEOGAMES,
+      payload: paginado,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const getGamesByName = (name, limit) => async (dispatch) => {
   try {
     const req = await axios.get(`${URL}/videogames?name=${name}`);
+    let paginado = req.data.slice(limit, limit + 15);
     dispatch({
       type: GET_GAMESBYNAME,
-      payload: req.data,
+      payload: paginado,
     });
   } catch (error) {
     alert("No games with that word in them were found in our database");

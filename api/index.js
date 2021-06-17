@@ -15,7 +15,7 @@ conn.sync({ force: true }).then(() => {
           genres.data.results &&
           genres.data.results.forEach((rtdo) =>
             Genre.create({ name: rtdo.name }).catch((error) =>
-              res.status(500, { message: error })
+              console.error(error)
             )
           )
       );
