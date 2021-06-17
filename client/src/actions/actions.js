@@ -45,19 +45,19 @@ export const getVideogameDetails = (id) => async (dispatch) => {
     alert("Ups! something went wrong");
   }
 };
-/*
+
 export const postVideogame = () => async (dispatch) => {
   try {
     const req = await axios.get(`${URL}/videogame`);
-    const data = await req.data;
     dispatch({
       type: POST_VIDEOGAME,
-      payload: data,
+      payload: req.data,
     });
   } catch (error) {
     console.error(error);
   }
 };
+/*
 export const filterVideogames = (payload) => async (dispatch) => {
   try {
     const req = await axios.get(`${URL}/videogames`);

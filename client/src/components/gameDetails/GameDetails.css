@@ -1,0 +1,53 @@
+.details {
+  /* color: #fff;
+  text-shadow:
+      0 0 7px rgb(8, 8, 8),
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px rgb(204, 0, 255),
+      0 0 82px rgb(204, 0, 255),
+      0 0 92px rgb(204, 0, 255),
+      0 0 102px rgb(204, 0, 255),
+      0 0 151px rgb(204, 0, 255); */
+  color: rgb(255, 255, 255);
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-image: url("./depositphotos_63921325-stock-photo-arcade-machine-opposing-duel.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  /* filter: blur(8px);
+  -webkit-filter: blur(8px); */
+}
+
+.detailIMG {
+  width: 640px;
+  height: 360px;
+}
+
+.detailH2 {
+  font-weight: bolder;
+  /* color: black; */
+  font-size: large;
+}
+
+.liPlat {
+  /* color: black; */
+  font-size: 15px;
+}
+
+.liGen {
+  /* color: black; */
+  font-size: 15px;
+}
+
+/* .detailDescr {
+  display: flex;
+  justify-content:cen;
+  align-content:center;
+  padding-left: 100px;
+  padding-right: 100px;
+} */

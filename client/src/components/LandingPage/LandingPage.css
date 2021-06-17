@@ -2,7 +2,9 @@
   background-image: url("./texto-estilo-letreros-neon-arcade-night_118419-1578.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: centercenter;
+  background-position: center center;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 #startbtn {

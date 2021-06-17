@@ -1,13 +1,9 @@
-.games {
-  display: flex;
-  justify-content: space-evenly;
-}
-
 .home {
   background-image: url("./0e4598997b0c04af7e31a0283427f74d.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  background-attachment: scroll;
 }
 
 .gamesContainer {
@@ -20,6 +16,7 @@
   flex-wrap: wrap;
   margin-left: 120px;
   margin-right: 120px;
+  align-items: center;
 }
 
 .games {
@@ -40,14 +37,15 @@
   cursor: pointer;
 }
 
-h2 {
+.homeH2 {
   font-size: 15px;
   color: bisque;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-li {
+.homeLi {
   font-size: 10px;
   display: flex;
   justify-content: center;
@@ -56,12 +54,13 @@ li {
   margin-top: 5px;
 }
 
-img {
+.homeIMG {
   width: 320px;
   height: 240px;
   display: flex;
   justify-content: center;
   border-radius: 15px;
+  align-items: center;
 }
 
 #search {

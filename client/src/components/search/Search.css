@@ -1,0 +1,31 @@
+.searchDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#search {
+  display: flex;
+  border: 0.2rem solid #fff;
+  border-radius: 0.5rem;
+  padding: 0.4em;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+    0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
+}
+
+#btnSearch {
+  display: flex;
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 0.5rem;
+}
+
+/* #btnSearch:hover {
+  border: 0.2rem solid #fff;
+  border-radius: 0.5rem;
+  padding: 0.4em;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+    0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
+  padding: 10px;
+  cursor: pointer;
+} */

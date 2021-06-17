@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getVideogameDetails } from "../../Actions/Actions";
+import "./GameDetails.css";
 
 const GameDetails = () => {
   const dispatch = useDispatch();
@@ -14,13 +15,13 @@ const GameDetails = () => {
 
   console.log(game);
   return (
-    <div>
-      <img src={game.image} alt="" width="500px" />
-      <h2>{game.name}</h2>
+    <div className="details">
+      <img className="detailIMG" src={game.image} alt="" width="500px" />
+      <h2 className="detailH2">{game.name}</h2>
       <p>
-        <b>Description: </b>
+        <b className="detailDescr">Description: </b>
         {game.description}
-      </p>{" "}
+      </p>
       <hr />
       <p>
         <b>Released on: </b>
@@ -28,18 +29,18 @@ const GameDetails = () => {
       </p>
       <p>
         <b>Rating: </b>
-        {game.rating}
+        {game.rating}⭐
       </p>
       <p>
         <b>Available for:</b>
-       {game.platforms.map((plat) => {
-          return <li>{plat.platform.name}</li>;
+        {game.platforms.map((plat) => {
+          return <li className="liPlat">{plat.platform.name}</li>;
         })}
       </p>
       <p>
         <b>Genres: </b>
         {game.genres.map((gen) => {
-          return <li>{gen.name}</li>;
+          return <li className="liGen">{gen.name}</li>;
         })}
       </p>
     </div>

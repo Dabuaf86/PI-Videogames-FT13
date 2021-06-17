@@ -1,17 +1,23 @@
-/*
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { postVideogame } from "../../Actions/Actions";
 
 const PostVideogame = () => {
-  const [input, setInput] = React.useState({
+  const [input, setInput] = useState({
     name: "",
     description: "",
     released: "",
-    rating: 0,
+    rating: "",
     genres: "",
     platforms: "",
   });
-  const [errors, setErrors] = React.useState({});
+  const dispatch = useDispatch();
+  const createdVideogames = useSelector((state) => state.createdVideogames);
+  useEffect(() => {
+    dispatch(postVideogame(input));
+  }, [dispatch]);
+
+  const [errors, setErrors] = useState(false);
 
   const handleInputChange = (event) => {
     setInput({
@@ -26,35 +32,71 @@ const PostVideogame = () => {
     );
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (
+      input.name.trim() === "" ||
+      input.description.trim() === "" ||
+      input.genre.trim() === ""
+    ) {
+      setErrors(true);
+      return;
+    }
+    setErrors(false);
+  };
+
   return (
-    <form>
-      <div>
-        <div>
-          <label>Name:</label>
-          <input type="text" />
-        </div>
-        <div>
-          <label>Description:</label>
-          <input type="text" />
-        </div>
-        <div>
-          <label>Released on:</label>
-          <input type="text" />
-        </div>
-        <div>
-          <label>Rating:</label>
-          <input type="text" />
-        </div>
-        <div>
-          <label>Genre/s:</label>
-          <input type="text" />
-        </div>
-        <div>
-          <label>Platform/s:</label>
-          <input type="text" />
-        </div>
+    <form className="form" onSubmit={handleSubmit}>
+      <div id="formDiv">
+        <label>Name: *</label>
+        <input
+          type="text"
+          name="name"
+          value={input.name}
+          onChange={handleInputChange}
+        />
+
+        <label>Description: *</label>
+        <input
+          type="text"
+          name="description"
+          value={input.description}
+          onChange={handleInputChange}
+        />
+
+        <label>Released on:</label>
+        <input
+          type="text"
+          name="released"
+          value={input.released}
+          onChange={handleInputChange}
+        />
+
+        <label>Rating:</label>
+        <input
+          type="text"
+          name="rating"
+          value={input.rating}
+          onChange={handleInputChange}
+        />
+
+        <label>Genre/s: *</label>
+        <input
+          type="text"
+          name="genre"
+          value={input.genre}
+          onChange={handleInputChange}
+        />
+
+        <label>Platform/s:</label>
+        <input
+          type="text"
+          name="platform"
+          value={input.platform}
+          onChange={handleInputChange}
+        />
       </div>
-      <input value="Post new game" type="submit" />
+      <input value="Post game" type="submit" />
     </form>
   );
 };
@@ -63,13 +105,12 @@ export const validate = (input) => {
   let errors = {};
   if (!input.name) {
     errors.name = "Game's name is required";
-  }
-  if (!input.description) {
+  } else if (!input.description) {
     errors.description = "Game's description is required";
-  }
-  if (!input.genres) {
+  } else if (!input.genres) {
     errors.genres = "You must add at least one genre from the list";
   }
   return errors;
 };
-*/
+
+export default PostVideogame;

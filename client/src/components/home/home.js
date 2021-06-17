@@ -22,18 +22,18 @@ const Home = () => {
       </span>
       <div className="gamesContainer">
         {loadedVideogames.length === 0 ? (
-          <h2>Loading...Please wait</h2>
+          <h2 className="homeH2">Loading...Please wait</h2>
         ) : (
           loadedVideogames
             .map((game) => (
               <div className="games" key={game.id}>
                 <Link to={`/videogame/${game.id}`}>
                   <h2>{game.name}</h2>
-                  <img src={game.image} alt="game poster" />
+                  <img className="homeIMG" src={game.image} alt="game poster" />
                 </Link>
                 <>
                   {game.genre.map((el) => {
-                    return <li>{el.name}</li>;
+                    return <li className="homeLi">{el.name}</li>;
                   })}
                 </>
               </div>

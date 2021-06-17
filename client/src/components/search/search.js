@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getGamesByName } from "../../Actions/Actions";
+import "./Search.css";
 
 const Search = () => {
   const [gameInput, setGameInput] = useState("");
@@ -10,10 +11,8 @@ const Search = () => {
   useEffect(() => {
     dispatch(getGamesByName(gameInput));
   }, [dispatch]);
-  
-  const handleChange = (event) => {
-    setGameInput(event.target.value);
-  };
+
+  const handleChange = (event) => setGameInput(event.target.value);
   const handleClick = (event) => {
     event.preventDefault();
     if (!gameInput) return alert("please type a game's name");
@@ -24,15 +23,18 @@ const Search = () => {
   };
 
   return (
-    <div>
+    <div className="searchDiv">
       {/* {loading && <Loader />} */}
       <input
+        id="search"
         type="text"
         placeholder="search..."
         value={gameInput}
         onChange={handleChange}
       />
-      <button onClick={handleClick}>🔍</button>
+      <button id="btnSearch" onClick={handleClick}>
+        🔍
+      </button>
     </div>
   );
 };
