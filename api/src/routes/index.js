@@ -6,6 +6,7 @@ const {
   getGames,
   getOneGame,
   getGenres,
+  getPlatforms,
   PostGame,
 } = require("../controllers/videogames.controllers");
 
@@ -15,6 +16,7 @@ router.get("/videogames", getGames);
 router.get("/videogame/:id", getOneGame);
 router.post("/videogame", PostGame);
 router.get("/genres", getGenres);
+router.get("/platforms", getPlatforms);
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);

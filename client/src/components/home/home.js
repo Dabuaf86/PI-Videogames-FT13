@@ -16,8 +16,7 @@ const Home = () => {
   const total = useSelector((state) => state.total);
   // const [paginado, SetPaginado] = useState([]);
   // const [flag, setFlag] = useState(false);
-  const allGamesUnchanged = [];
-  // 2 hooks uno contiene el slice del paginado y el anterior 
+  // 2 hooks uno contiene el slice del paginado y el anterior
   let page = 1;
 
   useEffect(() => {
@@ -63,8 +62,8 @@ const Home = () => {
         <Search getGamesByName={getGamesByName} limit={limit} />
       </span>
       <div className="gamesContainer">
-        {loadedVideogames && loadedVideogames.length === 0 ? (
-          <h2 className="homeH2">Loading...Please wait</h2>
+        {loadedVideogames.length === 0 ? (
+          <h3 className="homeH2">Loading...Please wait</h3>
         ) : (
           loadedVideogames &&
           loadedVideogames.map((game) => (
@@ -82,10 +81,15 @@ const Home = () => {
             </div>
           ))
         )}
-        <div>
-          <button onClick={handleClickPrev}>previous</button>&nbsp;
-          <button onClick={handleClickNext}>next</button>
-        </div>
+        <footer>
+          <button className="pagbtn" onClick={handleClickPrev}>
+            previous
+          </button>
+          &nbsp;
+          <button className="pagbtn" onClick={handleClickNext}>
+            next
+          </button>
+        </footer>
       </div>
     </div>
   );

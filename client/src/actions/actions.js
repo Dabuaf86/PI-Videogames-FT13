@@ -5,6 +5,8 @@ export const TOTAL = "TOTAL";
 export const GET_GAMESBYNAME = "GET_GAMESBYNAME";
 export const GET_VIDEOGAMEDETAILS = "GET_VIDEOGAMEDETAILS";
 export const POST_VIDEOGAME = "POST_VIDEOGAME";
+export const GET_GENRES = "GET_GENRES";
+export const GET_PLATFORMS = "GET_PLATFORMS";
 export const FILTER_VIDEOGAMES = "FILTER_VIDEOGAMES";
 export const FILTER_GENRES = "FILTER_GENRES";
 export const ORDER_VIDEOGAMES = "ORDER_VIDEOGAMES";
@@ -72,6 +74,32 @@ export const postVideogame = () => async (dispatch) => {
     console.error(error);
   }
 };
+
+export const getGenres = () => async (dispatch) => {
+  try {
+    const req = await axios.get(`${URL}/genres`);
+    // const data = await req.data;
+    // console.log("QUE TRAIGO DEL BACK", data)
+    dispatch({
+      type: GET_GENRES,
+      payload: req.data,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const getPlatforms = () => async (dispatch) => {
+  try {
+    const req = await axios.get(`${URL}/platforms`);
+    dispatch({
+      type: GET_PLATFORMS,
+      payload: req.data,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 /*
 export const filterVideogames = (payload) => async (dispatch) => {
   try {

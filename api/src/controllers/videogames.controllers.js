@@ -1,7 +1,7 @@
 const { Videogame, Genre } = require("../db");
 const axios = require("axios").default;
 const { API_KEY } = process.env;
-const { GAMES_URL, GENRE_URL } = require("../utils/urls");
+const { GAMES_URL } = require("../utils/urls");
 const { v4: UUIDV4 } = require("uuid");
 
 const getGames = async (req, res, next) => {
@@ -90,13 +90,21 @@ const getOneGame = async (req, res) => {
 };
 const getGenres = async (req, res) => {
   try {
-    const genres = await axios.get(`${GENRE_URL}?key=${API_KEY}`);
-    const result = genres.data.results;
-    result.forEach(async (rtdo) => {
-      await Genre.create({ name: rtdo.name });
-    });
+    // const genres = await axios.get(`${GENRE_URL}?key=${API_KEY}`);
+    // const result = genres.data.results;
+    // result.forEach(async (rtdo) => {
+    //   await Genre.create({ name: rtdo.name });
+    // });
     const genre = await Genre.findAll();
     return res.json(genre);
+  } catch (error) {
+    return res.sendStatus(400);
+  }
+};
+const getPlatforms = async (req, res) => {
+  try {
+    const platform = await Platform.findAll();
+    return res.json(platform);
   } catch (error) {
     return res.sendStatus(400);
   }
@@ -134,5 +142,6 @@ module.exports = {
   getGames,
   getOneGame,
   getGenres,
+  getPlatforms,
   PostGame,
 };

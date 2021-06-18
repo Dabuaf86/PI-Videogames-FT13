@@ -4,6 +4,8 @@ import {
   GET_GAMESBYNAME,
   GET_VIDEOGAMEDETAILS,
   POST_VIDEOGAME,
+  GET_GENRES,
+  GET_PLATFORMS,
   // FILTER_VIDEOGAMES,
   // FILTER_GENRES,
   // ORDER_VIDEOGAMES,
@@ -15,6 +17,8 @@ const initialState = {
   gamesByName: [],
   videgameDetails: {},
   createdVideogames: [],
+  allGenre: [],
+  allPlatforms: [],
   filteredVideogames: [],
   filteredGenres: [],
   orderedVideogames: [],
@@ -47,6 +51,16 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         createdVideogames: [...state.createdVideogames, action.payload],
+      };
+    case GET_GENRES:
+      return {
+        ...state,
+        allGenre: action.payload,
+      };
+    case GET_PLATFORMS:
+      return {
+        ...state,
+        allPlatforms: action.payload,
       };
     // case FILTER_VIDEOGAMES:
     //   return {
