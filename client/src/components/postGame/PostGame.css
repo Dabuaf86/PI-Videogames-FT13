@@ -4,3 +4,12 @@
   align-content: space-around;
   justify-content: space-evenly;
 }
+
+p.Error {
+  color: red;
+  font-size: 10px;
+}
+
+input.Error {
+  border: 2px solid red;
+}

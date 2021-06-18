@@ -10,14 +10,11 @@ const PostVideogame = () => {
     rating: "",
     genres: "",
     platforms: "",
-    image: "",
+    image_url: "",
   });
   const dispatch = useDispatch();
-
   const createdVideogames = useSelector((state) => state.createdVideogames);
-
   const selectGenre = useSelector((state) => state.allGenre);
-
   const selectPlatforms = useSelector((state) => state.allPlatforms);
 
   useEffect(() => {
@@ -52,7 +49,8 @@ const PostVideogame = () => {
     if (
       input.name.trim() === "" ||
       input.description.trim() === "" ||
-      input.genre.trim() === ""
+      input.genres.trim() === "" ||
+      input.platforms.trim() === ""
     ) {
       setErrors(true);
       return;
@@ -65,19 +63,23 @@ const PostVideogame = () => {
       <div id="formDiv">
         <label>Name: *</label>
         <input
+          className={errors.name && "Error"}
           type="text"
           name="name"
           value={input.name}
           onChange={handleInputChange}
         />
+        {errors.name && <p className="Error">{errors.name}</p>}
         &nbsp;
         <label>Description: *</label>
         <input
+          className={errors.description && "Error"}
           type="text"
           name="description"
           value={input.description}
           onChange={handleInputChange}
         />
+        {errors.description && <p className="Error">{errors.description}</p>}
         &nbsp;
         <label>Released on:</label>
         <input
@@ -97,8 +99,9 @@ const PostVideogame = () => {
         &nbsp;
         <label>Genre/s: *</label>
         <select
-          name="genre"
-          id="genre"
+          className={errors.genres && "Error"}
+          name="genres"
+          id="genres"
           value={input.genre}
           onChange={handleInputChange}
         >
@@ -109,8 +112,9 @@ const PostVideogame = () => {
         &nbsp;
         <label>Platform/s: *</label>
         <select
-          name="platform"
-          id="platform"
+          className={errors.platforms && "Error"}
+          name="platforms"
+          id="platforms"
           value={input.platform}
           onChange={handleInputChange}
         >
@@ -138,7 +142,9 @@ export const validate = (input) => {
   } else if (!input.description) {
     errors.description = "Game's description is required";
   } else if (!input.genres) {
-    errors.genres = "You must add at least one genre from the list";
+    errors.genres = "You must choose at least one genre from the list";
+  } else if (!input.platform) {
+    errors.platforms = "You must choose at least one platform from the list";
   }
   return errors;
 };

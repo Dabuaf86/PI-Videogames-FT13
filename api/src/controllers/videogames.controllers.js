@@ -1,4 +1,4 @@
-const { Videogame, Genre } = require("../db");
+const { Videogame, Genre, Platform } = require("../db");
 const axios = require("axios").default;
 const { API_KEY } = process.env;
 const { GAMES_URL } = require("../utils/urls");
@@ -67,6 +67,11 @@ const getOneGame = async (req, res) => {
         where: { id: id },
         include: [
           { model: Genre, attributes: ["name"], through: { attributes: [] } },
+          {
+            model: Platform,
+            attributes: ["name"],
+            through: { attributes: [] },
+          },
         ],
       });
       res.json(gameDB);
@@ -120,7 +125,6 @@ const PostGame = async (req, res) => {
       description: description,
       released: released,
       rating: rating,
-      platforms: platforms,
       image: image_url,
     });
     // if (genre.length < 1)
@@ -128,10 +132,10 @@ const PostGame = async (req, res) => {
     //     message: "You must select at least one genre for this game",
     //   });
     await newGame.addGenre(genres);
+    await newGame.addPlatform(platforms);
     res.send({
-      newGame,
-      // message: "New game added to the list",
-      // data: newGame,
+      message: "New game added to the list",
+      data: newGame,
     });
   } catch (error) {
     return res.send(error);

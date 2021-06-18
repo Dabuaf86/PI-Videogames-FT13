@@ -1,5 +1,4 @@
 const { DataTypes, UUIDV4 } = require("sequelize");
-const { genre } = require("./Genre");
 // Exportamos una funcion que define el modelo
 // Luego le inyectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -23,10 +22,10 @@ module.exports = (sequelize) => {
     rating: {
       type: DataTypes.DECIMAL,
     },
-    platforms: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    // platforms: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
     Image: {
       type: DataTypes.STRING,
     },
