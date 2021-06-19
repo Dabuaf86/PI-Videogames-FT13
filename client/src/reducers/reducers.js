@@ -50,7 +50,7 @@ export default function rootReducer(state = initialState, action) {
     case POST_VIDEOGAME:
       return {
         ...state,
-        createdVideogames: [...state.createdVideogames, action.payload],
+        loadedVideogames: [...state.loadedVideogames, action.payload],
       };
     case GET_GENRES:
       return {

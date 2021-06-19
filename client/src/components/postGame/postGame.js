@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postVideogame, getGenres, getPlatforms } from "../../Actions/Actions";
+import Validate from "./Validate";
 
 const PostVideogame = () => {
   const [input, setInput] = useState({
@@ -13,7 +14,8 @@ const PostVideogame = () => {
     image_url: "",
   });
   const dispatch = useDispatch();
-  const createdVideogames = useSelector((state) => state.createdVideogames);
+  // const createdVideogames = useSelector((state) => state.createdVideogames);
+  const loadedVideogames = useSelector((state) => state.loadedVideogames);
   const selectGenre = useSelector((state) => state.allGenre);
   const selectPlatforms = useSelector((state) => state.allPlatforms);
 
@@ -25,10 +27,6 @@ const PostVideogame = () => {
     dispatch(getPlatforms());
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(postVideogame(input));
-  }, [dispatch]);
-
   const [errors, setErrors] = useState(false);
 
   const handleInputChange = (event) => {
@@ -37,7 +35,7 @@ const PostVideogame = () => {
       [event.target.name]: event.target.value,
     });
     setErrors(
-      validate({
+      Validate({
         ...input,
         [event.target.name]: event.target.value,
       })
@@ -47,15 +45,16 @@ const PostVideogame = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (
-      input.name.trim() === "" ||
-      input.description.trim() === "" ||
-      input.genres.trim() === "" ||
-      input.platforms.trim() === ""
+      errors.name ||
+      errors.description ||
+      errors.genres ||
+      errors.platforms
     ) {
       setErrors(true);
       return;
     }
     setErrors(false);
+    dispatch(postVideogame(input));
   };
 
   return (
@@ -105,6 +104,7 @@ const PostVideogame = () => {
           value={input.genre}
           onChange={handleInputChange}
         >
+          <option value="">select...</option>
           {selectGenre.map((genre) => (
             <option>{genre.name}</option>
           ))}
@@ -118,6 +118,7 @@ const PostVideogame = () => {
           value={input.platform}
           onChange={handleInputChange}
         >
+          <option value="">select...</option>
           {selectPlatforms.map((platform) => (
             <option>{platform.name}</option>
           ))}
@@ -133,20 +134,6 @@ const PostVideogame = () => {
       <input value="Post game" type="submit" />
     </form>
   );
-};
-
-export const validate = (input) => {
-  let errors = {};
-  if (!input.name) {
-    errors.name = "Game's name is required";
-  } else if (!input.description) {
-    errors.description = "Game's description is required";
-  } else if (!input.genres) {
-    errors.genres = "You must choose at least one genre from the list";
-  } else if (!input.platform) {
-    errors.platforms = "You must choose at least one platform from the list";
-  }
-  return errors;
 };
 
 export default PostVideogame;
