@@ -25,27 +25,27 @@ export const getTotal = () => async (dispatch) => {
   }
 };
 
-export const getAllVideogames = (limit) => async (dispatch) => {
+export const getAllVideogames = () => async (dispatch) => {
   try {
     const req = await axios.get(`${URL}/videogames`);
     // const data = await req.data;
     // console.log("QUE TRAIGO DEL BACK", data)
-    let paginado = req.data.slice(limit, limit + 15);
+    // let paginado = req.data.slice(limit, limit + 15);
     dispatch({
       type: GET_ALLVIDEOGAMES,
-      payload: paginado,
+      payload: req.data,
     });
   } catch (error) {
     console.error(error);
   }
 };
-export const getGamesByName = (name, limit) => async (dispatch) => {
+export const getGamesByName = (name) => async (dispatch) => {
   try {
     const req = await axios.get(`${URL}/videogames?name=${name}`);
-    let paginado = req.data.slice(limit, limit + 15);
+    // let paginado = req.data.slice(limit, limit + 15);
     dispatch({
       type: GET_GAMESBYNAME,
-      payload: paginado,
+      payload: req.data,
     });
   } catch (error) {
     alert("No games with that word in them were found in our database");

@@ -9,8 +9,8 @@ const PostVideogame = () => {
     description: "",
     released: "",
     rating: "",
-    genres: "",
-    platforms: "",
+    genres: [],
+    platforms: [],
     image_url: "",
   });
   const dispatch = useDispatch();
@@ -34,6 +34,7 @@ const PostVideogame = () => {
       ...input,
       [event.target.name]: event.target.value,
     });
+    
     setErrors(
       Validate({
         ...input,
@@ -102,7 +103,8 @@ const PostVideogame = () => {
           name="genres"
           id="genres"
           value={input.genre}
-          onChange={handleInputChange}
+          onSelect={handleInputChange}
+          multiple="true"
         >
           <option value="">select...</option>
           {selectGenre.map((genre) => (
@@ -116,7 +118,8 @@ const PostVideogame = () => {
           name="platforms"
           id="platforms"
           value={input.platform}
-          onChange={handleInputChange}
+          onSelect={handleInputChange}
+          multiple="true"
         >
           <option value="">select...</option>
           {selectPlatforms.map((platform) => (

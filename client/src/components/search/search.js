@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getGamesByName } from "../../Actions/Actions";
 import "./Search.css";
 
-const Search = ({ limit }) => {
+const Search = () => {
   const [gameInput, setGameInput] = useState("");
   //   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const Search = ({ limit }) => {
     event.preventDefault();
     // if (!gameInput) return alert("please type a game's name");
     // else {
-    dispatch(getGamesByName(gameInput, limit));
+    dispatch(getGamesByName(gameInput));
     // }
   };
 
@@ -34,6 +34,9 @@ const Search = ({ limit }) => {
       <button id="btnSearch" onClick={handleClick}>
         🔍
       </button>
+      {/* <a href="#">
+        <img src="./element-1_99625.png" alt="search btn" />
+      </a> */}
     </div>
   );
 };

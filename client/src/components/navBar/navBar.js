@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <header className="navbar">
       <span>
-        <h1 id="navH1">Get 1APP🍄</h1>
+        <h1 id="navH1">Level APP</h1>
       </span>
       <nav>
         <ul>
