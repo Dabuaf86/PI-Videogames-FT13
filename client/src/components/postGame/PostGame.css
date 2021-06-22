@@ -1,8 +1,15 @@
-#formDiv {
+/* @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"); */
+.postGame {
   display: flex;
   flex-direction: column;
-  align-content: space-around;
-  justify-content: space-evenly;
+  align-content: center;
+  justify-content: center;
+  max-width: fit-content;
+  margin-top:5%;
+  margin-left:30%;
+  font-size: 13px;
+  color: rgb(150, 0, 150)
+  /* font-family: 'Press Start 2P', cursive; */
 }
 
 p.Error {
@@ -12,4 +19,24 @@ p.Error {
 
 input.Error {
   border: 2px solid red;
+}
+
+.formFooter{
+  margin-top: 10px;
+  font-size: 10px;
+  color: rgb(150, 0, 150);
+}
+.formH2 {
+  /* font-size: 10px; */
+  color: rgb(150, 0, 150);
+}
+.formSpan {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.selectSpan {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

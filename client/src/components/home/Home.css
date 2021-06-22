@@ -7,11 +7,9 @@
   display: grid;
 }
 
-/* .search {
+/* .filterBar {
   display: flex;
-  justify-content: space-around;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  justify-content: space-evenly;
   background-color: transparent;
   border-radius: 15px;
   color: white;

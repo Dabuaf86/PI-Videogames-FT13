@@ -1,29 +1,17 @@
 const axios = require("axios");
 
 export const GET_ALLVIDEOGAMES = "GET_ALLVIDEOGAMES";
-export const TOTAL = "TOTAL";
 export const GET_GAMESBYNAME = "GET_GAMESBYNAME";
 export const GET_VIDEOGAMEDETAILS = "GET_VIDEOGAMEDETAILS";
 export const POST_VIDEOGAME = "POST_VIDEOGAME";
 export const GET_GENRES = "GET_GENRES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
-export const FILTER_VIDEOGAMES = "FILTER_VIDEOGAMES";
-export const FILTER_GENRES = "FILTER_GENRES";
-export const ORDER_VIDEOGAMES = "ORDER_VIDEOGAMES";
+export const FILTER_BYGENRE = "FILTER_BYGENRE";
+export const ORDER_ALPHABET = "ORDER_ALPHABET";
+export const ORDER_BYRATING = "ORDER_BYRATING";
+export const RESET = "RESET";
 
 const URL = "http://localhost:3001";
-
-export const getTotal = () => async (dispatch) => {
-  try {
-    const req = await axios.get(`${URL}/videogames`);
-    dispatch({
-      type: TOTAL,
-      payload: req.data.length,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 export const getAllVideogames = () => async (dispatch) => {
   try {
@@ -62,7 +50,6 @@ export const getVideogameDetails = (id) => async (dispatch) => {
     alert("Ups! something went wrong");
   }
 };
-
 export const postVideogame = () => async (dispatch) => {
   try {
     const req = await axios.get(`${URL}/videogame`);
@@ -74,7 +61,6 @@ export const postVideogame = () => async (dispatch) => {
     console.error(error);
   }
 };
-
 export const getGenres = () => async (dispatch) => {
   try {
     const req = await axios.get(`${URL}/genres`);
@@ -99,42 +85,62 @@ export const getPlatforms = () => async (dispatch) => {
     console.error(error);
   }
 };
-
-/*
-export const filterVideogames = (payload) => async (dispatch) => {
-  try {
-    const req = await axios.get(`${URL}/videogames`);
-    const data = await req.data.payload;
-    dispatch({
-      type: FILTER_VIDEOGAMES,
-      payload: data,
-    });
-  } catch (error) {
-    console.error(error);
-  }
+export const filterByGenres = (genre) => (dispatch, getState) => {
+  let filteredGames = [];
+  if (genre === "Select") filteredGames = getState().loadedVideogames;
+  else
+    filteredGames = getState().loadedVideogames.filter((games) =>
+      games.genres.includes(genre)
+    );
+  dispatch({
+    type: FILTER_BYGENRE,
+    payload: {
+      genre,
+      gamesByGenre: filteredGames,
+    },
+  });
 };
-export const filterGenres = (payload) => async (dispatch) => {
-  try {
-    const req = await axios.get(`${URL}/genres`);
-    const data = await req.data.payload;
-    dispatch({
-      type: FILTER_GENRES,
-      payload: data,
+export const orderAlphabet = (order) => (dispatch, getState) => {
+  const filteredGames = getState().filteredVideogames;
+  let orderedGames = [];
+  if (order === "ALPHABET_ASC") {
+    orderedGames = filteredGames.sort((a, b) => {
+      if (a.name > b.name) return 1;
+      else if (a.name < b.name) return -1;
+      return 0;
     });
-  } catch (error) {
-    console.error(error);
-  }
-};
-export const orderVideogames = (payload) => async (dispatch) => {
-  try {
-    const req = await axios.get(`${URL}videogames`);
-    const data = await req.data.payload;
-    dispatch({
-      type: ORDER_VIDEOGAMES,
-      payload: data,
+  } else if (order === "ALPHABET_DESC") {
+    orderedGames = filteredGames.sort((a, b) => {
+      if (a.name < b.name) return 1;
+      else if (a.name > b.name) return -1;
+      return 0;
     });
-  } catch (error) {
-    console.error(error);
   }
+  dispatch({
+    type: "ORDER_ALPHABET",
+    payload: {
+      orderedGames,
+      order,
+    },
+  });
 };
-*/
+export const orderByRating = (order) => (dispatch, getState) => {
+  const filteredGames = getState().filteredVideogames;
+  let orderedGames = [];
+  if (order === "RATING_ASC") {
+    orderedGames = filteredGames.sort((a, b) => a.rating - b.rating);
+  } else if (order === "RATING_DESC") {
+    orderedGames = filteredGames.sort((a, b) => b.rating - a.rating);
+  }
+  dispatch({
+    type: "ORDER_BYRATING",
+    payload: {
+      orderedGames,
+      order,
+    },
+  });
+};
+export const resetGames = () => (dispatch) =>
+  dispatch({
+    type: RESET,
+  });

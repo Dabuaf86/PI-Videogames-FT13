@@ -4,15 +4,15 @@ import "./Games.css";
 
 const Games = ({ loadedVideogames, loading }) => {
   if (loading) {
-    return <h2 className="homeH2">CHUPALA, YA VOY!</h2>;
+    return <h2 className="homeH2">Loading...please wait</h2>;
   }
   return (
-    <div className="gamesContainer">
+    <div className="gamesGrid">
       {loadedVideogames &&
         loadedVideogames.map((game) => (
           <div className="games" key={game.id}>
             <Link to={`/videogame/${game.id}`}>
-              <h2>{game.name}</h2>
+              <h3 className='gamesH3'>{game.name}</h3>
               <img className="homeIMG" src={game.image} alt="game poster" />
             </Link>
             <>

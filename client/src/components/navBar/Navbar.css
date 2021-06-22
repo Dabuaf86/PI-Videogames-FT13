@@ -24,7 +24,7 @@
 #navlinks {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   font-weight: bold;
   font-size: 15px;
   padding: 10px;

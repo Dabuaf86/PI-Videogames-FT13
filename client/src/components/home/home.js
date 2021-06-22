@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllVideogames, getGamesByName } from "../../Actions/Actions";
 import Games from "../Games/Games";
 import Pagination from "../Pagination/Pagination";
+import GenreFilter from "../GenreFilter/GenreFilter";
 import "./Home.css";
 import Search from "../Search/Search";
 
@@ -30,8 +31,9 @@ const Home2 = () => {
 
   return (
     <div className="home">
-      <span className="search">
+      <span className="filterBar">
         <Search getGamesByName={getGamesByName} />
+        <GenreFilter />
       </span>
       <Games loadedVideogames={currentGames} loading={loading} />
       <Pagination

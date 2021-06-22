@@ -1,23 +1,25 @@
-.pagbtn {
-  display: grid;
+.btnGrid {
+  display: flex;
   justify-content: center;
-  align-content: center;
+  padding-top: 20px;
+  
+}
+.paginateA {
   border-radius: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+  color: #610a83;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #fff;
 }
-.pagbtn:hover {
+.paginateA:hover {
   border: 0.2rem solid #fff;
   border-radius: 0.5rem;
   padding: 0.4em;
-  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #fff,
     0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
   cursor: pointer;
   padding: 10px;
-}
-
-.pageNum {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
 }

@@ -1,57 +1,59 @@
-.gamesContainer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    grid-auto-rows: minmax(100px, auto);
-    /* display: flex;
+.gamesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  /* display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     margin-left: 120px;
     margin-right: 120px;
     align-items: center; */
-  }
-  
-  .games {
-    display: grid;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding-bottom: 15px;
-    align-items: center; */
-  }
-  
-  .games:hover {
-    border: 0.2rem solid #fff;
-    border-radius: 2rem;
-    padding: 0.4em;
-    box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
-      0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
-    cursor: pointer;
-  }
-  
-  .homeH2 {
-    font-size: 15px;
-    color: bisque;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .homeLi {
-    font-size: 10px;
-    display: flex;
-    justify-content: center;
-    flex-flow: column wrap;
-    color: bisque;
-    margin-top: 5px;
-  }
-  
-  .homeIMG {
-    width: 160px;
-    height: 120px;
-    display: flex;
-    justify-content: center;
-    border-radius: 15px;
-    align-items: center;
-  }
+}
+
+.games {
+  /* display: grid; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding-bottom: 15px;
+  align-items: center;
+}
+
+.games:hover {
+  border: 0.2rem solid #fff;
+  border-radius: 2rem;
+  padding: 0.4em;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+    0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
+  /* cursor: pointer; */
+}
+
+.gamesH3 {
+  font-size: 17px;
+  /* color: rgb(255, 255, 255); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  padding: 10px;
+  color: #610a83;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #fff;
+}
+
+.homeLi {
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  margin-top: 5px;
+  color: #500045;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #fff;
+}
+
+.homeIMG {
+  width: 320px;
+  height: 240px;
+  border-radius: 15px;
+}

@@ -12,7 +12,7 @@ const Navbar = () => {
         <ul>
           <li id="navlinks">
             <NavLink to="/videogames">Arcade Place</NavLink>
-            <NavLink to="/genres">Genres</NavLink>
+            {/* <NavLink to="/genres">Genres</NavLink> */}
             <NavLink to="/newgame">Post a new game</NavLink>
           </li>
         </ul>

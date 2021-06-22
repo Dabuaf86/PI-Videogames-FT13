@@ -22,21 +22,25 @@ const Pagination = ({ gamesPerPage, totalVideogames, paginate }) => {
   // };
 
   return (
-    <footer>
-      <ul>
-        <li className="pagbtn"></li>
-        <a href="">previous</a>
-        {pages &&
-          pages.map((num) => (
-            <li className="pagbtn" key={num}>
-              <a onClick={() => paginate(num)} href="#">
-                {num}
-              </a>
-            </li>
-          ))}
-        <li className="pagbtn"></li>
-        <a href="">next</a>
-      </ul>
+    <footer className="btnGrid">
+      <a className="paginateA" href="">
+        ◀ Prev
+      </a>
+      {pages &&
+        pages.map((num) => (
+          <a
+            key={num}
+            className="paginateA"
+            onClick={() => paginate(num)}
+            href="#"
+          >
+            {num}
+          </a>
+        ))}
+      {/* <li className="pagbtn"></li> */}
+      <a className="paginateA" href="">
+        Next ▶
+      </a>
     </footer>
   );
 };
