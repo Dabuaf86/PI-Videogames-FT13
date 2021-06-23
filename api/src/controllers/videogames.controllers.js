@@ -127,10 +127,6 @@ const PostGame = async (req, res) => {
       rating: rating,
       image: image,
     });
-    // if (genre.length < 1)
-    //   return res.render("error", {
-    //     message: "You must select at least one genre for this game",
-    //   });
     await newGame.addGenre(genres);
     await newGame.addPlatform(platforms);
     res.send({

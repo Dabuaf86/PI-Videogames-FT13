@@ -21,9 +21,6 @@ const PostVideogame = () => {
 
   useEffect(() => {
     dispatch(getGenres());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getPlatforms());
   }, [dispatch]);
 
@@ -34,8 +31,8 @@ const PostVideogame = () => {
       const selectArr = input[event.target.name];
       setInput({
         ...input,
-        [event.target.name]: selectArr.concat(event.target.value),
-        // [event.target.name]: [...selectArr, event.target.value],
+        // [event.target.name]: selectArr.concat(event.target.value),
+        [event.target.name]: [...selectArr, event.target.value],
       });
     } else {
       setInput({
@@ -50,19 +47,6 @@ const PostVideogame = () => {
     //   })
     // );
   };
-  // handleChange = (e) => {
-  //   let value = Array.from(e.target.selectedOptions, option => option.value);
-  //   this.setState({values: value});
-  // }
-  // -----------------------------------
-  // handleChange(evt) {
-  //   this.setState({multiValue: [...evt.target.selectedOptions].map(o => o.value)});
-  // }
-  // -----------------------------------
-  // onSelectChange = (e) => {
-  //   const values = [...e.target.selectedOptions].map(opt => opt.value);
-  //   this.props.onChange(values);
-  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -79,31 +63,28 @@ const PostVideogame = () => {
     if (!input.name) {
       alert("Please type a name");
       return;
-    }
-    else if (!input.description) {
+    } else if (!input.description) {
       alert("Please type a description");
       return;
-    }
-    else if (!input.genres) {
+    } else if (!input.genres) {
       alert("Please select at least one genre");
       return;
-    }
-    else if (!input.platforms) {
+    } else if (!input.platforms) {
       alert("Please select at least one platform");
       return;
+    } else {
+      dispatch(postVideogame(input));
+      alert("New videogame created successfully!");
+      setInput({
+        name: "",
+        description: "",
+        released: "",
+        rating: "",
+        genres: [],
+        platforms: [],
+        image: "",
+      });
     }
-    dispatch(postVideogame(input));
-    // event.target.reset();
-    alert("New videogame created successfully!");
-    setInput({
-      name: "",
-      description: "",
-      released: "",
-      rating: "",
-      genres: [],
-      platforms: [],
-      image: "",
-    });
   };
 
   return (
@@ -144,6 +125,7 @@ const PostVideogame = () => {
           name="released"
           value={input.released}
           placeholder="Released date..."
+          // pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
         />
         <hr />
         <label>Rating (0-5)</label>
@@ -162,12 +144,11 @@ const PostVideogame = () => {
               id="formInput"
               // className={errors.genres && "Error"}
               name="genres"
-              value={input.genre}
-              // multiple={true}
+              multiple={true}
             >
-              <option value="">Select</option>
+              <option defaultValue={null}>Select</option>
               {selectGenres.map((genre) => (
-                <option>{genre.name}</option>
+                <option value={genre.id}>{genre.name}</option>
               ))}
             </select>
           </span>
@@ -177,12 +158,11 @@ const PostVideogame = () => {
               id="formInput"
               // className={errors.platforms && "Error"}
               name="platforms"
-              value={input.platforms}
-              // multiple={true}
+              multiple={true}
             >
-              <option value="">Select</option>
+              <option defaultValue={null}>Select</option>
               {selectPlatforms.map((platforms) => (
-                <option>{platforms.name}</option>
+                <option value={platforms.id}>{platforms.name}</option>
               ))}
             </select>
           </span>

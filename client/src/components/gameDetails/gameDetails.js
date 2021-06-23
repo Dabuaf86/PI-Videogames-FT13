@@ -37,13 +37,25 @@ const GameDetails = () => {
           game.platforms.map((plat) => {
             return <li className="liPlat">{plat.platform.name}</li>;
           })}
+        {(game.platforms &&
+          game.platforms.map((plat) => {
+            return <li className="liPlat">{plat.platform.name}</li>;
+          })) ||
+          (game.Platforms &&
+            game.Platforms.map((plat) => {
+              return <li className="liGen">{plat.name}</li>;
+            }))}
       </p>
       <p>
         <b>Genres: </b>
-        {game.genres &&
+        {(game.genres &&
           game.genres.map((gen) => {
             return <li className="liGen">{gen.name}</li>;
-          })}
+          })) ||
+          (game.Genres &&
+            game.Genres.map((genre) => {
+              return <li className="liGen">{genre.name}</li>;
+            }))}
       </p>
     </div>
   );

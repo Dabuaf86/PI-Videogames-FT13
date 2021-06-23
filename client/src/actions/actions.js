@@ -52,13 +52,7 @@ export const getVideogameDetails = (id) => async (dispatch) => {
 };
 export const postVideogame = (input) => async (dispatch) => {
   try {
-    const req = await axios.get(`${URL}/videogame`, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(input),
-    });
+    await axios.post(`${URL}/videogame`, input);
     dispatch({
       type: POST_VIDEOGAME,
       payload: input,
@@ -67,24 +61,6 @@ export const postVideogame = (input) => async (dispatch) => {
     console.error(error);
   }
 };
-// export function postVideogame(object) {
-//   return (dispatch) =>
-//     fetch(`${URL}/videogame`, {
-//       method: "POST",
-//       headers: {
-//         Accept: "application/json",
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(object),
-//     })
-//       .then((resp) => resp.json())
-//       .then((json) => {
-//         dispatch({
-//           type: "POST_VIDEOGAME",
-//           payload: json,
-//         });
-//       });
-// }
 export const getGenres = () => async (dispatch) => {
   try {
     const req = await axios.get(`${URL}/genres`);
