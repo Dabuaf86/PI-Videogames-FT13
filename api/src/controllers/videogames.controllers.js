@@ -115,7 +115,7 @@ const getPlatforms = async (req, res) => {
   }
 };
 const PostGame = async (req, res) => {
-  const { name, description, released, rating, platforms, genres, image_url } =
+  const { name, description, released, rating, platforms, genres, image } =
     req.body;
   try {
     // FALTA AGREGAR MANEJO DE COLISIONES PARA JUEGOS YA EXISTENTES
@@ -125,7 +125,7 @@ const PostGame = async (req, res) => {
       description: description,
       released: released,
       rating: rating,
-      image: image_url,
+      image: image,
     });
     // if (genre.length < 1)
     //   return res.render("error", {

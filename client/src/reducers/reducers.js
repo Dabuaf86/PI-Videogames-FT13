@@ -15,7 +15,7 @@ const initialState = {
   loadedVideogames: [],
   gamesByName: [],
   videgameDetails: {},
-  createdVideogames: [],
+  // createdVideogames: [],
   allGenres: [],
   allPlatforms: [],
   filteredVideogames: [],

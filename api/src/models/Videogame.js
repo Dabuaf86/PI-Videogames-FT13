@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     released: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
     },
     rating: {
       type: DataTypes.DECIMAL,
@@ -26,8 +26,8 @@ module.exports = (sequelize) => {
     //   type: DataTypes.STRING,
     //   allowNull: false,
     // },
-    Image: {
-      type: DataTypes.STRING,
+    image: {
+      type: DataTypes.TEXT,
     },
   });
 };

@@ -14,7 +14,8 @@ function App() {
       <Route path="/videogames" component={Navbar} />
       <Route path="/videogames" component={Home} />
       <Route path="/newgame" component={Navbar} />
-      <Route exact path="/newgame/" component={PostGame} />
+      <Route path="/newgame/" component={PostGame} />
+      <Route path="/videogame/:id" component={Navbar} />
       <Route path="/videogame/:id" component={GameDetails} />
     </div>
   );

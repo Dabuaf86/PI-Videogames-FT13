@@ -4,7 +4,7 @@
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  max-width: fit-content;
+  width: fit-content;
   margin-top:5%;
   margin-left:30%;
   font-size: 13px;
@@ -39,4 +39,11 @@ input.Error {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.formBtn {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  position: relative;
 }

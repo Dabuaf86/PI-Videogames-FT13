@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postVideogame, getGenres, getPlatforms } from "../../Actions/Actions";
-import Validate from "./Validate";
+// import Validate from "./Validate";
 import "./PostGame.css";
 
 const PostVideogame = () => {
+  const dispatch = useDispatch();
+
   const [input, setInput] = useState({
     name: "",
     description: "",
@@ -12,11 +14,8 @@ const PostVideogame = () => {
     rating: "",
     genres: [],
     platforms: [],
-    image_url: "",
+    image: "",
   });
-  const dispatch = useDispatch();
-  // const createdVideogames = useSelector((state) => state.createdVideogames);
-  const loadedVideogames = useSelector((state) => state.loadedVideogames);
   const selectGenres = useSelector((state) => state.allGenres);
   const selectPlatforms = useSelector((state) => state.allPlatforms);
 
@@ -28,87 +27,131 @@ const PostVideogame = () => {
     dispatch(getPlatforms());
   }, [dispatch]);
 
-  const [errors, setErrors] = useState(false);
+  // const [errors, setErrors] = useState(false);
 
   const handleInputChange = (event) => {
-    setInput({
-      ...input,
-      [event.target.name]: event.target.value,
-    });
-    setErrors(
-      Validate({
+    if (event.target.name === "genres" || event.target.name === "platforms") {
+      const selectArr = input[event.target.name];
+      setInput({
+        ...input,
+        [event.target.name]: selectArr.concat(event.target.value),
+        // [event.target.name]: [...selectArr, event.target.value],
+      });
+    } else {
+      setInput({
         ...input,
         [event.target.name]: event.target.value,
-      })
-    );
+      });
+    }
+    // setErrors(
+    //   Validate({
+    //     ...input,
+    //     [event.target.name]: event.target.value,
+    //   })
+    // );
   };
-  // const handleSelectorChange = (event) => {
-  //   if (event.target.name === "genres")
-  //     setInput(genres.push(event.target.value));
-  //   else if (event.target.name === "platforms")
-  //     setInput(platforms.push(event.target.value));
+  // handleChange = (e) => {
+  //   let value = Array.from(e.target.selectedOptions, option => option.value);
+  //   this.setState({values: value});
+  // }
+  // -----------------------------------
+  // handleChange(evt) {
+  //   this.setState({multiValue: [...evt.target.selectedOptions].map(o => o.value)});
+  // }
+  // -----------------------------------
+  // onSelectChange = (e) => {
+  //   const values = [...e.target.selectedOptions].map(opt => opt.value);
+  //   this.props.onChange(values);
   // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (
-      errors.name ||
-      errors.description ||
-      errors.genres ||
-      errors.platforms
-    ) {
-      setErrors(true);
+    // if (
+    //   errors.name ||
+    //   errors.description ||
+    //   errors.genres ||
+    //   errors.platforms
+    // ) {
+    //   setErrors(true);
+    //   return;
+    // } else {
+    // setErrors(false);
+    if (!input.name) {
+      alert("Please type a name");
       return;
     }
-    setErrors(false);
+    else if (!input.description) {
+      alert("Please type a description");
+      return;
+    }
+    else if (!input.genres) {
+      alert("Please select at least one genre");
+      return;
+    }
+    else if (!input.platforms) {
+      alert("Please select at least one platform");
+      return;
+    }
     dispatch(postVideogame(input));
+    // event.target.reset();
+    alert("New videogame created successfully!");
+    setInput({
+      name: "",
+      description: "",
+      released: "",
+      rating: "",
+      genres: [],
+      platforms: [],
+      image: "",
+    });
   };
 
   return (
     <div>
       <h2 className="formH2">Post a new videogame</h2>
-      <form className="postGame" onSubmit={handleSubmit}>
+      <form
+        className="postGame"
+        noValidate
+        onSubmit={(event) => handleSubmit(event)}
+        onChange={(event) => handleInputChange(event)}
+      >
         <label>*Name</label>
         <input
           id="formInput"
-          className={errors.name && "Error"}
+          // className={errors.name && "Error"}
           type="text"
           name="name"
           value={input.name}
-          onChange={handleInputChange}
-          placeholder="Name...*"
+          placeholder="Name..."
         />
         <hr />
-        {errors.name && <p className="Error">{errors.name}</p>}
+        {/* {errors.name && <p className="Error">{errors.name}</p>} */}
         <label>*Description</label>
         <input
           id="formInput"
-          className={errors.description && "Error"}
+          // className={errors.description && "Error"}
           type="text"
           name="description"
           value={input.description}
-          onChange={handleInputChange}
-          placeholder="Description...*"
+          placeholder="Description..."
         />
         <hr />
-        {errors.description && <p className="Error">{errors.description}</p>}
+        {/* {errors.description && <p className="Error">{errors.description}</p>} */}
         <label>Released (YYYY/MM/DD)</label>
         <input
           id="formInput"
-          type="text"
+          type="date"
           name="released"
           value={input.released}
-          onChange={handleInputChange}
           placeholder="Released date..."
         />
         <hr />
         <label>Rating (0-5)</label>
         <input
           id="formInput"
-          type="text"
+          type="number"
           name="rating"
           value={input.rating}
-          onChange={handleInputChange}
           placeholder="Rating..."
         />
         <hr />
@@ -116,16 +159,13 @@ const PostVideogame = () => {
           <span className="selectSpan">
             <label>*Genres (at least one)</label>
             <select
-              multiple={true}
               id="formInput"
-              className={errors.genres && "Error"}
+              // className={errors.genres && "Error"}
               name="genres"
               value={input.genre}
-              onSelect={handleInputChange}
-              // multiple="true"
-              placeholder="Select genre/s"
+              // multiple={true}
             >
-              <option value="">select...</option>
+              <option value="">Select</option>
               {selectGenres.map((genre) => (
                 <option>{genre.name}</option>
               ))}
@@ -134,16 +174,13 @@ const PostVideogame = () => {
           <span className="selectSpan">
             <label>*Platforms (at least one)</label>
             <select
-              multiple={true}
               id="formInput"
-              className={errors.platforms && "Error"}
+              // className={errors.platforms && "Error"}
               name="platforms"
-              value={input.platform}
-              // onSelect={handleSelectorChange}
-              // multiple="true"
-              placeholder="Select genre/s"
+              value={input.platforms}
+              // multiple={true}
             >
-              <option value="">select...</option>
+              <option value="">Select</option>
               {selectPlatforms.map((platforms) => (
                 <option>{platforms.name}</option>
               ))}
@@ -151,27 +188,18 @@ const PostVideogame = () => {
           </span>
         </span>
         <hr />
-        <label>Upload game's image</label>
+        <label>Enter game's image url</label>
         <input
           id="formInput"
-          // name="upload file"
-          type="file"
-          id="image"
+          name="image"
+          type="url"
           value={input.image}
-          // onChange={handleSelectorChange}
+          placeholder="http://.../*.jpg"
         />
         <hr />
-        {/* <label>*New Genres (at least one)</label>
-        <div>
-          {selectGenres.map((genre) => (
-            <div key={genre.name}>
-              <input type="checkbox" name="genres" value={genre.name}></input>
-              <label name={genre}>{genre.name}</label>
-            </div>
-          ))}
-        </div>
-        <hr /> */}
-        <input value="Post game" type="submit" />
+        <button className="formBtn" type="submit">
+          Post game
+        </button>
       </form>
       <footer className="formFooter">
         Fields marked with *, are mandatory to create a game.
