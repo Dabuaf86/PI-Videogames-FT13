@@ -18,6 +18,7 @@ const Search = () => {
     // if (!gameInput) return alert("please type a game's name");
     // else {
     dispatch(getGamesByName(gameInput));
+    setGameInput("");
     // }
   };
 

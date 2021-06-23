@@ -33,10 +33,6 @@ const GameDetails = () => {
       </p>
       <p>
         <b>Available for:</b>
-        {game.platforms &&
-          game.platforms.map((plat) => {
-            return <li className="liPlat">{plat.platform.name}</li>;
-          })}
         {(game.platforms &&
           game.platforms.map((plat) => {
             return <li className="liPlat">{plat.platform.name}</li>;

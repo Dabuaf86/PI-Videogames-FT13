@@ -12,6 +12,7 @@ import "./GenreFilter.css";
 const Filters = () => {
   const dispatch = useDispatch();
   const loadedVideogames = useSelector((state) => state.loadedVideogames);
+  const currentGames = useSelector((state) => state.currentGames);
   const selectGenres = useSelector((state) => state.allGenres);
   const [filter, setFilter] = useState("Select");
   const [order, setOrder] = useState("Select");
@@ -30,26 +31,42 @@ const Filters = () => {
   const sortCB = (arr, order) => {
     if (order === "alphAsc") {
       arr.sort((a, b) => {
-        if (a.name > b.name) return 1;
-        else if (a.name < b.name) return -1;
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+        if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
         return 0;
       });
-    } else if (order === "alphDesc") {
+    }
+    if (order === "alphDesc") {
       arr.sort((a, b) => {
-        if (a.name < b.name) return 1;
-        else if (a.name > b.name) return -1;
+        if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
         return 0;
       });
-    } else if (order === "ratingAsc") {
+    }
+    if (order === "ratingAsc") {
       arr.sort((a, b) => a.rating - b.rating);
-    } else if (order === "ratingDesc") {
+    }
+    if (order === "ratingDesc") {
       arr.sort((a, b) => b.rating - a.rating);
     }
   };
-
+  // filteredGames = filteredGames.map(game => {
+  //   let genreFilt = [];
+  //   game.genre
+  //   for (let i = 0; i < game.genre.length; i++) {
+  //     genreFilt.push(game.genre[i].name)
+  //   }
+  //   genreFilt = genreFilt.filter(game => game.includes(filter))
+  // })
   const handleSubmit = (event) => {
     event.preventDefault();
     let filtrados = [];
+    if (filter === "Select" && order === "Select")
+      dispatch(filterGames(filteredGames));
+    if (filter === "Select" && order !== "Select") {
+      sortCB(filteredGames, order);
+      dispatch(filterGames(filteredGames));
+    }
     if (filter !== "Select") {
       for (let i = 0; i < filteredGames.length; i++) {
         for (let j = 0; j < filteredGames[i].genre?.length; j++) {
@@ -58,24 +75,20 @@ const Filters = () => {
           }
         }
       }
-    }
-    // filteredGames = filteredGames.map(game => {
-    //   let genreFilt = [];
-    //   game.genre
-    //   for (let i = 0; i < game.genre.length; i++) {
-    //     genreFilt.push(game.genre[i].name)
-    //   }
-    //   genreFilt = genreFilt.filter(game => game.includes(filter))
-    // })
-    else if (order !== "Select") {
-      if (filtrados.length > 0) {
-        sortCB(filtrados, order);
-        dispatch(filterGames(filtrados));
+      if (order !== "Select") {
+        if (filtrados.length) {
+          sortCB(filtrados, order);
+          dispatch(filterGames(filtrados));
+        } else {
+          sortCB(filteredGames, order);
+          dispatch(filterGames(filteredGames));
+        }
       } else {
-        sortCB(filteredGames, order);
-        dispatch(filterGames(filteredGames));
+        if (filtrados.length) dispatch(filterGames(filtrados));
+        else dispatch(filterGames(filteredGames));
       }
     }
+    // console.log("QUE TRAE CURRENTGAMES", currentGames);
   };
 
   return (

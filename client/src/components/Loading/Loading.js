@@ -1,14 +1,11 @@
 import React from "react";
+import loading from "./loading.gif";
 import "./Loading.css";
 
 const Loading = () => {
   return (
     <div>
-      <img
-        className="loadingGif"
-        src="https://tenor.com/es/ver/loading-complete-now-loading-gif-13047874"
-        alt="loading games"
-      />
+      <img className="loadingGif" src={loading} alt="loading games" />
     </div>
   );
 };

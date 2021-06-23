@@ -32,12 +32,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         loadedVideogames: action.payload,
-        currentGames: action.payload,
       };
     case GET_GAMESBYNAME:
       return {
         ...state,
-        loadedVideogames: action.payload,
+        currentGames: action.payload,
         // gamesByName: action.payload,
       };
     case GET_VIDEOGAMEDETAILS:

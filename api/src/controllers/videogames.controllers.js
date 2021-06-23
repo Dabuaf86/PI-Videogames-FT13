@@ -19,6 +19,7 @@ const getGames = async (req, res, next) => {
           name: game.name,
           genre: game.Genres,
           image: image,
+          rating: game.rating,
         });
       });
       const searchAPI = await axios.get(
@@ -31,6 +32,7 @@ const getGames = async (req, res, next) => {
           name: obj.name,
           genre: obj.genres,
           image: obj.background_image,
+          rating: obj.rating,
         });
       });
       const resulstByName = [...foundDB, ...foundAPI];
@@ -54,6 +56,7 @@ const getGames = async (req, res, next) => {
             name: obj.name,
             genre: obj.genres,
             image: obj.background_image,
+            rating: obj.rating,
           });
         });
       }

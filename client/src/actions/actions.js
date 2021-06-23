@@ -86,14 +86,14 @@ export const getPlatforms = () => async (dispatch) => {
     console.error(error);
   }
 };
-export const filterGames = (array) => () => {
-  return (dispatch) => {
+export function filterGames(array) {
+  return function (dispatch) {
     dispatch({
       type: FILTER_GAMES,
       payload: array,
     });
   };
-};
+}
 // export const filterByGenres = (genre) => (dispatch, getState) => {
 //   let filteredGames = [];
 //   if (genre === "Select") filteredGames = getState().loadedVideogames;
