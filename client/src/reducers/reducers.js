@@ -6,24 +6,15 @@ import {
   GET_GENRES,
   GET_PLATFORMS,
   FILTER_GAMES,
-  FILTER_BYGENRE,
-  ORDER_ALPHABET,
-  ORDER_BYRATING,
-  RESET,
 } from "../Actions/Actions";
 
 const initialState = {
   loadedVideogames: [],
   gamesByName: [],
   videgameDetails: {},
-  // createdVideogames: [],
   allGenres: [],
   allPlatforms: [],
   currentGames: [],
-  filteredGenres: [],
-  orderedVideogames: [],
-  orderBy: "Select",
-  filterBy: "Select",
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -37,7 +28,6 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         currentGames: action.payload,
-        // gamesByName: action.payload,
       };
     case GET_VIDEOGAMEDETAILS:
       return {
@@ -59,57 +49,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allPlatforms: action.payload,
       };
-    case RESET:
-      return {
-        ...state,
-        loadedVideogames: [],
-        filteredVideogames: [],
-        orderBy: "Select",
-        filterBy: "Select",
-      };
     case FILTER_GAMES:
       return {
         ...state,
         currentGames: action.payload,
       };
-    // case FILTER_BYGENRE:
-    //   return {
-    //     ...state,
-    //     filteredVideogames: action.payload.gamesByGenre,
-    //     filterBy: action.payload.genre,
-    //   };
-    // case ORDER_ALPHABET:
-    // case ORDER_BYRATING:
-    //   return {
-    //     ...state,
-    //     filteredVideogames: action.payload.orderedGames,
-    //     orderBy: action.payload.order,
-    //   };
     default:
       return state;
   }
 }
-
-/*
-+++++CONCEPTO DE FILTRADO POR GENRE+++++
-reducer = () => {
-    const getGamesByGenre = (payload) => {
-        type: GETGAMESBYGENRE,
-        payload
-    }
-}
-
-case: GETGAMESBYGENRE {
-    return {
-        ...state,
-        juegosporgenero: loadedVideogames.map(games => {
-            let gamesByGenre = [];
-            games.genre.map(genre => {
-                if (genre.name === payload) gamesByGenre.push(games)
-            })
-              return gamesByGenre  
-            });
-        })
-    }
-}
-*/

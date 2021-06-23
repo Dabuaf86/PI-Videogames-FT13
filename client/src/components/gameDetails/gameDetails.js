@@ -18,8 +18,8 @@ const GameDetails = () => {
     <div className="details">
       <img className="detailIMG" src={game.image} alt="" width="500px" />
       <h2 className="detailH2">{game.name}</h2>
-      <p>
-        <b className="detailDescr">Description: </b>
+      <p className="detailDescr">
+        <b>Description: </b>
         {game.description}
       </p>
       <hr />

@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { getGamesByName } from "../../Actions/Actions";
+import Search from "../Search/Search";
 import "./NavBar.css";
 
 const Navbar = () => {
@@ -12,9 +14,9 @@ const Navbar = () => {
         <ul>
           <li id="navlinks">
             <NavLink to="/videogames">Arcade Place</NavLink>
-            {/* <NavLink to="/genres">Genres</NavLink> */}
             <NavLink to="/newgame">Post a new game</NavLink>
           </li>
+          <Search getGamesByName={getGamesByName} />
         </ul>
       </nav>
     </header>
