@@ -5,6 +5,7 @@ import {
   POST_VIDEOGAME,
   GET_GENRES,
   GET_PLATFORMS,
+  FILTER_GAMES,
   FILTER_BYGENRE,
   ORDER_ALPHABET,
   ORDER_BYRATING,
@@ -18,7 +19,7 @@ const initialState = {
   // createdVideogames: [],
   allGenres: [],
   allPlatforms: [],
-  filteredVideogames: [],
+  currentGames: [],
   filteredGenres: [],
   orderedVideogames: [],
   orderBy: "Select",
@@ -31,6 +32,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         loadedVideogames: action.payload,
+        currentGames: action.payload,
       };
     case GET_GAMESBYNAME:
       return {
@@ -66,19 +68,24 @@ export default function rootReducer(state = initialState, action) {
         orderBy: "Select",
         filterBy: "Select",
       };
-    case FILTER_BYGENRE:
+    case FILTER_GAMES:
       return {
         ...state,
-        filteredVideogames: action.payload.gamesByGenre,
-        filterBy: action.payload.genre,
+        currentGames: action.payload,
       };
-    case ORDER_ALPHABET:
-    case ORDER_BYRATING:
-      return {
-        ...state,
-        filteredVideogames: action.payload.orderedGames,
-        orderBy: action.payload.order,
-      };
+    // case FILTER_BYGENRE:
+    //   return {
+    //     ...state,
+    //     filteredVideogames: action.payload.gamesByGenre,
+    //     filterBy: action.payload.genre,
+    //   };
+    // case ORDER_ALPHABET:
+    // case ORDER_BYRATING:
+    //   return {
+    //     ...state,
+    //     filteredVideogames: action.payload.orderedGames,
+    //     orderBy: action.payload.order,
+    //   };
     default:
       return state;
   }

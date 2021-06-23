@@ -10,7 +10,7 @@ import Search from "../Search/Search";
 const Home2 = () => {
   // const [games, setGames] = useState([]);
   const dispatch = useDispatch();
-  const loadedVideogames = useSelector((state) => state.loadedVideogames);
+  const currentGames = useSelector((state) => state.currentGames);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const gamesPerPage = 15;
@@ -21,24 +21,21 @@ const Home2 = () => {
     setLoading(false);
   }, []);
 
-  const indexOfLastGame = currentPage * gamesPerPage; //15, 30, 45...
-  const indexOfFirstGame = indexOfLastGame - gamesPerPage; //0, 15, 30...
-  const currentGames = loadedVideogames.slice(
-    indexOfFirstGame,
-    indexOfLastGame
-  );
+  const indexOfLastGame = currentPage * gamesPerPage;
+  const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+  const mostrar = currentGames.slice(indexOfFirstGame, indexOfLastGame);
   const paginate = (num) => setCurrentPage(num);
-
+  console.log("JUEGOS TRAIDOS", currentGames);
   return (
     <div className="home">
       <span className="filterBar">
         <Search getGamesByName={getGamesByName} />
-        {/* <Filters /> */}
+        <Filters />
       </span>
-      <Games loadedVideogames={currentGames} loading={loading} />
+      <Games loadedVideogames={mostrar} loading={loading} />
       <Pagination
         gamesPerPage={gamesPerPage}
-        totalVideogames={loadedVideogames.length}
+        totalVideogames={currentGames.length}
         paginate={paginate}
       />
     </div>

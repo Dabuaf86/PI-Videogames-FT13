@@ -10,6 +10,7 @@ export const FILTER_BYGENRE = "FILTER_BYGENRE";
 export const ORDER_ALPHABET = "ORDER_ALPHABET";
 export const ORDER_BYRATING = "ORDER_BYRATING";
 export const RESET = "RESET";
+export const FILTER_GAMES = "FILTER_GAMES";
 
 const URL = "http://localhost:3001";
 
@@ -85,61 +86,71 @@ export const getPlatforms = () => async (dispatch) => {
     console.error(error);
   }
 };
-export const filterByGenres = (genre) => (dispatch, getState) => {
-  let filteredGames = [];
-  if (genre === "Select") filteredGames = getState().loadedVideogames;
-  else
-    filteredGames = getState().loadedVideogames.filter((games) =>
-      games.genres.includes(genre)
-    );
-  dispatch({
-    type: FILTER_BYGENRE,
-    payload: {
-      genre,
-      gamesByGenre: filteredGames,
-    },
-  });
-};
-export const orderAlphabet = (order) => (dispatch, getState) => {
-  const filteredGames = getState().filteredVideogames;
-  let orderedGames = [];
-  if (order === "ALPHABET_ASC") {
-    orderedGames = filteredGames.sort((a, b) => {
-      if (a.name > b.name) return 1;
-      else if (a.name < b.name) return -1;
-      return 0;
+export const filterGames = (array) => () => {
+  return (dispatch) => {
+    dispatch({
+      type: FILTER_GAMES,
+      payload: array,
     });
-  } else if (order === "ALPHABET_DESC") {
-    orderedGames = filteredGames.sort((a, b) => {
-      if (a.name < b.name) return 1;
-      else if (a.name > b.name) return -1;
-      return 0;
-    });
-  }
-  dispatch({
-    type: "ORDER_ALPHABET",
-    payload: {
-      orderedGames,
-      order,
-    },
-  });
+  };
 };
-export const orderByRating = (order) => (dispatch, getState) => {
-  const filteredGames = getState().filteredVideogames;
-  let orderedGames = [];
-  if (order === "RATING_ASC") {
-    orderedGames = filteredGames.sort((a, b) => a.rating - b.rating);
-  } else if (order === "RATING_DESC") {
-    orderedGames = filteredGames.sort((a, b) => b.rating - a.rating);
-  }
-  dispatch({
-    type: "ORDER_BYRATING",
-    payload: {
-      orderedGames,
-      order,
-    },
-  });
-};
+// export const filterByGenres = (genre) => (dispatch, getState) => {
+//   let filteredGames = [];
+//   if (genre === "Select") filteredGames = getState().loadedVideogames;
+//   else
+//     filteredGames = getState()
+//       .loadedVideogames.map((game) => {
+//         const genreFilter = game.genres.filter((g) => g.name === genre);
+//         return genreFilter;
+//       })
+//       .dispatch({
+//         type: FILTER_BYGENRE,
+//         payload: {
+//           genre,
+//           gamesByGenre: filteredGames,
+//         },
+//       });
+// };
+// export const orderAlphabet = (order) => (dispatch, getState) => {
+//   const filteredGames = getState().filteredVideogames;
+//   let orderedGames = [];
+//   if (order === "ALPHABET_ASC") {
+//     orderedGames = filteredGames.sort((a, b) => {
+//       if (a.name > b.name) return 1;
+//       else if (a.name < b.name) return -1;
+//       return 0;
+//     });
+//   } else if (order === "ALPHABET_DESC") {
+//     orderedGames = filteredGames.sort((a, b) => {
+//       if (a.name < b.name) return 1;
+//       else if (a.name > b.name) return -1;
+//       return 0;
+//     });
+//   }
+//   dispatch({
+//     type: "ORDER_ALPHABET",
+//     payload: {
+//       orderedGames,
+//       order,
+//     },
+//   });
+// };
+// export const orderByRating = (order) => (dispatch, getState) => {
+//   const filteredGames = getState().filteredVideogames;
+//   let orderedGames = [];
+//   if (order === "RATING_ASC") {
+//     orderedGames = filteredGames.sort((a, b) => a.rating - b.rating);
+//   } else if (order === "RATING_DESC") {
+//     orderedGames = filteredGames.sort((a, b) => b.rating - a.rating);
+//   }
+//   dispatch({
+//     type: "ORDER_BYRATING",
+//     payload: {
+//       orderedGames,
+//       order,
+//     },
+//   });
+// };
 export const resetGames = () => (dispatch) =>
   dispatch({
     type: RESET,

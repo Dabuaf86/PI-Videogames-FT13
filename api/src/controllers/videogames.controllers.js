@@ -12,19 +12,28 @@ const getGames = async (req, res, next) => {
         where: { name: name },
         include: [{ model: Genre, attributes: ["name"] }],
       });
+      const foundDB = [];
+      searchDB.forEach((game) => {
+        foundDB.push({
+          id: game.id,
+          name: game.name,
+          genre: game.Genres,
+          image: image,
+        });
+      });
       const searchAPI = await axios.get(
         `${GAMES_URL}?key=${API_KEY}&search=${name}`
       );
-      const newSearch = [];
+      const foundAPI = [];
       searchAPI.data.results.forEach((obj) => {
-        newSearch.push({
+        foundAPI.push({
           id: obj.id,
           name: obj.name,
           genre: obj.genres,
           image: obj.background_image,
         });
       });
-      const resulstByName = [...searchDB, ...newSearch];
+      const resulstByName = [...foundDB, ...foundAPI];
       return res.json(resulstByName);
     } catch (error) {
       next(error);
