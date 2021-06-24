@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterGames,
-  // filterByGenres,
-  getGenres,
-  // orderAlphabet,
-  // orderByRating,
-} from "../../Actions/Actions";
+import { filterGames, getGenres } from "../../Actions/Actions";
 import "./GenreFilter.css";
 
 const Filters = () => {
@@ -63,7 +57,7 @@ const Filters = () => {
     let filtrados = [];
     if (filter === "Select" && order === "Select")
       dispatch(filterGames(filteredGames));
-    if (filter === "Select" && order !== "Select") {
+    if (filter === "Select") {
       sortCB(filteredGames, order);
       dispatch(filterGames(filteredGames));
     }
@@ -75,51 +69,58 @@ const Filters = () => {
           }
         }
       }
-      if (order !== "Select") {
-        if (filtrados.length) {
-          sortCB(filtrados, order);
-          dispatch(filterGames(filtrados));
-        } else {
-          sortCB(filteredGames, order);
-          dispatch(filterGames(filteredGames));
-        }
-      } else {
-        if (filtrados.length) dispatch(filterGames(filtrados));
-        else dispatch(filterGames(filteredGames));
-      }
     }
-    // console.log("QUE TRAE CURRENTGAMES", currentGames);
+    if (order !== "Select") {
+      if (filtrados.length) {
+        sortCB(filtrados, order);
+        dispatch(filterGames(filtrados));
+      } else {
+        sortCB(filteredGames, order);
+        dispatch(filterGames(filteredGames));
+      }
+    } else {
+      if (filtrados.length) dispatch(filterGames(filtrados));
+      else dispatch(filterGames(filteredGames));
+    }
   };
 
   return (
     <div>
-      <form onSubmit={(event) => handleSubmit(event)}>
-        <label>Filter by genre</label>
-        <select
-          value={filter}
-          name="filter"
-          onChange={(event) => handleChange(event)}
-        >
-          <option default>Select</option>
-          {selectGenres.map((genre) => (
-            <option value={genre.name}>{genre.name}</option>
-          ))}
-        </select>
-        <label>Order</label>
-        <select
-          name="order"
-          value={order}
-          onChange={(event) => handleChange(event)}
-        >
-          <option value="Select" default>
-            Select
-          </option>
-          <option value="alphAsc">Alphabetically (A-Z)</option>
-          <option value="alphDesc">Alphabetically (Z-A)</option>
-          <option value="ratingAsc">Rating (Lowest first)</option>
-          <option value="ratingDesc">Rating (Highest first)</option>
-        </select>
-        <button type="submit">send</button>
+      <form className="filterForm" onSubmit={(event) => handleSubmit(event)}>
+        <div className="filterDiv">
+          <label className="filterLbl">Filter</label>
+          <select
+            className="filterSelect"
+            value={filter}
+            name="filter"
+            onChange={(event) => handleChange(event)}
+          >
+            <option default>Select</option>
+            {selectGenres.map((genre) => (
+              <option value={genre.name}>{genre.name}</option>
+            ))}
+          </select>
+        </div>
+        <button id="btnSort" type="submit">
+          Apply
+        </button>
+        <div className="filterDiv">
+          <label className="filterLbl">Sort</label>
+          <select
+            className="filterSelect"
+            name="order"
+            value={order}
+            onChange={(event) => handleChange(event)}
+          >
+            <option value="Select" default>
+              Select
+            </option>
+            <option value="alphAsc">A - Z</option>
+            <option value="alphDesc">Z - A</option>
+            <option value="ratingAsc">Rating (Lowest first)</option>
+            <option value="ratingDesc">Rating (Highest first)</option>
+          </select>
+        </div>
       </form>
     </div>
   );

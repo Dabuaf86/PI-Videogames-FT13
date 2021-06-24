@@ -23,9 +23,10 @@ const Games = () => {
 
   return (
     <div className="gamesGrid">
-      {
-      !shownGames.length ? <Loading/> :
-      shownGames &&
+      {!shownGames.length ? (
+        <Loading />
+      ) : (
+        shownGames &&
         shownGames.map((game) => (
           <div className="games" key={game.id}>
             <Link to={`/videogame/${game.id}`}>
@@ -39,12 +40,15 @@ const Games = () => {
                 })}
             </>
           </div>
-        ))}
-      <Pagination
-        gamesPerPage={gamesPerPage}
-        totalVideogames={gamesToRender.length}
-        paginate={paginate}
-      />
+        ))
+      )}
+      <div className="pageBtn">
+        <Pagination
+          gamesPerPage={gamesPerPage}
+          totalVideogames={gamesToRender.length}
+          paginate={paginate}
+        />
+      </div>
     </div>
   );
 };

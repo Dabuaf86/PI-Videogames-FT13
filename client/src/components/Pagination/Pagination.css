@@ -1,10 +1,10 @@
 .btnGrid {
   display: flex;
   justify-content: center;
-  padding-top: 20px;
-  
+  padding-top: 10px;
+  padding-left: 200px;
 }
-.paginateA {
+.paginatebtn {
   border-radius: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -14,7 +14,7 @@
   color: #610a83;
   text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #fff;
 }
-.paginateA:hover {
+.paginatebtn:hover {
   border: 0.2rem solid #fff;
   border-radius: 0.5rem;
   padding: 0.4em;

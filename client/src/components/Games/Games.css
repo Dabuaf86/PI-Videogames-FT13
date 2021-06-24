@@ -1,18 +1,12 @@
 .gamesGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
+  grid-gap: 5px;
   grid-auto-rows: minmax(100px, auto);
-  /* display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-left: 120px;
-    margin-right: 120px;
-    align-items: center; */
+  padding-top: 20px;
 }
 
 .games {
-  /* display: grid; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -27,12 +21,10 @@
   padding: 0.4em;
   box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
     0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
-  /* cursor: pointer; */
 }
 
 .gamesH3 {
   font-size: 17px;
-  /* color: rgb(255, 255, 255); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,3 +49,9 @@
   height: 240px;
   border-radius: 15px;
 }
+
+/* .pageBtn {
+  display: grid;
+  align-content: center;
+  size: 100vw;
+} */
