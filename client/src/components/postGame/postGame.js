@@ -31,7 +31,6 @@ const PostVideogame = () => {
       const selectArr = input[event.target.name];
       setInput({
         ...input,
-        // [event.target.name]: selectArr.concat(event.target.value),
         [event.target.name]: [...selectArr, event.target.value],
       });
     } else {
@@ -66,11 +65,11 @@ const PostVideogame = () => {
     } else if (!input.description) {
       alert("Please type a description");
       return;
-    } else if (!input.genres) {
-      alert("Please select at least one genre");
+    } else if (!input.genres || input.genres === "Select") {
+      alert("Please select at least one valid genre");
       return;
-    } else if (!input.platforms) {
-      alert("Please select at least one platform");
+    } else if (!input.platforms || input.platforms === "Select") {
+      alert("Please select at least one valid platform");
       return;
     } else {
       dispatch(postVideogame(input));
@@ -88,7 +87,7 @@ const PostVideogame = () => {
   };
 
   return (
-    <div>
+    <div className="formContainer">
       <h2 className="formH2">Post a new videogame</h2>
       <form
         className="postGame"
@@ -96,7 +95,7 @@ const PostVideogame = () => {
         onSubmit={(event) => handleSubmit(event)}
         onChange={(event) => handleInputChange(event)}
       >
-        <label>*Name</label>
+        <label className="formLbl">*Name</label>
         <input
           id="formInput"
           // className={errors.name && "Error"}
@@ -107,7 +106,7 @@ const PostVideogame = () => {
         />
         <hr />
         {/* {errors.name && <p className="Error">{errors.name}</p>} */}
-        <label>*Description</label>
+        <label className="formLbl">*Description</label>
         <input
           id="formInput"
           // className={errors.description && "Error"}
@@ -118,17 +117,16 @@ const PostVideogame = () => {
         />
         <hr />
         {/* {errors.description && <p className="Error">{errors.description}</p>} */}
-        <label>Released (YYYY/MM/DD)</label>
+        <label className="formLbl">Released</label>
         <input
           id="formInput"
           type="date"
           name="released"
           value={input.released}
           placeholder="Released date..."
-          // pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
         />
         <hr />
-        <label>Rating (0-5)</label>
+        <label className="formLbl">Rating (0-5)</label>
         <input
           id="formInput"
           type="number"
@@ -139,7 +137,7 @@ const PostVideogame = () => {
         <hr />
         <span className="formSpan">
           <span className="selectSpan">
-            <label>*Genres (at least one)</label>
+            <label className="formLbl">*Genres (at least one)</label>
             <select
               id="formInput"
               // className={errors.genres && "Error"}
@@ -153,7 +151,7 @@ const PostVideogame = () => {
             </select>
           </span>
           <span className="selectSpan">
-            <label>*Platforms (at least one)</label>
+            <label className="formLbl">*Platforms (at least one)</label>
             <select
               id="formInput"
               // className={errors.platforms && "Error"}

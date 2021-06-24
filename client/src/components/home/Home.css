@@ -4,13 +4,4 @@
   background-size: cover;
   background-position: center center;
   background-attachment: scroll;
-  display: grid;
 }
-
-/* .filterBar {
-  display: flex;
-  justify-content: space-evenly;
-  background-color: transparent;
-  border-radius: 15px;
-  color: white;
-} */

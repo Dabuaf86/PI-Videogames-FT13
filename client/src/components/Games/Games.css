@@ -1,6 +1,6 @@
 .gamesGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-gap: 5px;
   grid-auto-rows: minmax(100px, auto);
   padding-top: 20px;
@@ -50,8 +50,9 @@
   border-radius: 15px;
 }
 
-/* .pageBtn {
+.pageBtn {
   display: grid;
   align-content: center;
-  size: 100vw;
-} */
+  grid-column: 1 / -1;
+  margin-right: 200px;
+}

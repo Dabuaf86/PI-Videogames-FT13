@@ -44,14 +44,6 @@ const Filters = () => {
       arr.sort((a, b) => b.rating - a.rating);
     }
   };
-  // filteredGames = filteredGames.map(game => {
-  //   let genreFilt = [];
-  //   game.genre
-  //   for (let i = 0; i < game.genre.length; i++) {
-  //     genreFilt.push(game.genre[i].name)
-  //   }
-  //   genreFilt = genreFilt.filter(game => game.includes(filter))
-  // })
   const handleSubmit = (event) => {
     event.preventDefault();
     let filtrados = [];
