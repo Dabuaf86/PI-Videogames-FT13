@@ -17,8 +17,8 @@ const getGames = async (req, res, next) => {
         foundDB.push({
           id: game.id,
           name: game.name,
-          genre: game.Genres,
-          image: image,
+          genres: game.Genres,
+          image: game.image,
           rating: game.rating,
         });
       });
@@ -30,7 +30,7 @@ const getGames = async (req, res, next) => {
         foundAPI.push({
           id: obj.id,
           name: obj.name,
-          genre: obj.genres,
+          genres: obj.genres,
           image: obj.background_image,
           rating: obj.rating,
         });
@@ -54,14 +54,24 @@ const getGames = async (req, res, next) => {
           await api100Games.push({
             id: obj.id,
             name: obj.name,
-            genre: obj.genres,
+            genres: obj.genres,
             image: obj.background_image,
             rating: obj.rating,
           });
         });
       }
       const gamesDB = await Videogame.findAll({ include: [Genre] });
-      const allGames = [...gamesDB, ...api100Games];
+      const allDB = [];
+      gamesDB.forEach((game) => {
+        allDB.push({
+          id: game.id,
+          name: game.name,
+          genres: game.Genres,
+          image: game.image,
+          rating: game.rating,
+        });
+      });
+      const allGames = [...allDB, ...api100Games];
       // const gameList = allGames.slice(0, 15);
       return res.json(allGames);
     } catch (error) {
@@ -107,11 +117,6 @@ const getOneGame = async (req, res) => {
 };
 const getGenres = async (req, res) => {
   try {
-    // const genres = await axios.get(`${GENRE_URL}?key=${API_KEY}`);
-    // const result = genres.data.results;
-    // result.forEach(async (rtdo) => {
-    //   await Genre.create({ name: rtdo.name });
-    // });
     const genre = await Genre.findAll();
     return res.json(genre);
   } catch (error) {

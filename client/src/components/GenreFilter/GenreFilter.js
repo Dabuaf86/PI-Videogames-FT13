@@ -6,14 +6,13 @@ import "./GenreFilter.css";
 const Filters = () => {
   const dispatch = useDispatch();
   const loadedVideogames = useSelector((state) => state.loadedVideogames);
-  const currentGames = useSelector((state) => state.currentGames);
   const selectGenres = useSelector((state) => state.allGenres);
   const [filter, setFilter] = useState("Select");
   const [order, setOrder] = useState("Select");
 
   useEffect(() => {
     dispatch(getGenres());
-  }, []);
+  }, [dispatch]);
 
   let filteredGames = [...loadedVideogames];
 
@@ -55,8 +54,8 @@ const Filters = () => {
     }
     if (filter !== "Select") {
       for (let i = 0; i < filteredGames.length; i++) {
-        for (let j = 0; j < filteredGames[i].genre?.length; j++) {
-          if (filteredGames[i].genre[j].name === filter) {
+        for (let j = 0; j < filteredGames[i].genres?.length; j++) {
+          if (filteredGames[i].genres[j].name === filter) {
             filtrados.push(filteredGames[i]);
           }
         }

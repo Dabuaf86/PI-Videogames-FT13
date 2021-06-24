@@ -4,7 +4,6 @@ import Loading from "../Loading/Loading";
 import { useSelector } from "react-redux";
 import Pagination from "../Pagination/Pagination";
 import { useState } from "react";
-// import "./LoadedGames.css";
 
 const Games = () => {
   const loadedVideogames = useSelector((state) => state.loadedVideogames);
@@ -34,8 +33,8 @@ const Games = () => {
               <img className="homeIMG" src={game.image} alt="game poster" />
             </Link>
             <>
-              {game.genre &&
-                game.genre.map((el) => {
+              {game.genres &&
+                game.genres.map((el) => {
                   return <li className="homeLi">{el.name}</li>;
                 })}
             </>

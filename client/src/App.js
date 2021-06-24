@@ -13,7 +13,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllVideogames());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">
