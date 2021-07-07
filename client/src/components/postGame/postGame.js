@@ -149,6 +149,12 @@ const PostVideogame = () => {
                 <option value={genre.id}>{genre.name}</option>
               ))}
             </select>
+            <ul>
+              {input.genres &&
+                input.genres.map((genre) => (
+                  <ul className="list-items">{genre}</ul>
+                ))}
+            </ul>
           </span>
           <span className="selectSpan">
             <label className="formLbl">*Platforms (at least one)</label>
@@ -163,10 +169,16 @@ const PostVideogame = () => {
                 <option value={platforms.id}>{platforms.name}</option>
               ))}
             </select>
+            <ul>
+              {input.platforms &&
+                input.platforms.map((plat) => (
+                  <ul className="list-items">{plat}</ul>
+                ))}
+            </ul>
           </span>
         </span>
         <hr />
-        <label>Enter game's image url</label>
+        <label className="formLbl">Enter game's image url</label>
         <input
           id="formInput"
           name="image"
@@ -174,6 +186,15 @@ const PostVideogame = () => {
           value={input.image}
           placeholder="http://.../*.jpg"
         />
+        <span>
+          {input.image && (
+            <img
+              className="image-span"
+              src={input.image}
+              alt="game poster to create"
+            />
+          )}
+        </span>
         <hr />
         <button className="formBtn" type="submit">
           Post game

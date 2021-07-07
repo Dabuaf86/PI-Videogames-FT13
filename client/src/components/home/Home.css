@@ -1,7 +1,8 @@
 .home {
-  background-image: url("./Arcade\ Background.jpg");
+  background-image: url("./neon-arcade-machines-2.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
-  background-attachment: scroll;
+  background-position: top;
+  background-attachment: fixed;
+  padding-top: 10px;
 }

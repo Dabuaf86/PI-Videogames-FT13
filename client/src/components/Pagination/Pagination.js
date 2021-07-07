@@ -8,9 +8,9 @@ const Pagination = ({ gamesPerPage, totalVideogames, paginate }) => {
   }
   return (
     <div className="btnGrid">
-      {/* <a className="paginatebtn" href="#">
+      <a className="paginatebtn" href="#">
         ◀ Prev
-      </a> */}
+      </a>
       {pages &&
         pages.map((num) => (
           <a
@@ -22,9 +22,9 @@ const Pagination = ({ gamesPerPage, totalVideogames, paginate }) => {
             {num}
           </a>
         ))}
-      {/* <a className="paginatebtn" href="#">
+      <a className="paginatebtn" href="#">
         Next ▶
-      </a> */}
+      </a>
     </div>
   );
 };

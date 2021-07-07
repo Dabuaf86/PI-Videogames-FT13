@@ -15,6 +15,7 @@ const initialState = {
   allGenres: [],
   allPlatforms: [],
   currentGames: [],
+  isLoaded: false,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -23,6 +24,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         loadedVideogames: action.payload,
+        isLoaded: true,
       };
     case GET_GAMESBYNAME:
       return {
@@ -38,6 +40,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         loadedVideogames: [...state.loadedVideogames, action.payload],
+        isLoaded: false,
       };
     case GET_GENRES:
       return {

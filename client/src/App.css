@@ -1,3 +1,12 @@
 .App {
   text-align: center;
 }
+
+/* audio {
+  display: flexbox;
+  width: 250px;
+} */
+audio {
+  width: 350px;
+  height: 25px;
+}

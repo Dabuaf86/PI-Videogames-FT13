@@ -1,6 +1,5 @@
 const { DataTypes, UUIDV4 } = require("sequelize");
-// Exportamos una funcion que define el modelo
-// Luego le inyectamos la conexion a sequelize.
+
 module.exports = (sequelize) => {
   sequelize.define("Videogame", {
     id: {
@@ -24,6 +23,9 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.TEXT,
+    },
+    created: {
+      type: DataTypes.BOOLEAN,
     },
   });
 };

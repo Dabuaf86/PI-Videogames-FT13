@@ -16,7 +16,15 @@ const GameDetails = () => {
   console.log(game);
   return (
     <div className="details">
-      <img className="detailIMG" src={game.image} alt="" width="500px" />
+      <img
+        className="detailIMG"
+        src={
+          game.image
+            ? game.image
+            : "https://live.mrf.io/statics/i/ps/www.muylinux.com/wp-content/uploads/2014/01/mljuegos0.png?width=1200&enable=upscale"
+        }
+        alt="game poster"
+      />
       <h2 className="detailH2">{game.name}</h2>
       <p className="detailDescr">
         <b>Description: </b>

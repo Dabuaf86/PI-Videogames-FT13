@@ -12,6 +12,7 @@ const Games = () => {
   let gamesToRender = currentGames.length ? currentGames : loadedVideogames;
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [didLoad, setDidLoad] = useState(false);
 
   const gamesPerPage = 15;
   const indexOfLastGame = currentPage * gamesPerPage;
@@ -30,7 +31,15 @@ const Games = () => {
           <div className="games" key={game.id}>
             <Link to={`/videogame/${game.id}`}>
               <h3 className="gamesH3">{game.name}</h3>
-              <img className="homeIMG" src={game.image} alt="game poster" />
+              <img
+                className="homeIMG"
+                src={
+                  game.image
+                    ? game.image
+                    : "https://live.mrf.io/statics/i/ps/www.muylinux.com/wp-content/uploads/2014/01/mljuegos0.png?width=1200&enable=upscale"
+                }
+                alt="game poster"
+              />
             </Link>
             <>
               {game.genres &&

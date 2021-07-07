@@ -5,7 +5,7 @@ const { API_KEY } = process.env;
 const { GENRE_URL, PLATFORM_URL } = require("./src/utils/urls");
 
 // Syncing all the models at once.
-conn.sync().then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
     console.log("%s listening at 3001"); // eslint-disable-line no-console
     axios

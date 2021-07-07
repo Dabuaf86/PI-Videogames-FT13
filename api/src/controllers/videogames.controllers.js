@@ -20,6 +20,7 @@ const getGames = async (req, res, next) => {
           genres: game.Genres,
           image: game.image,
           rating: game.rating,
+          created: game.created,
         });
       });
       const searchAPI = await axios.get(
@@ -33,6 +34,7 @@ const getGames = async (req, res, next) => {
           genres: obj.genres,
           image: obj.background_image,
           rating: obj.rating,
+          created: false,
         });
       });
       const resulstByName = [...foundDB, ...foundAPI];
@@ -57,6 +59,7 @@ const getGames = async (req, res, next) => {
             genres: obj.genres,
             image: obj.background_image,
             rating: obj.rating,
+            created: false,
           });
         });
       }
@@ -69,6 +72,7 @@ const getGames = async (req, res, next) => {
           genres: game.Genres,
           image: game.image,
           rating: game.rating,
+          created: game.created,
         });
       });
       const allGames = [...allDB, ...api100Games];
@@ -143,6 +147,7 @@ const PostGame = async (req, res) => {
       released: released,
       rating: rating,
       image: image,
+      created: true,
     });
     await newGame.addGenre(genres);
     await newGame.addPlatform(platforms);
