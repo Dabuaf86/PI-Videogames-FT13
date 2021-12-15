@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { getGamesByName, getAllVideogames } from '../../Actions/actions';
-import Search from '../Search/search';
+import { getGamesByName, getAllVideogames } from '../../actions/actions';
+import Search from '../search/search';
 import './Navbar.css';
 import arcade from './arcade-btn(sml).jpg';
 import { useDispatch } from 'react-redux';

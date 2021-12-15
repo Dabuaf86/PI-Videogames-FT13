@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postVideogame, getGenres, getPlatforms } from '../../Actions/actions';
+import { postVideogame, getGenres, getPlatforms } from '../../actions/actions';
 // import DropdownMenu from '../DropdownMenu/DropdownMenu';
 // import Validate from "./Validate";
 import './PostGame.css';

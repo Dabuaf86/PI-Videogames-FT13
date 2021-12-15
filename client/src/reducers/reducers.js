@@ -6,7 +6,7 @@ import {
 	GET_GENRES,
 	GET_PLATFORMS,
 	FILTER_GAMES,
-} from '../Actions/actions';
+} from '../actions/actions';
 
 const initialState = {
 	loadedVideogames: [],

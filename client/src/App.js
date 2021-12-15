@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Route } from 'react-router';
 import './App.css';
-import LandingPage from './Components/LandingPage/LandingPage';
-import Home from './Components/Home/home';
-import GameDetails from './Components/GameDetails/gameDetails';
-import Navbar from './Components/NavBar/navBar';
-import PostGame from './Components/PostGame/postGame';
-import { getAllVideogames } from './Actions/actions';
+import LandingPage from './components/LandingPage/LandingPage';
+import Home from './components/home/home';
+import GameDetails from './components/gameDetails/gameDetails';
+import Navbar from './components/navBar/navBar';
+import PostGame from './components/postGame/postGame';
+import { getAllVideogames } from './actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 // import cloud9 from './Itro & Tobu - Cloud 9.mp3';
 // import candyland from './Tobu - Candyland.mp3'; fixed
