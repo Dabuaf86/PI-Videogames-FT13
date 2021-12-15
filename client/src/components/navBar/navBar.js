@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { getGamesByName, getAllVideogames } from '../../Actions/Actions';
-import Search from '../Search/Search';
-import './NavBar.css';
+import { getGamesByName, getAllVideogames } from '../../Actions/actions';
+import Search from '../Search/search';
+import './Navbar.css';
 import arcade from './arcade-btn(sml).jpg';
 import { useDispatch } from 'react-redux';
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getGamesByName } from "../../Actions/Actions";
+import { getGamesByName } from "../../Actions/actions";
 import "./Search.css";
 
 const Search = () => {
