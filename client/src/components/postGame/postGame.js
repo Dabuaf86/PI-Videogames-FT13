@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postVideogame, getGenres, getPlatforms } from '../../Actions/Actions';
-import DropdownMenu from '../DropdownMenu/DropdownMenu';
+// import DropdownMenu from '../DropdownMenu/DropdownMenu';
 // import Validate from "./Validate";
 import './PostGame.css';
 
@@ -87,15 +87,14 @@ const PostVideogame = () => {
 		}
 	};
 
-	const newItems = [
-		{ id: 1, name: 'yo' },
-		{ id: 2, name: 'tu' },
-		{ id: 3, name: 'el' },
-		{ id: 4, name: 'nosotros' },
-		{ id: 5, name: 'vosotros' },
-		{ id: 6, name: 'ellos' },
-		{ id: 7, name: 'ella' },
-	];
+	// const newItems = [
+	// 	{ id: 1, name: 'yo' },
+	// 	{ id: 2, name: 'tu' },
+	// 	{ id: 3, name: 'el' },
+	// 	{ id: 4, name: 'nosotros' },
+	// 	{ id: 5, name: 'vosotros' },
+	// 	{ id: 6, name: 'ellos' }
+	// ];
 
 	return (
 		<div className='formContainer'>
@@ -146,13 +145,11 @@ const PostVideogame = () => {
 					placeholder='Rating...'
 				/>
 				<hr />
-				{/* <label className='formLbl'>Algo</label> */}
+				{/* <label className='formLbl'>Algo</label>
 				<DropdownMenu
-					title='Select one or more genres'
-					items={newItems}
-					multiselect
-				/>
-				<hr />
+				title='Select one or more genres' items={newItems}
+				multiselect />
+				<hr /> */}
 				<span className='formSpan'>
 					<span className='selectSpan'>
 						<label className='formLbl'>*Genres (at least one)</label>
