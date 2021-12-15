@@ -1,5 +1,5 @@
 const axios = require('axios');
-// import axios from "axios";
+// import axios from "axios"; fixed
 
 export const GET_ALLVIDEOGAMES = 'GET_ALLVIDEOGAMES';
 export const GET_GAMESBYNAME = 'GET_GAMESBYNAME';
