@@ -66,3 +66,4 @@ const GameDetails = () => {
 };
 
 export default GameDetails;
+// fixed
