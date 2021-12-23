@@ -16,8 +16,8 @@ const Games = () => {
 	//   dispatch(getAllVideogames());
 	// }, [gamesToRender]);
 
-	console.log('LOADED', loadedVideogames);
-	console.log('CURRENT', currentGames);
+	// console.log('LOADED', loadedVideogames);
+	// console.log('CURRENT', currentGames);
 	const [currentPage, setCurrentPage] = useState(1);
 	// const [didLoad, setDidLoad] = useState(false);
 
@@ -51,7 +51,11 @@ const Games = () => {
 						<>
 							{game.genres &&
 								game.genres.map(el => {
-									return <li className='homeLi'>{el.name}</li>;
+									return (
+										<li className='homeLi' key={el.id}>
+											{el.name}
+										</li>
+									);
 								})}
 						</>
 					</div>

@@ -24,7 +24,7 @@ const Navbar = () => {
 					</NavLink>
 					<Search className='n-link' getGamesByName={getGamesByName} />
 					<NavLink className='n-link' to='/newgame'>
-						Post a new game
+						CREATE GAME
 					</NavLink>
 				</li>
 			</nav>

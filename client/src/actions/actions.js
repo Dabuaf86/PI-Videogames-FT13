@@ -31,7 +31,9 @@ export const getGamesByName = name => async dispatch => {
 			payload: req.data,
 		});
 	} catch (error) {
-		alert('No games with that word in them were found in our database');
+		alert(
+			"We're sorry. We couldn't find that game in our database. Please try again."
+		);
 	}
 };
 
@@ -84,8 +86,12 @@ export const getPlatforms = () => async dispatch => {
 };
 
 export const filterGames = array => dispatch => {
-	dispatch({
-		type: FILTER_GAMES,
-		payload: array,
-	});
+	try {
+		dispatch({
+			type: FILTER_GAMES,
+			payload: array,
+		});
+	} catch (error) {
+		console.log(error);
+	}
 };

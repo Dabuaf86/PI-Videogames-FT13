@@ -98,7 +98,7 @@ const PostVideogame = () => {
 
 	return (
 		<div className='formContainer'>
-			<h2 className='formH2'>Post a new videogame</h2>
+			<h2 className='formH2'>CREATE YOUR OWN GAME</h2>
 			<form
 				className='postGame'
 				noValidate
@@ -161,13 +161,17 @@ const PostVideogame = () => {
 						>
 							<option defaultValue={null}>Select</option>
 							{selectGenres.map(genre => (
-								<option value={genre.id}>{genre.name}</option>
+								<option value={genre.id} key={genre.id}>
+									{genre.name}
+								</option>
 							))}
 						</select>
 						<ul>
 							{input.genres &&
-								input.genres.map(genre => (
-									<ul className='list-items'>{genre}</ul>
+								input.genres.map((genre, index) => (
+									<li className='list-items' key={index}>
+										{genre}
+									</li>
 								))}
 						</ul>
 					</span>
@@ -181,13 +185,17 @@ const PostVideogame = () => {
 						>
 							<option defaultValue={null}>Select</option>
 							{selectPlatforms.map(platforms => (
-								<option value={platforms.id}>{platforms.name}</option>
+								<option value={platforms.id} key={platforms.id}>
+									{platforms.name}
+								</option>
 							))}
 						</select>
 						<ul>
 							{input.platforms &&
-								input.platforms.map(plat => (
-									<ul className='list-items'>{plat}</ul>
+								input.platforms.map((plat, index) => (
+									<li className='list-items' key={index}>
+										{plat}
+									</li>
 								))}
 						</ul>
 					</span>

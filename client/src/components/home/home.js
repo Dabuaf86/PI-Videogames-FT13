@@ -1,6 +1,6 @@
 import React from "react";
 import Games from "../Games/Games";
-import Filters from "../GenreFilter/GenreFilter";
+import Filters from "../searchFilter/searchFilter";
 import "./Home.css";
 
 const Home2 = () => {

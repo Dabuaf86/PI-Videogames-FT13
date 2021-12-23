@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterGames, getGenres } from '../../actions/actions';
-import './GenreFilter.css';
+import './searchFilter.css';
 
 const Filters = () => {
 	const dispatch = useDispatch();
 	const loadedVideogames = useSelector(state => state.loadedVideogames);
 	const selectGenres = useSelector(state => state.allGenres);
-	const [filter, setFilter] = useState('Select');
+	const [genre, setGenre] = useState('Select');
 	const [source, setSource] = useState('Select');
 	const [order, setOrder] = useState('Select');
 
@@ -18,7 +18,7 @@ const Filters = () => {
 	let gamesToFilter = [...loadedVideogames];
 
 	const handleChange = event => {
-		if (event.target.name === 'filter') setFilter(event.target.value);
+		if (event.target.name === 'genre') setGenre(event.target.value);
 		else if (event.target.name === 'source') setSource(event.target.value);
 		else if (event.target.name === 'order') setOrder(event.target.value);
 	};
@@ -49,43 +49,57 @@ const Filters = () => {
 	const handleSubmit = event => {
 		event.preventDefault();
 		let filtered = [];
-		if (filter === 'Select' && source === 'Select' && order === 'Select')
+		if (genre === 'Select' && source === 'Select' && order === 'Select') {
+			console.log('NO PASA NADA', gamesToFilter);
 			dispatch(filterGames(gamesToFilter));
-		else if (filter === 'Select') {
+		} else if (genre === 'Select') {
 			if (source === 'Select') {
 				sortCB(gamesToFilter, order);
+				console.log('SIN GÉNERO NI ORIGEN. SÓLO ORDENAR', gamesToFilter);
 				dispatch(filterGames(gamesToFilter));
 			} else {
 				for (let i = 0; i < gamesToFilter.length; i++) {
 					if (gamesToFilter[i].created === source) {
 						filtered.push(gamesToFilter[i]);
-						dispatch(filterGames(gamesToFilter));
 					}
 				}
-				if (order === 'Select') dispatch(filterGames(filtered));
-				else {
-					sortCB(filtered, order);
+				// gamesToFilter = gamesToFilter.filter(game => game.created === source);
+				if (order === 'Select') {
+					console.log('ORIGEN: ', source);
+					console.log('SIN GÉNERO Y SIN ORDEN PERO CON ORIGEN', filtered);
 					dispatch(filterGames(filtered));
+				} else {
+					sortCB(gamesToFilter, order);
+					console.log('ORIGEN: ', source);
+					console.log('SIN GÉNERO, PERO CON ORIGEN Y ORDENADO', gamesToFilter);
+					dispatch(filterGames(gamesToFilter));
 				}
 			}
-		} else if (filter !== 'Select') {
+		} else if (genre !== 'Select') {
 			for (let i = 0; i < gamesToFilter.length; i++) {
 				for (let j = 0; j < gamesToFilter[i].genres?.length; j++) {
-					if (gamesToFilter[i].genres[j].name === filter) {
+					if (gamesToFilter[i].genres[j].name === genre) {
 						filtered.push(gamesToFilter[i]);
 					}
 				}
 			}
-			if (source === 'Select' && order === 'Select')
+			if (source === 'Select' && order === 'Select') {
+				console.log('FILTRO DE GÉNERO', filtered);
 				dispatch(filterGames(filtered));
-			else if (source === 'Select') {
+			} else if (source === 'Select') {
 				sortCB(filtered, order);
+				console.log('FILTRO DE GÉNERO + ORDEN', filtered);
 				dispatch(filterGames(filtered));
 			} else {
 				filtered = filtered.filter(game => game.created === source);
-				if (order === 'Select') dispatch(filterGames(filtered));
-				else {
+				if (order === 'Select') {
+					console.log('ORIGEN: ', source);
+					console.log('FILTRO DE GÉNERO + ORIGEN SIN ORDEN', filtered);
+					dispatch(filterGames(filtered));
+				} else {
 					sortCB(filtered, order);
+					console.log('ORIGEN: ', source);
+					console.log('FILTRO DE GÉNERO + ORIGEN ORDENADO', filtered);
 					dispatch(filterGames(filtered));
 				}
 			}
@@ -100,26 +114,27 @@ const Filters = () => {
 					<select
 						className='filterSelect'
 						name='source'
-						id={gamesToFilter.created}
 						value={source}
 						onChange={event => handleChange(event)}
 					>
 						<option value='Select' default>
 							Select
 						</option>
-						<option value={'true'}>Created Games</option>
-						<option value={'false'}>API RAW Games</option>
+						<option value={true}>Your Games</option>
+						<option value={false}>Our Games</option>
 					</select>
 				</div>
 				<div className='filterDiv'>
 					<label className='filterLbl'>Filter by Genre</label>
 					<select
 						className='filterSelect'
-						value={filter}
-						name='filter'
+						name='genre'
+						value={genre}
 						onChange={event => handleChange(event)}
 					>
-						<option default>Select</option>
+						<option value='Select' default>
+							Select
+						</option>
 						{selectGenres.map(genre => (
 							<option value={genre.name}>{genre.name}</option>
 						))}
@@ -138,8 +153,8 @@ const Filters = () => {
 						</option>
 						<option value='alphAsc'>A - Z</option>
 						<option value='alphDesc'>Z - A</option>
-						<option value='ratingAsc'>Rating (Lowest first)</option>
-						<option value='ratingDesc'>Rating (Highest first)</option>
+						<option value='ratingAsc'>Rating ⬆️</option>
+						<option value='ratingDesc'>Rating ⬇️</option>
 					</select>
 				</div>
 				<button id='btnSort' type='submit'>
