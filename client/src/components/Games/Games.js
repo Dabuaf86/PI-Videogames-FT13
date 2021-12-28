@@ -8,10 +8,10 @@ import { getAllVideogames } from '../../actions/actions';
 
 const Games = () => {
 	// const dispatch = useDispatch();
-	const loadedVideogames = useSelector(state => state.loadedVideogames);
 	const currentGames = useSelector(state => state.currentGames);
+	const isLoaded = useSelector(state => state.isLoaded);
 
-	let gamesToRender = currentGames.length ? currentGames : loadedVideogames;
+	// let gamesToRender = currentGames.length ? currentGames : null;
 	// useEffect(() => {
 	//   dispatch(getAllVideogames());
 	// }, [gamesToRender]);
@@ -24,14 +24,15 @@ const Games = () => {
 	const gamesPerPage = 15;
 	const indexOfLastGame = currentPage * gamesPerPage;
 	const indexOfFirstGame = indexOfLastGame - gamesPerPage;
-	const shownGames = gamesToRender.slice(indexOfFirstGame, indexOfLastGame);
+	const shownGames = currentGames.slice(indexOfFirstGame, indexOfLastGame);
 
 	const paginate = num => setCurrentPage(num);
-
 	return (
 		<div className='gamesGrid'>
-			{shownGames.length < 1 ? (
+			{!isLoaded ? (
 				<Loading />
+			) : shownGames.length < 1 ? (
+				<span>No games</span>
 			) : (
 				shownGames &&
 				shownGames.map(game => (
@@ -64,7 +65,7 @@ const Games = () => {
 			<div className='pageBtn'>
 				<Pagination
 					gamesPerPage={gamesPerPage}
-					totalVideogames={gamesToRender.length}
+					totalVideogames={currentGames.length}
 					paginate={paginate}
 				/>
 			</div>

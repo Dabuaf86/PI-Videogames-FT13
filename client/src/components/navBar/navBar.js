@@ -5,6 +5,7 @@ import Search from '../search/search';
 import './Navbar.css';
 import arcade from './arcade-btn(sml).jpg';
 import { useDispatch } from 'react-redux';
+import config from '../../multimedia/config.svg';
 
 const Navbar = () => {
 	const dispatch = useDispatch;
@@ -24,6 +25,7 @@ const Navbar = () => {
 					</NavLink>
 					<Search className='n-link' getGamesByName={getGamesByName} />
 					<NavLink className='n-link' to='/newgame'>
+						<img src={config} alt='config icon' id='configImg' />
 						CREATE GAME
 					</NavLink>
 				</li>
