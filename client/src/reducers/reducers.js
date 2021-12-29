@@ -31,7 +31,6 @@ export default function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				currentGames: action.payload,
-				// isLoaded: true,
 			};
 		case GET_VIDEOGAMEDETAILS:
 			return {
@@ -48,13 +47,11 @@ export default function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				allGenres: action.payload,
-				// isLoaded: true,
 			};
 		case GET_PLATFORMS:
 			return {
 				...state,
 				allPlatforms: action.payload,
-				// isLoaded: true,
 			};
 		case FILTER_GAMES:
 			return {
@@ -65,4 +62,3 @@ export default function rootReducer(state = initialState, action) {
 			return state;
 	}
 }
-// fixed

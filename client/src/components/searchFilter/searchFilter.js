@@ -56,11 +56,12 @@ const Filters = () => {
 			dispatch(filterGames(gamesToFilter));
 		} else {
 			if (source !== 'Select') {
-				console.log(source);
 				filtered = filtered.filter(game => game.created === source);
 			}
 			if (genre !== 'Select') {
-				filtered = filtered.filter(game => game.genres.includes(genre));
+				filtered = filtered.filter(game =>
+					game.genres.some(gen => gen.name === genre)
+				);
 			}
 			if (order !== 'Select') {
 				sortCB(filtered, order);
@@ -129,4 +130,3 @@ const Filters = () => {
 };
 
 export default Filters;
-// fixed

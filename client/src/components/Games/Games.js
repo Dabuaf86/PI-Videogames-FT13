@@ -1,25 +1,14 @@
 import { Link } from 'react-router-dom';
 import './Games.css';
 import Loading from '../Loading/Loading';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Pagination from '../Pagination/Pagination';
-import { useEffect, useState } from 'react';
-import { getAllVideogames } from '../../actions/actions';
+import { useState } from 'react';
 
 const Games = () => {
-	// const dispatch = useDispatch();
 	const currentGames = useSelector(state => state.currentGames);
 	const isLoaded = useSelector(state => state.isLoaded);
-
-	// let gamesToRender = currentGames.length ? currentGames : null;
-	// useEffect(() => {
-	//   dispatch(getAllVideogames());
-	// }, [gamesToRender]);
-
-	// console.log('LOADED', loadedVideogames);
-	// console.log('CURRENT', currentGames);
 	const [currentPage, setCurrentPage] = useState(1);
-	// const [didLoad, setDidLoad] = useState(false);
 
 	const gamesPerPage = 15;
 	const indexOfLastGame = currentPage * gamesPerPage;
@@ -74,4 +63,3 @@ const Games = () => {
 };
 
 export default Games;
-// fixed
