@@ -17,10 +17,13 @@ const Filters = () => {
 
 	let gamesToFilter = [...loadedVideogames];
 
-	const handleChange = event => {
-		if (event.target.name === 'genre') setGenre(event.target.value);
-		else if (event.target.name === 'source') setSource(event.target.value);
-		else if (event.target.name === 'order') setOrder(event.target.value);
+	const handleChange = e => {
+		if (e.target.name === 'genre') setGenre(e.target.value);
+		else if (e.target.name === 'source')
+			setSource(
+				e.target.value === 'Select' ? 'Select' : e.target.value === 'true'
+			);
+		else if (e.target.name === 'order') setOrder(e.target.value);
 	};
 
 	const sortCB = (arr, order) => {
@@ -46,63 +49,24 @@ const Filters = () => {
 		}
 	};
 
-	const handleSubmit = event => {
-		event.preventDefault();
-		let filtered = [];
+	const handleSubmit = e => {
+		e.preventDefault();
+		let filtered = [...gamesToFilter];
 		if (genre === 'Select' && source === 'Select' && order === 'Select') {
-			console.log('NO PASA NADA', gamesToFilter);
 			dispatch(filterGames(gamesToFilter));
-		} else if (genre === 'Select') {
-			if (source === 'Select') {
-				sortCB(gamesToFilter, order);
-				console.log('SIN GÉNERO NI ORIGEN. SÓLO ORDENAR', gamesToFilter);
-				dispatch(filterGames(gamesToFilter));
-			} else {
-				for (let i = 0; i < gamesToFilter.length; i++) {
-					if (gamesToFilter[i].created === source) {
-						filtered.push(gamesToFilter[i]);
-					}
-				}
-				// gamesToFilter = gamesToFilter.filter(game => game.created === source);
-				if (order === 'Select') {
-					console.log('ORIGEN: ', source);
-					console.log('SIN GÉNERO Y SIN ORDEN PERO CON ORIGEN', filtered);
-					dispatch(filterGames(filtered));
-				} else {
-					sortCB(gamesToFilter, order);
-					console.log('ORIGEN: ', source);
-					console.log('SIN GÉNERO, PERO CON ORIGEN Y ORDENADO', gamesToFilter);
-					dispatch(filterGames(gamesToFilter));
-				}
-			}
-		} else if (genre !== 'Select') {
-			for (let i = 0; i < gamesToFilter.length; i++) {
-				for (let j = 0; j < gamesToFilter[i].genres?.length; j++) {
-					if (gamesToFilter[i].genres[j].name === genre) {
-						filtered.push(gamesToFilter[i]);
-					}
-				}
-			}
-			if (source === 'Select' && order === 'Select') {
-				console.log('FILTRO DE GÉNERO', filtered);
-				dispatch(filterGames(filtered));
-			} else if (source === 'Select') {
-				sortCB(filtered, order);
-				console.log('FILTRO DE GÉNERO + ORDEN', filtered);
-				dispatch(filterGames(filtered));
-			} else {
+		} else {
+			if (source !== 'Select') {
 				filtered = filtered.filter(game => game.created === source);
-				if (order === 'Select') {
-					console.log('ORIGEN: ', source);
-					console.log('FILTRO DE GÉNERO + ORIGEN SIN ORDEN', filtered);
-					dispatch(filterGames(filtered));
-				} else {
-					sortCB(filtered, order);
-					console.log('ORIGEN: ', source);
-					console.log('FILTRO DE GÉNERO + ORIGEN ORDENADO', filtered);
-					dispatch(filterGames(filtered));
-				}
 			}
+			if (genre !== 'Select') {
+				filtered = filtered.filter(game =>
+					game.genres.some(gen => gen.name === genre)
+				);
+			}
+			if (order !== 'Select') {
+				sortCB(filtered, order);
+			}
+			dispatch(filterGames(filtered));
 		}
 	};
 
@@ -166,4 +130,3 @@ const Filters = () => {
 };
 
 export default Filters;
-// fixed

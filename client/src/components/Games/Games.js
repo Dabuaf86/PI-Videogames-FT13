@@ -1,37 +1,27 @@
 import { Link } from 'react-router-dom';
 import './Games.css';
 import Loading from '../Loading/Loading';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Pagination from '../Pagination/Pagination';
-import { useEffect, useState } from 'react';
-import { getAllVideogames } from '../../actions/actions';
+import { useState } from 'react';
 
 const Games = () => {
-	// const dispatch = useDispatch();
-	const loadedVideogames = useSelector(state => state.loadedVideogames);
 	const currentGames = useSelector(state => state.currentGames);
-
-	let gamesToRender = currentGames.length ? currentGames : loadedVideogames;
-	// useEffect(() => {
-	//   dispatch(getAllVideogames());
-	// }, [gamesToRender]);
-
-	// console.log('LOADED', loadedVideogames);
-	// console.log('CURRENT', currentGames);
+	const isLoaded = useSelector(state => state.isLoaded);
 	const [currentPage, setCurrentPage] = useState(1);
-	// const [didLoad, setDidLoad] = useState(false);
 
 	const gamesPerPage = 15;
 	const indexOfLastGame = currentPage * gamesPerPage;
 	const indexOfFirstGame = indexOfLastGame - gamesPerPage;
-	const shownGames = gamesToRender.slice(indexOfFirstGame, indexOfLastGame);
+	const shownGames = currentGames.slice(indexOfFirstGame, indexOfLastGame);
 
 	const paginate = num => setCurrentPage(num);
-
 	return (
 		<div className='gamesGrid'>
-			{shownGames.length < 1 ? (
+			{!isLoaded ? (
 				<Loading />
+			) : shownGames.length < 1 ? (
+				<span>No games</span>
 			) : (
 				shownGames &&
 				shownGames.map(game => (
@@ -64,7 +54,7 @@ const Games = () => {
 			<div className='pageBtn'>
 				<Pagination
 					gamesPerPage={gamesPerPage}
-					totalVideogames={gamesToRender.length}
+					totalVideogames={currentGames.length}
 					paginate={paginate}
 				/>
 			</div>
@@ -73,4 +63,3 @@ const Games = () => {
 };
 
 export default Games;
-// fixed
