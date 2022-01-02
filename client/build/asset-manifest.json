@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2753afe4.chunk.css",
+    "main.js": "/static/js/main.b9d39c08.chunk.js",
+    "main.js.map": "/static/js/main.b9d39c08.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.34eaa5da.js",
+    "runtime-main.js.map": "/static/js/runtime-main.34eaa5da.js.map",
+    "static/js/2.3897a1a1.chunk.js": "/static/js/2.3897a1a1.chunk.js",
+    "static/js/2.3897a1a1.chunk.js.map": "/static/js/2.3897a1a1.chunk.js.map",
+    "static/js/3.abfb33e5.chunk.js": "/static/js/3.abfb33e5.chunk.js",
+    "static/js/3.abfb33e5.chunk.js.map": "/static/js/3.abfb33e5.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.2753afe4.chunk.css.map": "/static/css/main.2753afe4.chunk.css.map",
+    "static/js/2.3897a1a1.chunk.js.LICENSE.txt": "/static/js/2.3897a1a1.chunk.js.LICENSE.txt",
+    "static/media/Tobu & Itro - Sunburst.c6611c50.mp3": "/static/media/Tobu & Itro - Sunburst.c6611c50.mp3",
+    "static/media/arcade-btn(sml).fcbd3c9a.jpg": "/static/media/arcade-btn(sml).fcbd3c9a.jpg",
+    "static/media/PostGame.css": "/static/media/arcade-front-1.ada138c8.jpg",
+    "static/media/Navbar.css": "/static/media/brick-wall-1.aaf825da.jpg",
+    "static/media/config.387bbc47.svg": "/static/media/config.387bbc47.svg",
+    "static/media/GameDetails.css": "/static/media/depositphotos_63921325-stock-photo-arcade-machine-opposing-duel.7c176942.jpg",
+    "static/media/loading.2a20067a.gif": "/static/media/loading.2a20067a.gif",
+    "static/media/Home.css": "/static/media/neon-arcade-machines-2.1ab3dbbd.png",
+    "static/media/LandingPage.css": "/static/media/texto-estilo-letreros-neon-arcade-night_118419-1578.11a8fde9.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.34eaa5da.js",
+    "static/js/2.3897a1a1.chunk.js",
+    "static/css/main.2753afe4.chunk.css",
+    "static/js/main.b9d39c08.chunk.js"
+  ]
+}
