@@ -9,11 +9,11 @@ export const GET_GENRES = 'GET_GENRES';
 export const GET_PLATFORMS = 'GET_PLATFORMS';
 export const FILTER_GAMES = 'FILTER_GAMES';
 
-const URL = 'http://localhost:3001';
+// const URL = 'http://localhost:3001';
 
 export const getAllVideogames = () => async dispatch => {
 	try {
-		const { data } = await axios.get(`${URL}/videogames`);
+		const { data } = await axios.get(`/videogames`);
 		dispatch({
 			type: GET_ALLVIDEOGAMES,
 			payload: data,
@@ -25,7 +25,7 @@ export const getAllVideogames = () => async dispatch => {
 
 export const getGamesByName = name => async dispatch => {
 	try {
-		const req = await axios.get(`${URL}/videogames?name=${name}`);
+		const req = await axios.get(`/videogames?name=${name}`);
 		dispatch({
 			type: GET_GAMESBYNAME,
 			payload: req.data,
@@ -39,7 +39,7 @@ export const getGamesByName = name => async dispatch => {
 
 export const getVideogameDetails = id => async dispatch => {
 	try {
-		const req = await axios.get(`${URL}/videogame/${id}`);
+		const req = await axios.get(`/videogame/${id}`);
 		dispatch({
 			type: GET_VIDEOGAMEDETAILS,
 			payload: req.data,
@@ -51,7 +51,7 @@ export const getVideogameDetails = id => async dispatch => {
 
 export const postVideogame = input => async dispatch => {
 	try {
-		await axios.post(`${URL}/videogame`, input);
+		await axios.post(`/videogame`, input);
 		dispatch({
 			type: POST_VIDEOGAME,
 			payload: input,
@@ -63,7 +63,7 @@ export const postVideogame = input => async dispatch => {
 
 export const getGenres = () => async dispatch => {
 	try {
-		const req = await axios.get(`${URL}/genres`);
+		const req = await axios.get(`/genres`);
 		dispatch({
 			type: GET_GENRES,
 			payload: req.data,
@@ -75,7 +75,7 @@ export const getGenres = () => async dispatch => {
 
 export const getPlatforms = () => async dispatch => {
 	try {
-		const req = await axios.get(`${URL}/platforms`);
+		const req = await axios.get(`/platforms`);
 		dispatch({
 			type: GET_PLATFORMS,
 			payload: req.data,
