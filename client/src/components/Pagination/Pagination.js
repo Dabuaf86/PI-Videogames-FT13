@@ -17,7 +17,7 @@ const Pagination = ({ gamesPerPage, totalVideogames, paginate }) => {
             key={num}
             className="paginatebtn"
             onClick={() => paginate(num)}
-            href="#"
+            // href="#"
           >
             {num}
           </a>
