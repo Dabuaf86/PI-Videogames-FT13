@@ -1,17 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { getGamesByName, getAllVideogames } from '../../actions/actions';
+import { getGamesByName } from '../../actions/actions';
 import Search from '../search/search';
 import './Navbar.css';
 import arcade from './arcade-btn(sml).jpg';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import config from '../../multimedia/config.svg';
 
 const Navbar = () => {
-	const dispatch = useDispatch;
-	const handleClick = () => {
-		dispatch(getAllVideogames());
-	};
+	// const dispatch = useDispatch;
+	// const handleClick = () => {
+	// 	dispatch(getAllVideogames());
+	// };
 
 	return (
 		<header className='navbar'>
