@@ -1,32 +1,56 @@
-import React from "react";
-import "./Pagination.css";
+import React, { useState } from 'react';
+import './Pagination.css';
 
 const Pagination = ({ gamesPerPage, totalVideogames, paginate }) => {
-  const pages = [];
-  for (let i = 1; i <= Math.ceil(totalVideogames / gamesPerPage); i++) {
-    pages.push(i);
-  }
-  return (
-    <div className="btnGrid">
-      {/* <a className="paginatebtn" href="#">
-        ◀ Prev
-      </a> */}
-      {pages &&
-        pages.map((num) => (
-          <a
-            key={num}
-            className="paginatebtn"
-            onClick={() => paginate(num)}
-            // href="#"
-          >
-            {num}
-          </a>
-        ))}
-      {/* <a className="paginatebtn" href="#">
-        Next ▶
-      </a> */}
-    </div>
-  );
+	const [currPage, setCurrPage] = useState(1);
+
+	const pages = [];
+	for (let i = 1; i <= Math.ceil(totalVideogames / gamesPerPage); i++) {
+		pages.push(i);
+	}
+
+	const handlePaginate = num => {
+		setCurrPage(num);
+		paginate(num);
+	};
+
+	const handlePageFwd = currPage => {
+		setCurrPage(currPage + 1);
+		paginate(currPage + 1);
+	};
+	const handlePageBack = currPage => {
+		setCurrPage(currPage - 1);
+		paginate(currPage - 1);
+	};
+
+	return (
+		<div className='btnGrid'>
+			<button
+				className='paginatebtn'
+				onClick={() => handlePageBack(currPage)}
+				disabled={currPage === 1}
+			>
+				◀ Prev
+			</button>
+			{pages &&
+				pages.map(num => (
+					<button
+						key={num}
+						className={currPage === num ? 'activePaginatebtn' : 'paginatebtn'}
+						onClick={() => handlePaginate(num)}
+					>
+						{num}
+					</button>
+				))}
+			<button
+				className='paginatebtn'
+				onClick={() => handlePageFwd(currPage)}
+				disabled={currPage === pages.length}
+			>
+				Next ▶
+			</button>
+		</div>
+	);
 };
 
 export default Pagination;
