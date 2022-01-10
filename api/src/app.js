@@ -18,7 +18,7 @@ server.use(morgan('dev'));
 server.use((req, res, next) => {
 	res.header(
 		'Access-Control-Allow-Origin',
-		'https://next-level-app.herokuapp.com/',
+		'https://next-level-app.herokuapp.com',
 		'https://level-app-bud7pd8tb-dabuaf86.vercel.app',
 		'http://localhost:3000'
 	); // update to match the domain you will make the request from
