@@ -6,13 +6,17 @@ import Home from './components/home/home';
 import GameDetails from './components/gameDetails/gameDetails';
 import Navbar from './components/navBar/navBar';
 import PostGame from './components/postGame/postGame';
-// import cloud9 from './Itro & Tobu - Cloud 9.mp3';
-// import candyland from './Tobu - Candyland.mp3'; fixed
 import sunburst from './Tobu & Itro - Sunburst.mp3';
 
 function App() {
 	return (
 		<div className='App'>
+			<audio
+				controls={true}
+				autoPlay={true}
+				loop={false}
+				src={sunburst}
+			></audio>
 			<Route exact path='/' component={LandingPage} />
 			<Route path='/videogames' component={Navbar} />
 			<Route path='/videogames' component={Home} />
@@ -20,14 +24,6 @@ function App() {
 			<Route path='/newgame/' component={PostGame} />
 			<Route path='/videogame/:id' component={Navbar} />
 			<Route path='/videogame/:id' component={GameDetails} />
-			<audio
-				controls={true}
-				autoPlay={true}
-				loop={true}
-				// src={cloud9}
-				// src={candyland}
-				src={sunburst}
-			></audio>
 		</div>
 	);
 }
