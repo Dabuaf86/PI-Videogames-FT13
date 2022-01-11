@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postVideogame, getGenres, getPlatforms } from '../../actions/actions';
-// import DropdownMenu from '../DropdownMenu/DropdownMenu';
-// import Validate from "./Validate";
-import './PostGame.css';
+import { createVideogame, getGenres, getPlatforms } from '../../actions/actions';
+// import DropdownMenu from '../../components/DropdownMenu/index';
+// import Validate from "./validate";
+import './createGame.css';
 
-const PostVideogame = () => {
+const CreateVideogame = () => {
 	const dispatch = useDispatch();
 
 	const [input, setInput] = useState({
@@ -73,7 +73,7 @@ const PostVideogame = () => {
 			alert('Please select at least one valid platform');
 			return;
 		} else {
-			dispatch(postVideogame(input));
+			dispatch(createVideogame(input));
 			alert('New videogame created successfully!');
 			setInput({
 				name: '',
@@ -230,5 +230,5 @@ const PostVideogame = () => {
 	);
 };
 
-export default PostVideogame;
+export default CreateVideogame;
 // fixed

@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
-import './Games.css';
-import Loading from '../Loading/Loading';
-import { useSelector } from 'react-redux';
-import Pagination from '../Pagination/Pagination';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Loading from '../Loading/index';
+import Pagination from '../Pagination/index';
+import './games.css';
 
 const Games = () => {
 	const currentGames = useSelector(state => state.currentGames);

@@ -1,5 +1,5 @@
 import React from "react";
-import "./CreatedGames.css";
+import "./createdGames.css";
 
 const CreatedGames = () => {
     
