@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router';
 import './App.css';
-import LandingPage from './components/LandingPage/LandingPage';
-import Home from './components/home/home';
-import GameDetails from './components/gameDetails/gameDetails';
-import Navbar from './components/navBar/navBar';
-import PostGame from './components/postGame/postGame';
-import sunburst from './Tobu & Itro - Sunburst.mp3';
+import LandingPage from './views/landingPage/index';
+import Home from './views/home/index';
+import GameDetails from './views/gameDetails/index';
+import Navbar from './components/Navbar/index';
+import CreateVideogame from './views/createVideogame/index';
+import sunburst from './multimedia/Tobu & Itro - Sunburst.mp3';
 
 function App() {
 	return (
@@ -21,7 +21,7 @@ function App() {
 			<Route path='/videogames' component={Navbar} />
 			<Route path='/videogames' component={Home} />
 			<Route path='/newgame' component={Navbar} />
-			<Route path='/newgame/' component={PostGame} />
+			<Route path='/newgame/' component={CreateVideogame} />
 			<Route path='/videogame/:id' component={Navbar} />
 			<Route path='/videogame/:id' component={GameDetails} />
 		</div>

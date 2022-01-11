@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Pagination.css';
+import './pagination.css';
 
 const Pagination = ({ gamesPerPage, totalVideogames, paginate }) => {
 	const [currPage, setCurrPage] = useState(1);

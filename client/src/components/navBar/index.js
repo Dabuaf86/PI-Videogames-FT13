@@ -1,18 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { getGamesByName } from '../../actions/actions';
-import Search from '../search/search';
-import './Navbar.css';
-import arcade from './arcade-btn(sml).jpg';
-// import { useDispatch } from 'react-redux';
+import Search from '../Search/index';
+import arcade from '../../multimedia/navbar-home-btn(sml).jpg';
 import config from '../../multimedia/config.svg';
+import './navbar.css';
 
 const Navbar = () => {
-	// const dispatch = useDispatch;
-	// const handleClick = () => {
-	// 	dispatch(getAllVideogames());
-	// };
-
 	return (
 		<header className='navbar'>
 			<span>
@@ -35,4 +29,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-// fixed

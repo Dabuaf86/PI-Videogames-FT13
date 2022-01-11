@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllVideogames } from '../../actions/actions';
-import Games from '../Games/Games';
-import Filters from '../searchFilter/searchFilter';
-import './Home.css';
+import Games from '../../components/Games/index';
+import Filters from '../../components/searchFilter/index';
+import './home.css';
 
 const Home2 = () => {
 	const dispatch = useDispatch();

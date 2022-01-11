@@ -2,7 +2,7 @@ import {
 	GET_ALLVIDEOGAMES,
 	GET_GAMESBYNAME,
 	GET_VIDEOGAMEDETAILS,
-	POST_VIDEOGAME,
+	CREATE_VIDEOGAME,
 	GET_GENRES,
 	GET_PLATFORMS,
 	FILTER_GAMES,
@@ -37,7 +37,7 @@ export default function rootReducer(state = initialState, action) {
 				...state,
 				videgameDetails: { ...action.payload },
 			};
-		case POST_VIDEOGAME:
+		case CREATE_VIDEOGAME:
 			return {
 				...state,
 				loadedVideogames: [...state.loadedVideogames, action.payload],

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getGamesByName } from "../../actions/actions";
-import "./Search.css";
+import "./search.css";
 
 const Search = () => {
   const [gameInput, setGameInput] = useState("");
