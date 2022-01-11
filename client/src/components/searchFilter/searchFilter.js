@@ -100,7 +100,9 @@ const Filters = () => {
 							Select
 						</option>
 						{selectGenres.map(genre => (
-							<option value={genre.name}>{genre.name}</option>
+							<option key={genre.id} value={genre.name}>
+								{genre.name}
+							</option>
 						))}
 					</select>
 				</div>

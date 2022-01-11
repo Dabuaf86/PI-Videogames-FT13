@@ -44,24 +44,40 @@ const GameDetails = () => {
 				<b>Available for</b>
 				<br />
 				{(game.platforms &&
-					game.platforms.map(plat => {
-						return <li className='liPlat'>{plat.platform.name}</li>;
+					game.platforms.map((plat, i) => {
+						return (
+							<li key={i} className='liPlat'>
+								{plat.platform.name}
+							</li>
+						);
 					})) ||
 					(game.Platforms &&
-						game.Platforms.map(plat => {
-							return <li className='liGen'>{plat.name}</li>;
+						game.Platforms.map(platDB => {
+							return (
+								<li key={platDB.id} className='liGen'>
+									{platDB.name}
+								</li>
+							);
 						}))}
 			</p>
 			<p>
 				<b>Genres</b>
 				<br />
 				{(game.genres &&
-					game.genres.map(gen => {
-						return <li className='liGen'>{gen.name}</li>;
+					game.genres.map((genre, i) => {
+						return (
+							<li key={i} className='liGen'>
+								{genre.name}
+							</li>
+						);
 					})) ||
 					(game.Genres &&
-						game.Genres.map(genre => {
-							return <li className='liGen'>{genre.name}</li>;
+						game.Genres.map(genreDB => {
+							return (
+								<li key={genreDB.id} className='liGen'>
+									{genreDB.name}
+								</li>
+							);
 						}))}
 			</p>
 		</div>
@@ -69,4 +85,3 @@ const GameDetails = () => {
 };
 
 export default GameDetails;
-// fixed
