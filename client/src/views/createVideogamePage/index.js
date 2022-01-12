@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createVideogame, getGenres, getPlatforms } from '../../actions/actions';
 // import DropdownMenu from '../../components/DropdownMenu/index';
 // import Validate from "./validate";
-import './createGame.css';
+import './createVideogame.css';
 
 const CreateVideogame = () => {
 	const dispatch = useDispatch();
@@ -231,4 +231,3 @@ const CreateVideogame = () => {
 };
 
 export default CreateVideogame;
-// fixed

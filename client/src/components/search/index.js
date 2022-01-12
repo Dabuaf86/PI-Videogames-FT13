@@ -34,4 +34,3 @@ const Search = () => {
 };
 
 export default Search;
-// fixed
