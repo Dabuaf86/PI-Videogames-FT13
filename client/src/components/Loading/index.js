@@ -10,4 +10,3 @@ const Loading = () => {
   );
 };
 export default Loading;
-// fixed

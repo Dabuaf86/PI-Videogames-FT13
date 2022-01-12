@@ -54,4 +54,3 @@ const Pagination = ({ gamesPerPage, totalVideogames, paginate }) => {
 };
 
 export default Pagination;
-// fixed

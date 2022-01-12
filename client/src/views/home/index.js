@@ -5,7 +5,7 @@ import Games from '../../components/Games/index';
 import Filters from '../../components/searchFilter/index';
 import './home.css';
 
-const Home2 = () => {
+const Home = () => {
 	const dispatch = useDispatch();
 	const isLoaded = useSelector(state => state.isLoaded);
 
@@ -23,5 +23,4 @@ const Home2 = () => {
 	);
 };
 
-export default Home2;
-// fixed
+export default Home;
