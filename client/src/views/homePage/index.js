@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllVideogames } from '../../actions/actions';
 import Games from '../../components/Games/index';
 import Filters from '../../components/searchFilter/index';
-import './home.css';
+import './homePage.css';
 
-const Home = () => {
+const HomePage = () => {
 	const dispatch = useDispatch();
 	const isLoaded = useSelector(state => state.isLoaded);
 
@@ -23,4 +23,4 @@ const Home = () => {
 	);
 };
 
-export default Home;
+export default HomePage;
