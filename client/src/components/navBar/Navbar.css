@@ -1,33 +1,39 @@
 .navbar {
-  display: flex;
-  flex-direction: column;
-  background-color: black;
-  padding-right: 15px;
-  background-image: url("./brick-wall-1.jpg");
-  padding-bottom: 5px;
+	display: flex;
+	flex-direction: column;
+	background-color: black;
+	padding-right: 15px;
+	background-image: url('../../multimedia/navbar-bg.jpg');
+	padding-bottom: 5px;
 }
 
 #navH1 {
-  color: #fff;
-  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #f09,
-    0 0 82px #f09, 0 0 92px #f09, 0 0 102px #f09, 0 0 151px #f09;
-  animation: flicker 1.5s infinite alternate;
-  /* animation: pulsate 0.11s ease-in-out infinite alternate; */
+	color: #fff;
+	text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #f09,
+		0 0 82px #f09, 0 0 92px #f09, 0 0 102px #f09, 0 0 151px #f09;
+	animation: flicker 1.5s infinite alternate;
+	/* animation: pulsate 0.11s ease-in-out infinite alternate; */
 }
 
 #navlinks {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  font-weight: bold;
-  font-size: 15px;
-  background-color: transparent;
-  border-radius: 0.5rem;
-  color: #fff;
-  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #bc13fe,
-    0 0 82px #bc13fe, 0 0 92px #bc13fe, 0 0 102px #bc13fe, 0 0 151px #bc13fe;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	font-weight: bold;
+	font-size: 15px;
+	background-color: transparent;
+	border-radius: 0.5rem;
+	color: #fff;
+	text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #bc13fe,
+		0 0 82px #bc13fe, 0 0 92px #bc13fe, 0 0 102px #bc13fe, 0 0 151px #bc13fe;
 }
 
+.n-link {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
 /* @keyframes pulsate {
   100% {
     text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #f09,
@@ -40,20 +46,36 @@
 } */
 
 @keyframes flicker {
-  0%,
-  18%,
-  22%,
-  25%,
-  53%,
-  57%,
-  100% {
-    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #f09,
-      0 0 80px #f09, 0 0 90px #f09, 0 0 100px #f09, 0 0 150px #f09;
-  }
+	0%,
+	18%,
+	22%,
+	25%,
+	53%,
+	57%,
+	100% {
+		text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #f09,
+			0 0 80px #f09, 0 0 90px #f09, 0 0 100px #f09, 0 0 150px #f09;
+	}
 
-  20%,
-  24%,
-  55% {
-    text-shadow: none;
-  }
+	20%,
+	24%,
+	55% {
+		text-shadow: none;
+	}
 }
+
+#configImg {
+	width: 5em;
+	filter: drop-shadow(
+		/* 0 0 7px #fff,
+		0 0 10px #fff,
+		0 0 21px #fff,
+		0 0 42px #bc13fe,
+		0 0 82px #bc13fe,
+		0 0 92px #bc13fe,
+		0 0 102px #bc13fe,
+		0 0 151px #bc13fe */
+			7px 10px 21px rgba(188, 22, 254, 0.75)
+	);
+}
+/* fixed */

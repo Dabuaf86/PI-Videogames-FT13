@@ -1,0 +1,8 @@
+.home {
+  background-image: url("../../multimedia/home-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  background-attachment: fixed;
+  padding-top: 10px;
+}

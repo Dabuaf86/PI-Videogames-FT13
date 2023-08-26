@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: black;
 }
 
 /* audio {
@@ -8,5 +9,5 @@
 } */
 audio {
   width: 350px;
-  height: 25px;
+  height: 35px;
 }
