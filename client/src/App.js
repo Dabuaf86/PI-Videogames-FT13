@@ -31,9 +31,9 @@ function App() {
 			<Route path='/videogame/:id' component={Navbar} />
 			<Route path='/videogame/:id' component={GameDetails} />
 			<audio
-				controls='true'
-				autoPlay='true'
-				loop='true'
+				controls={true}
+				autoPlay={true}
+				// loop={true}
 				// src={cloud9}
 				// src={candyland}
 				src={sunburst}

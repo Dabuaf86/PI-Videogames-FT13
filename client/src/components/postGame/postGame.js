@@ -13,10 +13,12 @@ const PostVideogame = () => {
 		description: '',
 		released: '',
 		rating: '',
+		image: '',
 		genres: [],
 		platforms: [],
-		image: '',
 	});
+	// const [errors, setErrors] = useState(false);
+
 	const selectGenres = useSelector(state => state.allGenres);
 	const selectPlatforms = useSelector(state => state.allPlatforms);
 
@@ -25,8 +27,6 @@ const PostVideogame = () => {
 		dispatch(getPlatforms());
 	}, [dispatch]);
 
-	// const [errors, setErrors] = useState(false);
-
 	const handleInputChange = event => {
 		if (event.target.name === 'genres' || event.target.name === 'platforms') {
 			const selectArr = input[event.target.name];
@@ -34,6 +34,12 @@ const PostVideogame = () => {
 				...input,
 				[event.target.name]: [...selectArr, event.target.value],
 			});
+			// console.log('Input actual:', input.platforms);
+			// } else if (event.target.name === 'image') {
+			// 	setInput({
+			// 		...input,
+			// 		[event.target.name]: event.target.files[0],
+			// 	});
 		} else {
 			setInput({
 				...input,
@@ -66,10 +72,10 @@ const PostVideogame = () => {
 		} else if (!input.description) {
 			alert('Please type a description');
 			return;
-		} else if (!input.genres || input.genres === 'Select') {
+		} else if (!input.genres) {
 			alert('Please select at least one valid genre');
 			return;
-		} else if (!input.platforms || input.platforms === 'Select') {
+		} else if (!input.platforms) {
 			alert('Please select at least one valid platform');
 			return;
 		} else {
@@ -80,21 +86,12 @@ const PostVideogame = () => {
 				description: '',
 				released: '',
 				rating: '',
+				image: '',
 				genres: [],
 				platforms: [],
-				image: '',
 			});
 		}
 	};
-
-	// const newItems = [
-	// 	{ id: 1, name: 'yo' },
-	// 	{ id: 2, name: 'tu' },
-	// 	{ id: 3, name: 'el' },
-	// 	{ id: 4, name: 'nosotros' },
-	// 	{ id: 5, name: 'vosotros' },
-	// 	{ id: 6, name: 'ellos' }
-	// ];
 
 	return (
 		<div className='formContainer'>
@@ -103,7 +100,7 @@ const PostVideogame = () => {
 				className='postGame'
 				noValidate
 				onSubmit={event => handleSubmit(event)}
-				onChange={event => handleInputChange(event)}
+				// enctype='multipart/form-data'
 			>
 				<label className='formLbl'>*Name</label>
 				<input
@@ -113,19 +110,23 @@ const PostVideogame = () => {
 					name='name'
 					value={input.name}
 					placeholder='Name...'
+					onChange={event => handleInputChange(event)}
+					autoFocus
 				/>
-				<hr />
+
 				{/* {errors.name && <p className="Error">{errors.name}</p>} */}
 				<label className='formLbl'>*Description</label>
-				<input
+				<textarea
 					id='formInput'
-					// className={errors.description && "Error"}
-					type='text'
 					name='description'
 					value={input.description}
 					placeholder='Description...'
+					maxLength={2000}
+					rows={5}
+					onChange={event => handleInputChange(event)}
+					// className={errors.description && "Error"}
 				/>
-				<hr />
+
 				{/* {errors.description && <p className="Error">{errors.description}</p>} */}
 				<label className='formLbl'>Released</label>
 				<input
@@ -134,8 +135,9 @@ const PostVideogame = () => {
 					name='released'
 					value={input.released}
 					placeholder='Released date...'
+					onChange={event => handleInputChange(event)}
 				/>
-				<hr />
+
 				<label className='formLbl'>Rating (0-5)</label>
 				<input
 					id='formInput'
@@ -143,13 +145,14 @@ const PostVideogame = () => {
 					name='rating'
 					value={input.rating}
 					placeholder='Rating...'
+					onChange={event => handleInputChange(event)}
 				/>
-				<hr />
+
 				{/* <label className='formLbl'>Algo</label>
 				<DropdownMenu
 				title='Select one or more genres' items={newItems}
 				multiselect />
-				<hr /> */}
+			 */}
 				<span className='formSpan'>
 					<span className='selectSpan'>
 						<label className='formLbl'>*Genres (at least one)</label>
@@ -158,16 +161,21 @@ const PostVideogame = () => {
 							// className={errors.genres && "Error"}
 							name='genres'
 							multiple={true}
+							required
+							onChange={event => handleInputChange(event)}
 						>
-							<option defaultValue={null}>Select</option>
 							{selectGenres.map(genre => (
-								<option value={genre.id}>{genre.name}</option>
+								<option defaultValue={null} defaultChecked value={genre.id}>
+									{genre.name}
+								</option>
 							))}
 						</select>
 						<ul>
 							{input.genres &&
-								input.genres.map(genre => (
-									<ul className='list-items'>{genre}</ul>
+								input.genres.map((genre, i) => (
+									<ul className='list-items' key={genre[i]}>
+										{genre.name}
+									</ul>
 								))}
 						</ul>
 					</span>
@@ -177,42 +185,54 @@ const PostVideogame = () => {
 							id='formInput'
 							// className={errors.platforms && "Error"}
 							name='platforms'
+							required
 							multiple={true}
+							onChange={event => handleInputChange(event)}
 						>
-							<option defaultValue={null}>Select</option>
-							{selectPlatforms.map(platforms => (
-								<option value={platforms.id}>{platforms.name}</option>
+							{selectPlatforms.map(platform => (
+								<option defaultValue={null} defaultChecked value={platform.id}>
+									{platform.name}
+								</option>
 							))}
 						</select>
 						<ul>
 							{input.platforms &&
-								input.platforms.map(plat => (
-									<ul className='list-items'>{plat}</ul>
+								input.platforms.map((plat, i) => (
+									<ul className='list-items' key={plat[i]}>
+										{plat.name}
+									</ul>
 								))}
 						</ul>
 					</span>
 				</span>
-				<hr />
-				<label className='formLbl'>Enter game's image url</label>
+				<label className='formLbl'>Select an image</label>
+				{/* <input
+					type='file'
+					name='image'
+					id='formInput'
+					value={input.image}
+					onChange={event => handleInputChange(event)}
+				/> */}
 				<input
 					id='formInput'
 					name='image'
 					type='url'
 					value={input.image}
 					placeholder='http://.../*.jpg'
+					onChange={event => handleInputChange(event)}
 				/>
 				<span>
 					{input.image && (
 						<img
 							className='image-span'
 							src={input.image}
-							alt='game poster to create'
+							alt='game poster to be created'
 						/>
 					)}
 				</span>
-				<hr />
+
 				<button className='formBtn' type='submit'>
-					Post game
+					Save game
 				</button>
 			</form>
 			<footer className='formFooter'>

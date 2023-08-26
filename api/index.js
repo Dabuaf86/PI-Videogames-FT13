@@ -1,13 +1,13 @@
-const server = require("./src/app.js");
+const server = require("./app.js");
 const { conn, Genre, Platform } = require("./src/db.js");
 const axios = require("axios");
 const { API_KEY } = process.env;
-const { GENRE_URL, PLATFORM_URL } = require("./src/utils/urls");
+const { LOCAL_PORT, GENRE_URL, PLATFORM_URL } = require("./src/utils/urls");
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
-    console.log("%s listening at 3001"); // eslint-disable-line no-console
+  server.listen(LOCAL_PORT, () => {
+    console.log(`Servidor escuchando en puerto ${LOCAL_PORT}`); // eslint-disable-line no-console
     axios
       .get(`${GENRE_URL}?key=${API_KEY}`)
       .then(

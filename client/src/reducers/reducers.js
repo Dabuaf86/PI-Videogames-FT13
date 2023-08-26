@@ -11,52 +11,52 @@ import {
 const initialState = {
 	loadedVideogames: [],
 	gamesByName: [],
-	videgameDetails: {},
+	videogameDetails: {},
 	allGenres: [],
 	allPlatforms: [],
 	currentGames: [],
 	isLoaded: false,
 };
 
-export default function rootReducer(state = initialState, action) {
-	switch (action.type) {
+export default function rootReducer(state = initialState, {type, payload}) {
+	switch (type) {
 		case GET_ALLVIDEOGAMES:
 			return {
 				...state,
-				loadedVideogames: action.payload,
+				loadedVideogames: payload,
 				isLoaded: true,
 			};
 		case GET_GAMESBYNAME:
 			return {
 				...state,
-				currentGames: action.payload,
+				currentGames: payload,
 				isLoaded: true,
 			};
 		case GET_VIDEOGAMEDETAILS:
 			return {
 				...state,
-				videgameDetails: { ...action.payload },
+				videogameDetails: { ...payload },
 			};
 		case POST_VIDEOGAME:
 			return {
 				...state,
-				loadedVideogames: [...state.loadedVideogames, action.payload],
+				loadedVideogames: [...state.loadedVideogames, payload],
 				isLoaded: false,
 			};
 		case GET_GENRES:
 			return {
 				...state,
-				allGenres: action.payload,
+				allGenres: payload,
 			};
 		case GET_PLATFORMS:
 			return {
 				...state,
-				allPlatforms: action.payload,
+				allPlatforms: payload,
 			};
 		case FILTER_GAMES:
 			return {
 				...state,
-				currentGames: action.payload,
+				currentGames: payload,
 			};
 		default:
 			return state;

@@ -31,7 +31,7 @@ export const getGamesByName = name => async dispatch => {
 			payload: req.data,
 		});
 	} catch (error) {
-		alert('No games with that word in them were found in our database');
+		alert(`Oops!. We didn't find any games with ${name} in their name`);
 	}
 };
 
@@ -47,12 +47,12 @@ export const getVideogameDetails = id => async dispatch => {
 	}
 };
 
-export const postVideogame = input => async dispatch => {
+export const postVideogame = payload => async dispatch => {
 	try {
-		await axios.post(`${URL}/videogame`, input);
+		await axios.post(`${URL}/videogame`, payload);
 		dispatch({
 			type: POST_VIDEOGAME,
-			payload: input,
+			payload,
 		});
 	} catch (error) {
 		console.error(error);

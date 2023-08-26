@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import './Games.css';
 import Loading from '../Loading/Loading';
-import { useDispatch, useSelector } from 'react-redux';
+import { /*useDispatch,*/ useSelector } from 'react-redux';
 import Pagination from '../Pagination/Pagination';
-import { useEffect, useState } from 'react';
-import { getAllVideogames } from '../../Actions/Actions';
+import { /*useEffect,*/ useState } from 'react';
+// import { getAllVideogames } from '../../Actions/Actions';
 
 const Games = () => {
 	// const dispatch = useDispatch();
@@ -16,8 +16,8 @@ const Games = () => {
 	//   dispatch(getAllVideogames());
 	// }, [gamesToRender]);
 
-	console.log('LOADED', loadedVideogames);
-	console.log('CURRENT', currentGames);
+	// console.log('LOADED', loadedVideogames);
+	// console.log('CURRENT', currentGames);
 	const [currentPage, setCurrentPage] = useState(1);
 	// const [didLoad, setDidLoad] = useState(false);
 
@@ -50,8 +50,12 @@ const Games = () => {
 						</Link>
 						<>
 							{game.genres &&
-								game.genres.map(el => {
-									return <li className='homeLi'>{el.name}</li>;
+								game.genres.map(genre => {
+									return (
+										<li className='homeLi' key={genre.id}>
+											{genre.name}
+										</li>
+									);
 								})}
 						</>
 					</div>

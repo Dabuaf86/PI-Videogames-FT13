@@ -121,7 +121,9 @@ const Filters = () => {
 					>
 						<option default>Select</option>
 						{selectGenres.map(genre => (
-							<option value={genre.name}>{genre.name}</option>
+							<option value={genre.name} key={genre.id}>
+								{genre.name}
+							</option>
 						))}
 					</select>
 				</div>
