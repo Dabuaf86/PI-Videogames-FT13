@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { getGamesByName } from '../../Actions/Actions';
-import Search from '../Search/Search';
-import './NavBar.css';
+import { getGamesByName } from '../../actions/actions';
+import Search from '../search/Search';
+import './navBar.css';
 import arcade from './arcade-btn(sml).jpg';
 
 const Navbar = () => {

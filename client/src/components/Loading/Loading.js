@@ -1,6 +1,6 @@
 import React from "react";
 import loading from "./loading.gif";
-import "./Loading.css";
+import "./loading.css";
 
 const Loading = () => {
   return (

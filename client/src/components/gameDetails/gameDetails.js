@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getVideogameDetails } from '../../Actions/Actions';
-import './GameDetails.css';
+import { getVideogameDetails } from '../../actions/actions';
+import './gameDetails.css';
 
 const GameDetails = () => {
 	const dispatch = useDispatch();
@@ -12,6 +12,8 @@ const GameDetails = () => {
 	useEffect(() => {
 		dispatch(getVideogameDetails(id));
 	}, [dispatch, id]);
+
+	console.log('EL JUEGO TRAE: ', game);
 
 	return (
 		<div className='details'>
@@ -41,7 +43,7 @@ const GameDetails = () => {
 				<b>Available for:</b>
 				{(game.platforms &&
 					game.platforms.map(plat => (
-						<li className='liPlat' key={plat.id}>
+						<li className='liPlat' key={plat.platform.id}>
 							{plat.platform.name}
 						</li>
 					))) ||

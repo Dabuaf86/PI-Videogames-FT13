@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Route } from 'react-router';
 import './App.css';
-import LandingPage from './Components/LandingPage/LandingPage';
-import Home from './Components/Home/Home';
-import GameDetails from './Components/GameDetails/GameDetails';
-import Navbar from './Components/NavBar/NavBar';
-import PostGame from './Components/PostGame/PostGame';
-import { getAllVideogames } from './Actions/Actions';
+import LandingPage from './Components/landingPage/LandingPage';
+import Home from './Components/home/Home';
+import GameDetails from './Components/gameDetails/gameDetails';
+import Navbar from './Components/navBar/NavBar';
+import PostVideogame from './Components/postGame/PostGame';
+import { getAllVideogames } from './actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 // import cloud9 from './Itro & Tobu - Cloud 9.mp3';
 // import candyland from './Tobu - Candyland.mp3';
@@ -27,7 +27,7 @@ function App() {
 			<Route path='/videogames' component={Navbar} />
 			<Route path='/videogames' component={Home} />
 			<Route path='/newgame' component={Navbar} />
-			<Route path='/newgame/' component={PostGame} />
+			<Route path='/newgame/' component={PostVideogame} />
 			<Route path='/videogame/:id' component={Navbar} />
 			<Route path='/videogame/:id' component={GameDetails} />
 			<audio

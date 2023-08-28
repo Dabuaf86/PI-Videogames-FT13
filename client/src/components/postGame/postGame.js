@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postVideogame, getGenres, getPlatforms } from '../../Actions/Actions';
+import { postVideogame, getGenres, getPlatforms } from '../../actions/actions';
 // import DropdownMenu from '../DropdownMenu/DropdownMenu';
 // import Validate from "./Validate";
-import './PostGame.css';
+import './postGame.css';
 
 const PostVideogame = () => {
 	const dispatch = useDispatch();
@@ -165,7 +165,12 @@ const PostVideogame = () => {
 							onChange={event => handleInputChange(event)}
 						>
 							{selectGenres.map(genre => (
-								<option defaultValue={null} defaultChecked value={genre.id}>
+								<option
+									defaultValue={null}
+									defaultChecked
+									value={genre.id}
+									key={genre.id}
+								>
 									{genre.name}
 								</option>
 							))}
@@ -189,9 +194,14 @@ const PostVideogame = () => {
 							multiple={true}
 							onChange={event => handleInputChange(event)}
 						>
-							{selectPlatforms.map(platform => (
-								<option defaultValue={null} defaultChecked value={platform.id}>
-									{platform.name}
+							{selectPlatforms.map(plat => (
+								<option
+									defaultValue={null}
+									defaultChecked
+									value={plat.id}
+									key={plat.id}
+								>
+									{plat.name}
 								</option>
 							))}
 						</select>

@@ -1,7 +1,7 @@
 import React from "react";
-import Games from "../Games/Games";
-import Filters from "../GenreFilter/GenreFilter";
-import "./Home.css";
+import Games from "../games/Games";
+import Filters from "../genreFilter/GenreFilter";
+import "./home.css";
 
 const Home2 = () => {
   return (

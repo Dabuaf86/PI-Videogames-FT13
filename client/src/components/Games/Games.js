@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import './Games.css';
-import Loading from '../Loading/Loading';
+import './games.css';
+import Loading from '../loading/Loading';
 import { /*useDispatch,*/ useSelector } from 'react-redux';
-import Pagination from '../Pagination/Pagination';
+import Pagination from '../pagination/Pagination';
 import { /*useEffect,*/ useState } from 'react';
-// import { getAllVideogames } from '../../Actions/Actions';
+// import { getAllVideogames } from '../../actions/actions';
 
 const Games = () => {
 	// const dispatch = useDispatch();
