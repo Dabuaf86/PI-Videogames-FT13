@@ -4,7 +4,7 @@ const axios = require('axios');
 export const GET_ALLVIDEOGAMES = 'GET_ALLVIDEOGAMES';
 export const GET_GAMESBYNAME = 'GET_GAMESBYNAME';
 export const GET_VIDEOGAMEDETAILS = 'GET_VIDEOGAMEDETAILS';
-export const POST_VIDEOGAME = 'POST_VIDEOGAME';
+export const CREATE_VIDEOGAME = 'CREATE_VIDEOGAME';
 export const GET_GENRES = 'GET_GENRES';
 export const GET_PLATFORMS = 'GET_PLATFORMS';
 export const FILTER_GAMES = 'FILTER_GAMES';
@@ -47,11 +47,11 @@ export const getVideogameDetails = id => async dispatch => {
 	}
 };
 
-export const postVideogame = payload => async dispatch => {
+export const createVideogame = payload => async dispatch => {
 	try {
 		await axios.post(`${URL}/videogame`, payload);
 		dispatch({
-			type: POST_VIDEOGAME,
+			type: CREATE_VIDEOGAME,
 			payload,
 		});
 	} catch (error) {

@@ -2,11 +2,11 @@ import {
 	GET_ALLVIDEOGAMES,
 	GET_GAMESBYNAME,
 	GET_VIDEOGAMEDETAILS,
-	POST_VIDEOGAME,
+	CREATE_VIDEOGAME,
 	GET_GENRES,
 	GET_PLATFORMS,
 	FILTER_GAMES,
-} from '../actions/actions';
+} from '../actions';
 
 const initialState = {
 	loadedVideogames: [],
@@ -37,7 +37,7 @@ export default function rootReducer(state = initialState, {type, payload}) {
 				...state,
 				videogameDetails: { ...payload },
 			};
-		case POST_VIDEOGAME:
+		case CREATE_VIDEOGAME:
 			return {
 				...state,
 				loadedVideogames: [...state.loadedVideogames, payload],
