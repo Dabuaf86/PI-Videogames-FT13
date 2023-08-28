@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { getGamesByName } from '../../actions/actions';
+import { getGamesByName } from '../../actions';
 import Search from '../search/Search';
 import './navBar.css';
 import arcade from './arcade-btn(sml).jpg';

@@ -4,7 +4,7 @@ import Loading from '../loading/Loading';
 import { /*useDispatch,*/ useSelector } from 'react-redux';
 import Pagination from '../pagination/Pagination';
 import { /*useEffect,*/ useState } from 'react';
-// import { getAllVideogames } from '../../actions/actions';
+// import { getAllVideogames } from '../../actions';
 
 const Games = () => {
 	// const dispatch = useDispatch();

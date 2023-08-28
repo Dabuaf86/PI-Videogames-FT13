@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterGames, getGenres } from '../../actions/actions';
+import { filterGames, getGenres } from '../../actions';
 import './genreFilter.css';
 
 const Filters = () => {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getVideogameDetails } from '../../actions/actions';
+import { getVideogameDetails } from '../../actions';
 import './gameDetails.css';
 
 const GameDetails = () => {
@@ -12,8 +12,6 @@ const GameDetails = () => {
 	useEffect(() => {
 		dispatch(getVideogameDetails(id));
 	}, [dispatch, id]);
-
-	console.log('EL JUEGO TRAE: ', game);
 
 	return (
 		<div className='details'>
