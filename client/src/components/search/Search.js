@@ -10,7 +10,7 @@ const Search = () => {
   const handleChange = (event) => setGameInput(event.target.value);
   const handleClick = (event) => {
     event.preventDefault();
-    if (!gameInput) return alert("please type a game's name");
+    if (!gameInput) return alert("please type a valid game name");
     else {
       dispatch(getGamesByName(gameInput));
       setGameInput("");

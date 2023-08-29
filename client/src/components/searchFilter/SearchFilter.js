@@ -5,11 +5,15 @@ import './searchFilter.css';
 
 const Filters = () => {
 	const dispatch = useDispatch();
+
+	const [filter, setFilter] = useState({
+		genre: 'Select',
+		source: 'Select',
+		order: 'Select',
+	});
+
 	const loadedVideogames = useSelector(state => state.loadedVideogames);
 	const selectGenres = useSelector(state => state.allGenres);
-	const [genre, setGenre] = useState('Select');
-	const [source, setSource] = useState('Select');
-	const [order, setOrder] = useState('Select');
 
 	useEffect(() => {
 		dispatch(getGenres());
@@ -18,12 +22,20 @@ const Filters = () => {
 	let gamesToFilter = [...loadedVideogames];
 
 	const handleChange = e => {
-		if (e.target.name === 'genre') setGenre(e.target.value);
+		if (e.target.name === 'genre')
+			setFilter({ ...filter, genre: e.target.value });
 		else if (e.target.name === 'source')
-			setSource(
-				e.target.value === 'Select' ? 'Select' : e.target.value === 'true'
-			);
-		else if (e.target.name === 'order') setOrder(e.target.value);
+			setFilter({
+				...filter,
+				source:
+					e.target.value === 'Select'
+						? 'Select'
+						: e.target.value === 'true'
+						? true
+						: false,
+			});
+		else if (e.target.name === 'order')
+			setFilter({ ...filter, order: e.target.value });
 	};
 
 	const sortCB = (arr, order) => {
@@ -52,19 +64,32 @@ const Filters = () => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		let filtered = [...gamesToFilter];
-		if (genre === 'Select' && source === 'Select' && order === 'Select') {
+		if (
+			filter.genre === 'Select' &&
+			filter.source === 'Select' &&
+			filter.order === 'Select'
+		) {
 			dispatch(filterGames(gamesToFilter));
 		} else {
-			if (source !== 'Select') {
-				filtered = filtered.filter(game => game.created === source);
+			if (filter.source !== 'Select') {
+				filtered = filtered.filter(game => game.created === filter.source);
 			}
-			if (genre !== 'Select') {
+			if (filter.genre !== 'Select') {
 				filtered = filtered.filter(game =>
-					game.genres.some(gen => gen.name === genre)
+					game.genres.some(gen => gen.name === filter.genre)
 				);
 			}
-			if (order !== 'Select') {
-				sortCB(filtered, order);
+			if (filter.order !== 'Select') {
+				sortCB(filtered, filter.order);
+			}
+			if (!filtered.length) {
+				alert("We're sorry. Your search didn't return any results.");
+				dispatch(filterGames(filtered));
+				setFilter({
+					genre: 'Select',
+					source: 'Select',
+					order: 'Select',
+				});
 			}
 			dispatch(filterGames(filtered));
 		}
@@ -78,7 +103,7 @@ const Filters = () => {
 					<select
 						className='filterSelect'
 						name='source'
-						value={source}
+						value={filter.source}
 						onChange={event => handleChange(event)}
 					>
 						<option value='Select' default>
@@ -93,7 +118,7 @@ const Filters = () => {
 					<select
 						className='filterSelect'
 						name='genre'
-						value={genre}
+						value={filter.genre}
 						onChange={event => handleChange(event)}
 					>
 						<option value='Select' default>
@@ -111,7 +136,7 @@ const Filters = () => {
 					<select
 						className='filterSelect'
 						name='order'
-						value={order}
+						value={filter.order}
 						onChange={event => handleChange(event)}
 					>
 						<option value='Select' default>
