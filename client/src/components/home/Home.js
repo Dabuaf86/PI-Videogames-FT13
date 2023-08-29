@@ -1,5 +1,5 @@
 import Games from '../games/Games';
-import Filters from '../genreFilter/GenreFilter';
+import Filters from '../searchFilter/SearchFilter';
 import './home.css';
 
 const Home = () => {
