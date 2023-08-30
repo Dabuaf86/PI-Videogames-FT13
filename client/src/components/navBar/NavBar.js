@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { getGamesByName } from '../../actions';
 import Search from '../search/Search';
-import './navBar.css';
+import './navbar.css';
 import arcade from '../../assets/arcade-btn(sml).jpg';
 
 const Navbar = () => {
