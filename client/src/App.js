@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Route } from 'react-router';
 import './App.css';
 import LandingPage from './components/landingPage/LandingPage';
@@ -8,9 +8,7 @@ import Navbar from './components/navBar/NavBar';
 import PostVideogame from './components/postGame/PostGame';
 import { getAllVideogames } from './actions';
 import { useDispatch, useSelector } from 'react-redux';
-// import cloud9 from './Itro & Tobu - Cloud 9.mp3';
-// import candyland from './Tobu - Candyland.mp3';
-import sunburst from './Tobu & Itro - Sunburst.mp3';
+import sunburst from './assets/Tobu & Itro - Sunburst.mp3';
 
 function App() {
 	const dispatch = useDispatch();
@@ -31,12 +29,10 @@ function App() {
 			<Route path='/videogame/:id' component={Navbar} />
 			<Route path='/videogame/:id' component={GameDetails} />
 			<audio
+				src={sunburst}
 				controls={true}
 				autoPlay={true}
 				// loop={true}
-				// src={cloud9}
-				// src={candyland}
-				src={sunburst}
 			></audio>
 		</div>
 	);
