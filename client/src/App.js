@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Route } from 'react-router';
 import './App.css';
-import LandingPage from './Components/landingPage/LandingPage';
-import Home from './Components/home/Home';
-import GameDetails from './Components/gameDetails/GameDetails';
-import Navbar from './Components/navBar/NavBar';
-import PostVideogame from './Components/postGame/PostGame';
+import LandingPage from './components/landingPage/LandingPage';
+import Home from './components/home/Home';
+import GameDetails from './components/gameDetails/GameDetails';
+import Navbar from './components/navBar/NavBar';
+import PostVideogame from './components/postGame/PostGame';
 import { getAllVideogames } from './actions';
 import { useDispatch, useSelector } from 'react-redux';
 // import cloud9 from './Itro & Tobu - Cloud 9.mp3';
