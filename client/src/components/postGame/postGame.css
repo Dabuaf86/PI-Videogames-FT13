@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 
 .formContainer {
-  background-image: url("./arcade-front-1.jpg");
+  background-image: url("../../assets/arcade-front-1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
