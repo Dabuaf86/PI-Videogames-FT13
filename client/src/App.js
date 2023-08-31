@@ -4,7 +4,7 @@ import './App.css';
 import LandingPage from './components/landingPage/LandingPage';
 import Home from './components/home/Home';
 import GameDetails from './components/gameDetails/GameDetails';
-import Navbar from './components/navBar/NavBar';
+import Navbar from './components/navbar/Navbar';
 import PostVideogame from './components/postGame/PostGame';
 import { getAllVideogames } from './actions';
 import { useDispatch, useSelector } from 'react-redux';
