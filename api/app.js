@@ -16,11 +16,7 @@ server.use(express.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-	res.header(
-		'Access-Control-Allow-Origin',
-		'https://level-3dlrcyrib-dabuaf86.vercel.app/',
-		'http://localhost:3000'
-	); // update to match the domain you will make the request from
+	res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
 	res.header('Access-Control-Allow-Credentials', 'true');
 	res.header(
 		'Access-Control-Allow-Headers',
