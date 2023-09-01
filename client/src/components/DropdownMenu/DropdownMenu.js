@@ -69,3 +69,4 @@ const DropdownMenu = ({ title, items = [], multiselect = false }) => {
 
 // export default onClickOutside(DropdownMenu, clickOutsideConfig);
 export default DropdownMenu;
+/* filename should change */
