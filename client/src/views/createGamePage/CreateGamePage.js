@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createVideogame, getGenres, getPlatforms } from '../../actions';
-// import DropdownMenu from '../../components/DropdownMenu/index';
-// import Validate from "./validate";
-import './createVideogame.css';
+// import DropdownMenu from '../../components/DropdownMenu/DropdownMenu';
+// import Validate from "./Validate";
+import './createGamePage.css';
 
-const CreateVideogame = () => {
+const CreateGamePage = () => {
 	const dispatch = useDispatch();
 
 	const [input, setInput] = useState({
@@ -95,7 +95,7 @@ const CreateVideogame = () => {
 
 	return (
 		<div className='formContainer'>
-			<h2 className='formH2'>CREATE YOUR OWN GAME</h2>
+			<h2 className='formH2'>Post a new videogame</h2>
 			<form
 				className='postGame'
 				noValidate
@@ -252,4 +252,4 @@ const CreateVideogame = () => {
 	);
 };
 
-export default CreateVideogame;
+export default CreateGamePage;

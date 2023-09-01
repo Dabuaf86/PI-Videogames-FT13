@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getVideogameDetails } from '../../actions';
-import './gameDetails.css';
+import { getVideogameDetails } from '../../actions/';
+import './gameDetailsPage.css';
 
-const GameDetails = () => {
+const GameDetailsPage = () => {
 	const dispatch = useDispatch();
 	const game = useSelector(state => state.videogameDetails);
 	const { id } = useParams();
@@ -71,4 +71,4 @@ const GameDetails = () => {
 	);
 };
 
-export default GameDetails;
+export default GameDetailsPage;
