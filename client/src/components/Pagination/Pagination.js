@@ -9,7 +9,7 @@ const Pagination = ({ gamesPerPage, totalVideogames, paginate }) => {
 		pages.push(i);
 	}
 
-	// CONVERTIR EN UN SÓLO HANDLER
+	// CONVERTIR EN UN SÓLO MANEJADOR
 	// const handlePaginate = num => {
 	// 	setCurrPage(num);
 	// 	paginate(num);

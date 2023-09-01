@@ -27,4 +27,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-/* filename should change */
