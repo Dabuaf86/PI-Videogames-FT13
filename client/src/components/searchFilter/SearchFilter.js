@@ -99,7 +99,7 @@ const Filters = () => {
 		<div>
 			<form className='filterForm' onSubmit={event => handleSubmit(event)}>
 				<div className='filterDiv'>
-					<label className='filterLbl'>Filter by Source</label>
+					<label className='filterLbl'>Source</label>
 					<select
 						className='filterSelect'
 						name='source'
@@ -109,12 +109,12 @@ const Filters = () => {
 						<option value='Select' default>
 							Select
 						</option>
-						<option value={true}>Your Games</option>
-						<option value={false}>Our Games</option>
+						<option value={true}>Created Games</option>
+						<option value={false}>io Games</option>
 					</select>
 				</div>
 				<div className='filterDiv'>
-					<label className='filterLbl'>Filter by Genre</label>
+					<label className='filterLbl'>Genre</label>
 					<select
 						className='filterSelect'
 						name='genre'
