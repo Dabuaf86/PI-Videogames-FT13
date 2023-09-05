@@ -16,7 +16,7 @@ server.use(express.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-	const corsWhiteList = ['http://localhost:3000', '*'];
+	const corsWhiteList = ['http://localhost:3000', 'https://level-app.vercel.app'];
 	if (corsWhiteList.indexOf(req.headers.origin) !== -1) {
 		res.header('Access-Control-Allow-Origin', req.headers.origin); // update to match the domain you will make the request from
 	}
