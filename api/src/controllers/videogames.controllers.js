@@ -4,6 +4,20 @@ const { API_KEY } = process.env;
 const { GAMES_URL } = require('../utils/urls');
 const { v4: UUIDV4 } = require('uuid');
 
+// const t = await sequelize.transaction();
+const included = [
+	{
+		model: Genre,
+		attributes: ['name'],
+		through: { attributes: [] },
+	},
+	{
+		model: Platform,
+		attributes: ['name'],
+		through: { attributes: [] },
+	},
+];
+
 const getGames = async (req, res, next) => {
 	const { name } = req.query;
 	if (name) {
@@ -90,6 +104,7 @@ const getGames = async (req, res, next) => {
 		}
 	}
 };
+
 const getOneGame = async (req, res) => {
 	const { id } = req.params;
 	try {
@@ -97,18 +112,7 @@ const getOneGame = async (req, res) => {
 			// Antes la condición era un .includes("-")
 			const gameDB = await Videogame.findOne({
 				where: { id },
-				include: [
-					{
-						model: Genre,
-						attributes: ['name'],
-						through: { attributes: [] },
-					},
-					{
-						model: Platform,
-						attributes: ['name'],
-						through: { attributes: [] },
-					},
-				],
+				include: included,
 			});
 			return res.json(gameDB);
 		} else {
@@ -137,6 +141,7 @@ const getOneGame = async (req, res) => {
 		return res.sendStatus(404).send({ message: 'Oops! Game not found' });
 	}
 };
+
 const getGenres = async (req, res) => {
 	try {
 		const genre = await Genre.findAll();
@@ -147,6 +152,7 @@ const getGenres = async (req, res) => {
 		});
 	}
 };
+
 const getPlatforms = async (req, res) => {
 	try {
 		const platform = await Platform.findAll();
@@ -159,12 +165,14 @@ const getPlatforms = async (req, res) => {
 		});
 	}
 };
-const PostGame = async (req, res) => {
-	const { name, description, released, rating, platforms, genres, image } =
+
+const createGame = async (req, res) => {
+	let { name, description, released, rating, platforms, genres, image } =
 		req.body;
-	// console.log('GÉNEROS Y PLATAFORMAS: ', genres, platforms);
 	// console.log('FILE TRAE: ', req.file);
 	// const { image } = req.file?.path || '';
+	description = description.charAt(0).toUpperCase() + description.slice(1);
+	console.log(description);
 	try {
 		// FALTA AGREGAR MANEJO DE COLISIONES PARA JUEGOS YA EXISTENTES
 		const gameObj = {
@@ -176,9 +184,6 @@ const PostGame = async (req, res) => {
 			image,
 			created: true,
 		};
-		// const genresSet = new Set(genres);
-		// const platformsSet = new Set(platforms);
-
 		const gameInstance = await Videogame.create(gameObj);
 		await gameInstance.addGenre(genres);
 		await gameInstance.addPlatform(platforms);
@@ -191,10 +196,66 @@ const PostGame = async (req, res) => {
 	}
 };
 
+const UpdateGame = async (req, res) => {
+	const { id } = req.params;
+	const { name, description, released, rating, platforms, genres, image } =
+		req.body;
+	try {
+		if (id.length > 10) {
+			const game = await Videogame.findOne({
+				where: { id },
+				include: included,
+			});
+			const gameWithChanges = {
+				name: name || game.name,
+				description: description || game.description,
+				released: released || game.released,
+				rating: rating || game.rating,
+				image: image || game.image,
+			};
+			console.log('CHANGES: ', gameWithChanges);
+
+			// Validar que no exista otro juego con el nombre elegido que llega en el body
+			const gameExist = await Videogame.findOne({ where: { name: name } });
+			if (!gameExist || gameExist == game) {
+				game.set(gameWithChanges);
+				const updatedGame = await game.save();
+				await updatedGame.setGenre(genres);
+				// await updatedGame.setPlatform(...platforms);
+				console.log('UPDATED GAME', updatedGame);
+				res.send({
+					message: 'Game updated successfully',
+					data: updatedGame,
+				});
+			}
+		}
+	} catch (error) {
+		return res.sendStatus(404).send({ message: 'Oops! Something went wrong.' });
+	}
+};
+
+const deleteGame = async (req, res) => {
+	const { id } = req.params;
+	try {
+		if (id.length > 10) {
+			const game = await Videogame.findOne({
+				where: { id },
+				include: included,
+			});
+			await game.destroy();
+			res.send({ message: 'Game deleted successfully' });
+		}
+	} catch (error) {
+		return res.sendStatus(404).send({ message: 'Oops! Something went wrong.' });
+	}
+};
+
 module.exports = {
 	getGames,
 	getOneGame,
 	getGenres,
 	getPlatforms,
-	PostGame,
+	createGame,
+	UpdateGame,
+	deleteGame,
 };
