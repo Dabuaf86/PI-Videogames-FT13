@@ -172,27 +172,34 @@ const createGame = async (req, res) => {
 	// console.log('FILE TRAE: ', req.file);
 	// const { image } = req.file?.path || '';
 	description = description.charAt(0).toUpperCase() + description.slice(1);
-	console.log(description);
 	try {
-		// FALTA AGREGAR MANEJO DE COLISIONES PARA JUEGOS YA EXISTENTES
-		const gameObj = {
-			id: UUIDV4(),
-			name,
-			description,
-			released,
-			rating,
-			image,
-			created: true,
-		};
-		const gameInstance = await Videogame.create(gameObj);
-		await gameInstance.addGenre(genres);
-		await gameInstance.addPlatform(platforms);
-		res.send({
-			message: 'New game created successfully',
-			data: gameInstance,
-		});
+		const gameExists = await Videogame.findOne({ where: { name } });
+		if (!gameExists) {
+			const gameObj = {
+				id: UUIDV4(),
+				name,
+				description,
+				released,
+				rating,
+				image,
+				created: true,
+			};
+			const gameInstance = await Videogame.create(gameObj);
+			await gameInstance.addGenre(genres);
+			await gameInstance.addPlatform(platforms);
+			res.send({
+				message: 'New game created successfully',
+				data: gameInstance,
+			});
+		} else {
+			res.send({
+				message: "We're, sorry. That name already exists",
+			});
+		}
 	} catch (error) {
-		return res.send(error);
+		return res
+			.sendStatus(500)
+			.send({ message: 'Oops! Something went wrong', data: error });
 	}
 };
 
@@ -213,19 +220,19 @@ const UpdateGame = async (req, res) => {
 				rating: rating || game.rating,
 				image: image || game.image,
 			};
-			console.log('CHANGES: ', gameWithChanges);
-
-			// Validar que no exista otro juego con el nombre elegido que llega en el body
-			const gameExist = await Videogame.findOne({ where: { name: name } });
-			if (!gameExist || gameExist == game) {
+			const gameExists = await Videogame.findOne({ where: { name } });
+			if (!gameExists || gameExists.id === game.id) {
 				game.set(gameWithChanges);
 				const updatedGame = await game.save();
-				await updatedGame.setGenre(genres);
-				// await updatedGame.setPlatform(...platforms);
-				console.log('UPDATED GAME', updatedGame);
+				genres ? await updatedGame.setGenres(genres) : null;
+				platforms ? await updatedGame.setPlatforms(platforms) : null;
 				res.send({
 					message: 'Game updated successfully',
 					data: updatedGame,
+				});
+			} else {
+				res.send({
+					message: "We're, sorry. That name already exists",
 				});
 			}
 		}
