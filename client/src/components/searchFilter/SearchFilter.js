@@ -110,7 +110,7 @@ const Filters = () => {
 							Select
 						</option>
 						<option value={true}>Created Games</option>
-						<option value={false}>io Games</option>
+						<option value={false}>RAWG Games</option>
 					</select>
 				</div>
 				<div className='filterDiv'>
